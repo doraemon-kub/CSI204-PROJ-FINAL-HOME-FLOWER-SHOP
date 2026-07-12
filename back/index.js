@@ -8,7 +8,35 @@ const productRoutes = require('./src/routes/productRoutes');
 const cartRoutes = require('./src/routes/cartRoutes');
 const orderRoutes = require('./src/routes/orderRoutes');
 
+const http = require('http');
+const { Server } = require('socket.io');
+
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST', 'PUT', 'DELETE']
+    }
+});
+
+// Set io globally so controllers can use it via req.app.get('io')
+app.set('io', io);
+
+io.on('connection', (socket) => {
+    console.log('A user connected:', socket.id);
+    
+    // Clients can join a room based on their userId to get specific cart updates
+    socket.on('joinUserRoom', (userId) => {
+        socket.join(`user_${userId}`);
+        console.log(`Socket ${socket.id} joined room user_${userId}`);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected:', socket.id);
+    });
+});
+
 const PORT = process.env.PORT || 3000;
 
 // Middleware
@@ -30,6 +58,6 @@ app.get('/', (req, res) => {
     res.json({ message: 'Welcome to Home Flowers Shop API' });
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

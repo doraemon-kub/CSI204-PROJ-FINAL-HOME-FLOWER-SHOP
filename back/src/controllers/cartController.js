@@ -47,6 +47,11 @@ const addToCart = (req, res) => {
     }
 
     fileDb.writeData('carts', carts);
+    
+    // Emit real-time update
+    const io = req.app.get('io');
+    if (io) io.to(`user_${userId}`).emit('cartUpdated', userCart);
+
     res.json({ message: 'Item added to cart', cart: userCart });
 };
 
@@ -73,6 +78,10 @@ const updateCartItemQuantity = (req, res) => {
     item.quantity = quantity;
     fileDb.writeData('carts', carts);
 
+    // Emit real-time update
+    const io = req.app.get('io');
+    if (io) io.to(`user_${userId}`).emit('cartUpdated', userCart);
+
     res.json({ message: 'Cart updated', cart: userCart });
 };
 
@@ -88,6 +97,10 @@ const removeCartItem = (req, res) => {
 
     userCart.items = userCart.items.filter(i => i.cartItemId !== cartItemId);
     fileDb.writeData('carts', carts);
+
+    // Emit real-time update
+    const io = req.app.get('io');
+    if (io) io.to(`user_${userId}`).emit('cartUpdated', userCart);
 
     res.json({ message: 'Item removed from cart', cart: userCart });
 };

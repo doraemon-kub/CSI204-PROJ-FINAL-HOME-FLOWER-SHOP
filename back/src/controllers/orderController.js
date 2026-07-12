@@ -48,6 +48,15 @@ const checkout = (req, res) => {
         fileDb.writeData('carts', carts);
     }
 
+    // Emit real-time update
+    const io = req.app.get('io');
+    if (io) {
+        io.to(`user_${userId}`).emit('orderCreated', newOrder);
+        if (userCart) {
+            io.to(`user_${userId}`).emit('cartUpdated', userCart); // Also tell frontend cart is empty now
+        }
+    }
+
     res.status(201).json({ message: 'Order placed successfully', order: newOrder });
 };
 
