@@ -1,0 +1,20 @@
+[
+  {
+    "id": "a07bca3b-1917-4a96-9ac9-b3bbe206bd30",
+    "name": "ทดสอบ",
+    "email": "test@test.com",
+    "password": "123",
+    "phone": "0812345678",
+    "role": "MEMBER",
+    "createdAt": "2026-07-12T13:12:48.353Z"
+  },
+  {
+    "id": "acf186e6-82cc-43fe-b614-f3d17d18350c",
+    "name": "ทดสอบ2",
+    "email": "test2@test.com",
+    "password": "1234",
+    "phone": "0812345679",
+    "role": "MEMBER",
+    "createdAt": "2026-07-12T13:13:38.701Z"
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "p1",
+    "name": "Basic 1",
+    "description": "ช่อดอกไม้สำเร็จรูป",
+    "price": 1000,
+    "category": "ready-made",
+    "image": "basic1.jpg",
+    "isCustom": false
+  },
+  {
+    "id": "p2",
+    "name": "Custom 1",
+    "description": "ช่อดอกไม้จัดเองตามใจชอบ",
+    "price": 690,
+    "category": "custom",
+    "image": "custom1.jpg",
+    "isCustom": true,
+    "customOptions": [
+      { "name": "Size", "choices": ["S", "M", "L"] },
+      { "name": "รูปแบบดอกที่ 1", "choices": ["กุหลาบแดง", "กุหลาบขาว", "ทานตะวัน"] },
+      { "name": "รูปแบบดอกที่ 2", "choices": ["คาร์เนชั่น", "ลิลลี่", "ยิปโซ"] },
+      { "name": "รูปแบบดอกที่ 3", "choices": ["ไม่ระบุ", "ใบเฟิร์น", "ใบยูคาลิปตัส"] }
+    ]
+  },
+  {
+    "id": "p3",
+    "name": "Teddy",
+    "description": "ตุ๊กตาหมีสำหรับเป็นของขวัญ",
+    "price": 200,
+    "category": "gift",
+    "image": "teddy.jpg",
+    "isCustom": false
+  }
+]
