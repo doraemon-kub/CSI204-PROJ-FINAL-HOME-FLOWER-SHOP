@@ -34,5 +34,14 @@
     "phone": "67676767676",
     "role": "MEMBER",
     "createdAt": "2026-07-13T16:45:17.060Z"
+  },
+  {
+    "id": "admin-id-001",
+    "name": "Shop Owner (Admin)",
+    "email": "admin@homeflowershop.com",
+    "password": "admin",
+    "phone": "0000000000",
+    "role": "ADMIN",
+    "createdAt": "2026-07-13T17:00:00.000Z"
   }
 ]
