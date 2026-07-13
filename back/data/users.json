@@ -16,5 +16,23 @@
     "phone": "0812345679",
     "role": "MEMBER",
     "createdAt": "2026-07-12T13:13:38.701Z"
+  },
+  {
+    "id": "7aaf73b5-0580-4b21-9bf3-7e264610f62b",
+    "name": "Test Member",
+    "email": "test_new_user_1@test.com",
+    "password": "123456",
+    "phone": "0812345678",
+    "role": "MEMBER",
+    "createdAt": "2026-07-13T15:53:50.297Z"
+  },
+  {
+    "id": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "name": "เหี้ยภีม",
+    "email": "herepheem@gmail.com",
+    "password": "asd456123",
+    "phone": "67676767676",
+    "role": "MEMBER",
+    "createdAt": "2026-07-13T16:45:17.060Z"
   }
 ]

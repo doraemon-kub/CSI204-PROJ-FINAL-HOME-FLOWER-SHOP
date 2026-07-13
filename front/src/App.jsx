@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import './App.css';
+import axios from 'axios';
+import { io } from 'socket.io-client';
 import Navbar from './component/Navbar';
 import HeroBanner from './component/HeroBanner';
 import HomeView from './component/HomeView';
@@ -8,76 +11,7 @@ import CartDrawer from './component/CartDrawer';
 import AuthModal from './component/AuthModal';
 import OrdersModal from './component/OrdersModal';
 
-// --- MOCK PRODUCTS DATA ---
-const BEST_SELLERS = [
-  {
-    id: '1',
-    name: 'ช่อดอกลาเวนเดอร์แห้งพรีเมียม',
-    price: 450,
-    img: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600&auto=format&fit=crop',
-    category: 'ดอกไม้แห้ง',
-    badge: 'ขายดี',
-    rating: 5,
-    reviewsCount: 24
-  },
-  {
-    id: '2',
-    name: 'ช่อดอกทิวลิปประดิษฐ์สไตล์เกาหลี',
-    price: 390,
-    img: 'https://images.unsplash.com/photo-1589244159943-460088ed5c92?q=80&w=600&auto=format&fit=crop',
-    category: 'ดอกไม้ประดิษฐ์',
-    badge: 'ใหม่',
-    rating: 4,
-    reviewsCount: 18
-  },
-  {
-    id: '3',
-    name: 'เซ็ตกล่องของขวัญดอกไม้กุหลาบและเทียนหอม',
-    price: 750,
-    img: 'https://images.unsplash.com/photo-1513201099705-a9746e1e201f?q=80&w=600&auto=format&fit=crop',
-    category: 'ของขวัญ',
-    badge: 'แนะนำ',
-    rating: 5,
-    reviewsCount: 32
-  },
-  {
-    id: '4',
-    name: 'ช่อไฮเดรนเยียแห้งแนววินเทจ',
-    price: 590,
-    img: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=600&auto=format&fit=crop',
-    category: 'ดอกไม้แห้ง',
-    badge: 'ขายดี',
-    rating: 4,
-    reviewsCount: 15
-  }
-];
-
-const DRIED_FLOWERS = Array.from({ length: 6 }, (_, i) => ({
-  id: `df-${i + 1}`,
-  name: 'Basic 1',
-  price: 1000,
-  img: '',
-  tag: 'แนะนำ Custom'
-}));
-
-const ARTIFICIAL_FLOWERS = Array.from({ length: 6 }, (_, i) => ({
-  id: `af-${i + 1}`,
-  name: 'Basic 1',
-  price: 1000,
-  img: '',
-  tag: 'จัดส่งฟรี'
-}));
-
-const GIFTS = [
-  { id: 'gf-1', name: 'Teddy', price: 200, img: '', tag: 'ตุ๊กตาหมี' },
-  ...Array.from({ length: 5 }, (_, i) => ({
-    id: `gf-${i + 2}`,
-    name: 'Basic 1',
-    price: 1000,
-    img: '',
-    tag: i % 2 === 0 ? 'เทียนหอม' : 'กล่อง/การ์ด'
-  }))
-];
+const API_URL = 'http://localhost:3000/api';
 
 export default function App() {
   // Navigation View State
@@ -88,18 +22,104 @@ export default function App() {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isOrdersOpen, setIsOrdersOpen] = useState(false);
 
-  // Authentication State
+  // Authentication State — stored as JSON object in localStorage
   const [user, setUser] = useState(() => {
-    return localStorage.getItem('hf_user') || null;
+    const saved = localStorage.getItem('hf_user');
+    try {
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
   });
 
-  // Shopping Cart State
-  const [cart, setCart] = useState(() => {
-    const savedCart = localStorage.getItem('hf_cart');
-    return savedCart ? JSON.parse(savedCart) : [];
-  });
+  // Shopping Cart State (synced with backend)
+  const [cart, setCart] = useState([]);
 
-  // Sync Hash changes and window scroll
+  // Products State (fetched from API)
+  const [products, setProducts] = useState([]);
+
+  // Categorized Products
+  const bestSellers = products.slice(0, 4);
+  const driedFlowers = products.filter(p => p.category === 'ready-made');
+  const artificialFlowers = products.filter(p => p.category === 'custom');
+  const gifts = products.filter(p => p.category === 'gift');
+
+  // --- Fetch Products from API ---
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/products`);
+        const mappedProducts = response.data.map(p => ({
+          ...p,
+          img: p.image ? `http://localhost:3000/uploads/${p.image}` : '',
+        }));
+        setProducts(mappedProducts);
+      } catch (err) {
+        console.error('Failed to fetch products', err);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  // --- Fetch Cart & Setup WebSocket when User changes ---
+  useEffect(() => {
+    if (!user || !user.id) {
+      setCart([]);
+      return;
+    }
+
+    const fetchCart = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/cart/${user.id}`);
+        const userCart = response.data;
+        // Map backend cart items → frontend format (need product info)
+        const mappedItems = await Promise.all(
+          (userCart.items || []).map(async (item) => {
+            try {
+              const prodRes = await axios.get(`${API_URL}/products/${item.productId}`);
+              const prod = prodRes.data;
+              return {
+                id: prod.id,
+                name: prod.name,
+                price: prod.price,
+                img: prod.image ? `http://localhost:3000/uploads/${prod.image}` : '',
+                quantity: item.quantity,
+                cartItemId: item.cartItemId,
+              };
+            } catch {
+              return {
+                id: item.productId,
+                name: 'สินค้า',
+                price: 0,
+                img: '',
+                quantity: item.quantity,
+                cartItemId: item.cartItemId,
+              };
+            }
+          })
+        );
+        setCart(mappedItems);
+      } catch (err) {
+        console.error('Failed to fetch cart', err);
+      }
+    };
+
+    fetchCart();
+
+    // Setup Socket.IO for real-time updates
+    const socket = io('http://localhost:3000');
+    socket.emit('joinUserRoom', user.id);
+
+    socket.on('cartUpdated', () => {
+      fetchCart();
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [user]);
+
+  // Sync Hash changes
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash || '#home';
@@ -107,7 +127,6 @@ export default function App() {
     };
 
     window.addEventListener('hashchange', handleHashChange);
-    // Initialize
     if (window.location.hash) {
       setView(window.location.hash);
     }
@@ -117,37 +136,34 @@ export default function App() {
     };
   }, []);
 
-  // Sync state to local storage and update body classes on view change
-  useEffect(() => {
-    localStorage.setItem('hf_cart', JSON.stringify(cart));
-  }, [cart]);
-
+  // Sync user to localStorage
   useEffect(() => {
     if (user) {
-      localStorage.setItem('hf_user', user);
+      localStorage.setItem('hf_user', JSON.stringify(user));
     } else {
       localStorage.removeItem('hf_user');
     }
   }, [user]);
 
+  // Body class toggle for wireframe mode
   useEffect(() => {
-    // Add/remove wireframe mode class on body
     const isWireframe = ['#dried-flowers', '#artificial-flowers', '#gifts'].includes(view);
     if (isWireframe) {
       document.body.classList.add('wf-mode');
     } else {
       document.body.classList.remove('wf-mode');
     }
-
-    // Scroll to top
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [view]);
 
   // Handler for view changing
   const handleViewChange = (newView) => {
-    // For hash views, update the location hash directly (so back/forward works, matching the original JS layout router)
     if (newView.startsWith('#')) {
       if (newView === '#orders') {
+        if (!user) {
+          setIsAuthOpen(true);
+          return;
+        }
         setIsOrdersOpen(true);
       } else {
         window.location.hash = newView;
@@ -156,49 +172,139 @@ export default function App() {
     }
   };
 
-  // Add to cart helper
-  const handleAddToCart = (product) => {
-    setCart((prevCart) => {
-      const existing = prevCart.find((item) => item.id === product.id);
-      if (existing) {
-        return prevCart.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-      }
-      return [...prevCart, { ...product, quantity: 1 }];
-    });
-    // Open drawer after adding
-    setIsCartOpen(true);
+  // Add to cart — requires login, calls API
+  const handleAddToCart = async (product) => {
+    if (!user) {
+      setIsAuthOpen(true);
+      return;
+    }
+
+    try {
+      await axios.post(`${API_URL}/cart/${user.id}/add`, {
+        productId: product.id,
+        quantity: 1,
+      });
+      // Re-fetch cart after adding
+      const response = await axios.get(`${API_URL}/cart/${user.id}`);
+      const userCart = response.data;
+      const mappedItems = await Promise.all(
+        (userCart.items || []).map(async (item) => {
+          try {
+            const prodRes = await axios.get(`${API_URL}/products/${item.productId}`);
+            const prod = prodRes.data;
+            return {
+              id: prod.id,
+              name: prod.name,
+              price: prod.price,
+              img: prod.image ? `http://localhost:3000/uploads/${prod.image}` : '',
+              quantity: item.quantity,
+              cartItemId: item.cartItemId,
+            };
+          } catch {
+            return {
+              id: item.productId,
+              name: 'สินค้า',
+              price: 0,
+              img: '',
+              quantity: item.quantity,
+              cartItemId: item.cartItemId,
+            };
+          }
+        })
+      );
+      setCart(mappedItems);
+      setIsCartOpen(true);
+    } catch (err) {
+      console.error('Failed to add to cart', err);
+      alert('เกิดข้อผิดพลาดในการเพิ่มสินค้า');
+    }
   };
 
-  const handleIncreaseQty = (id) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
+  // Helper to re-fetch cart
+  const refetchCart = async () => {
+    if (!user) return;
+    try {
+      const response = await axios.get(`${API_URL}/cart/${user.id}`);
+      const userCart = response.data;
+      const mappedItems = await Promise.all(
+        (userCart.items || []).map(async (item) => {
+          try {
+            const prodRes = await axios.get(`${API_URL}/products/${item.productId}`);
+            const prod = prodRes.data;
+            return {
+              id: prod.id,
+              name: prod.name,
+              price: prod.price,
+              img: prod.image ? `http://localhost:3000/uploads/${prod.image}` : '',
+              quantity: item.quantity,
+              cartItemId: item.cartItemId,
+            };
+          } catch {
+            return {
+              id: item.productId,
+              name: 'สินค้า',
+              price: 0,
+              img: '',
+              quantity: item.quantity,
+              cartItemId: item.cartItemId,
+            };
+          }
+        })
+      );
+      setCart(mappedItems);
+    } catch (err) {
+      console.error('Failed to fetch cart', err);
+    }
   };
 
-  const handleDecreaseQty = (id) => {
-    setCart((prevCart) =>
-      prevCart
-        .map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
-        )
-        .filter((item) => item.quantity > 0)
-    );
+  const handleIncreaseQty = async (id) => {
+    const item = cart.find(i => i.id === id);
+    if (!item || !user) return;
+    try {
+      await axios.put(`${API_URL}/cart/${user.id}/update/${item.cartItemId}`, {
+        quantity: item.quantity + 1,
+      });
+      await refetchCart();
+    } catch (err) {
+      console.error('Failed to increase qty', err);
+    }
   };
 
-  const handleRemoveItem = (id) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
+  const handleDecreaseQty = async (id) => {
+    const item = cart.find(i => i.id === id);
+    if (!item || !user) return;
+    if (item.quantity <= 1) {
+      handleRemoveItem(id);
+      return;
+    }
+    try {
+      await axios.put(`${API_URL}/cart/${user.id}/update/${item.cartItemId}`, {
+        quantity: item.quantity - 1,
+      });
+      await refetchCart();
+    } catch (err) {
+      console.error('Failed to decrease qty', err);
+    }
   };
 
-  const handleLoginSuccess = (email) => {
-    setUser(email);
+  const handleRemoveItem = async (id) => {
+    const item = cart.find(i => i.id === id);
+    if (!item || !user) return;
+    try {
+      await axios.delete(`${API_URL}/cart/${user.id}/remove/${item.cartItemId}`);
+      await refetchCart();
+    } catch (err) {
+      console.error('Failed to remove item', err);
+    }
+  };
+
+  const handleLoginSuccess = (userObj) => {
+    setUser(userObj);
   };
 
   const handleLogout = () => {
     setUser(null);
+    setCart([]);
   };
 
   // Total items in cart for the badge count
@@ -210,20 +316,26 @@ export default function App() {
         currentView={view}
         onViewChange={handleViewChange}
         cartCount={cartCount}
-        onCartToggle={() => setIsCartOpen(true)}
+        onCartToggle={() => {
+          if (!user) {
+            setIsAuthOpen(true);
+            return;
+          }
+          setIsCartOpen(true);
+        }}
         onAuthToggle={() => setIsAuthOpen(true)}
-        user={user}
+        user={user ? user.email : null}
         onLogout={handleLogout}
       />
 
-      {/* Show Hero banner on Home page or if view matches standard banners */}
+      {/* Show Hero banner on Home page */}
       {view === '#home' && <HeroBanner />}
 
       <main>
         {view === '#home' && (
           <HomeView 
             onViewChange={handleViewChange} 
-            bestSellers={BEST_SELLERS} 
+            bestSellers={bestSellers} 
             onAddToCart={handleAddToCart}
           />
         )}
@@ -233,7 +345,7 @@ export default function App() {
             headerText="หน้าสินค้า (ดอกไม้แห้ง)"
             descriptionLinkText="คำอธิบาย ดอกไม้แห้งดีอย่างไร/คืออะไร"
             filters={['จัดส่งฟรี', 'แนะนำ Custom']}
-            products={DRIED_FLOWERS}
+            products={driedFlowers}
             onAddToCart={handleAddToCart}
           />
         )}
@@ -243,7 +355,7 @@ export default function App() {
             headerText="หน้าสินค้า (ดอกไม้ประดิษฐ์)"
             descriptionLinkText="คำอธิบาย ดอกไม้ประดิษฐ์ดีอย่างไร/คืออะไร"
             filters={['จัดส่งฟรี', 'แนะนำ Custom']}
-            products={ARTIFICIAL_FLOWERS}
+            products={artificialFlowers}
             onAddToCart={handleAddToCart}
           />
         )}
@@ -253,16 +365,15 @@ export default function App() {
             headerText="หน้าสินค้า (ของขวัญ)"
             descriptionLinkText="ของขวัญสุดพิเศษ"
             filters={['ตุ๊กตาหมี', 'เทียนหอม', 'กล่อง/การ์ด', 'การ์ด']}
-            products={GIFTS}
+            products={gifts}
             onAddToCart={handleAddToCart}
           />
         )}
 
-        {/* Supporting standard anchor scrolling for info sections inside main view */}
         {(view === '#how-to-buy') && (
           <HomeView 
             onViewChange={handleViewChange} 
-            bestSellers={BEST_SELLERS} 
+            bestSellers={bestSellers} 
             onAddToCart={handleAddToCart}
           />
         )}
@@ -275,9 +386,11 @@ export default function App() {
         isOpen={isCartOpen}
         onClose={() => setIsCartOpen(false)}
         cart={cart}
+        user={user}
         onIncreaseQty={handleIncreaseQty}
         onDecreaseQty={handleDecreaseQty}
         onRemoveItem={handleRemoveItem}
+        onCartUpdated={refetchCart}
       />
 
       {/* Modals */}
@@ -290,6 +403,7 @@ export default function App() {
       <OrdersModal 
         isOpen={isOrdersOpen}
         onClose={() => setIsOrdersOpen(false)}
+        user={user}
       />
     </>
   );

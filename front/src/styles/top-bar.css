@@ -1,0 +1,41 @@
+/* ==========================================
+   TOP UTILITY BAR
+   ========================================== */
+.top-bar {
+    background-color: var(--primary-dark);
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.85rem;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-weight: 300;
+}
+
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar-left span {
+    margin-right: 15px;
+}
+
+.top-bar-left i {
+    margin-right: 5px;
+    color: var(--secondary);
+}
+
+.top-bar-left .separator {
+    color: rgba(255, 255, 255, 0.3);
+    margin-right: 15px;
+}
+
+.top-bar-right a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.top-bar-right a:hover {
+    color: var(--white);
+}

@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "items": [
+      {
+        "cartItemId": "147c0124-3b0c-4b0b-b15c-10a28e0c3f0a",
+        "productId": "p1",
+        "quantity": 6,
+        "customOptions": null
+      }
+    ]
+  }
+]

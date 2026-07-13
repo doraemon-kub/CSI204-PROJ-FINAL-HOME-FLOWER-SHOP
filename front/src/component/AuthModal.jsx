@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:3000/api';
 
 export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
   const [activeTab, setActiveTab] = useState('login'); // 'login' | 'register'
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   
   // Login Form States
   const [loginEmail, setLoginEmail] = useState('');
@@ -13,26 +18,59 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
   const [regPhone, setRegPhone] = useState('');
   const [regPassword, setRegPassword] = useState('');
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
-    alert(`เข้าสู่ระบบสำเร็จ! ยินดีต้อนรับคุณ ${loginEmail}`);
-    onLoginSuccess(loginEmail);
-    onClose();
-    // Clear fields
-    setLoginEmail('');
-    setLoginPassword('');
+    setErrorMessage('');
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post(`${API_URL}/users/login`, {
+        email: loginEmail,
+        password: loginPassword,
+      });
+      const { user } = response.data;
+      onLoginSuccess(user);
+      onClose();
+      setLoginEmail('');
+      setLoginPassword('');
+    } catch (err) {
+      const msg = err.response?.data?.message || 'เข้าสู่ระบบไม่สำเร็จ กรุณาตรวจสอบอีเมลและรหัสผ่าน';
+      setErrorMessage(msg);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
-    alert(`สมัครสมาชิกสำเร็จ! ยินดีต้อนรับคุณ ${regName}`);
-    onLoginSuccess(regEmail);
-    onClose();
-    // Clear fields
-    setRegName('');
-    setRegEmail('');
-    setRegPhone('');
-    setRegPassword('');
+    setErrorMessage('');
+    setIsLoading(true);
+
+    try {
+      const response = await axios.post(`${API_URL}/users/register`, {
+        name: regName,
+        email: regEmail,
+        password: regPassword,
+        phone: regPhone,
+      });
+      const { user } = response.data;
+      onLoginSuccess(user);
+      onClose();
+      setRegName('');
+      setRegEmail('');
+      setRegPhone('');
+      setRegPassword('');
+    } catch (err) {
+      const msg = err.response?.data?.message || 'สมัครสมาชิกไม่สำเร็จ กรุณาลองใหม่';
+      setErrorMessage(msg);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleTabSwitch = (tab) => {
+    setActiveTab(tab);
+    setErrorMessage('');
   };
 
   return (
@@ -45,17 +83,33 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
         <div className="modal-tabs">
           <button 
             className={`modal-tab-btn ${activeTab === 'login' ? 'active' : ''}`} 
-            onClick={() => setActiveTab('login')}
+            onClick={() => handleTabSwitch('login')}
           >
             เข้าสู่ระบบ
           </button>
           <button 
             className={`modal-tab-btn ${activeTab === 'register' ? 'active' : ''}`} 
-            onClick={() => setActiveTab('register')}
+            onClick={() => handleTabSwitch('register')}
           >
             สมัครสมาชิก
           </button>
         </div>
+
+        {/* Error Message */}
+        {errorMessage && (
+          <div style={{
+            background: '#fef2f2',
+            color: '#dc2626',
+            padding: '10px 14px',
+            borderRadius: '6px',
+            marginBottom: '16px',
+            fontSize: '0.9rem',
+            border: '1px solid #fecaca'
+          }}>
+            <i className="fa-solid fa-circle-exclamation" style={{ marginRight: '6px' }}></i>
+            {errorMessage}
+          </div>
+        )}
         
         {/* Login Form */}
         <form 
@@ -64,11 +118,11 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
           onSubmit={handleLoginSubmit}
         >
           <div className="form-group">
-            <label htmlFor="loginEmail">อีเมล / เบอร์โทรศัพท์</label>
+            <label htmlFor="loginEmail">อีเมล</label>
             <input 
-              type="text" 
+              type="email" 
               id="loginEmail" 
-              placeholder="ระบุอีเมลหรือเบอร์โทรศัพท์ของคุณ" 
+              placeholder="ระบุอีเมลของคุณ" 
               required 
               value={loginEmail}
               onChange={(e) => setLoginEmail(e.target.value)}
@@ -92,7 +146,9 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
               ลืมรหัสผ่าน?
             </a>
           </div>
-          <button type="submit" className="btn btn-primary btn-block">เข้าสู่ระบบ</button>
+          <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
+            {isLoading ? 'กำลังเข้าสู่ระบบ...' : 'เข้าสู่ระบบ'}
+          </button>
         </form>
 
         {/* Register Form */}
@@ -149,7 +205,9 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
               autoComplete="new-password"
             />
           </div>
-          <button type="submit" className="btn btn-primary btn-block">สมัครสมาชิก</button>
+          <button type="submit" className="btn btn-primary btn-block" disabled={isLoading}>
+            {isLoading ? 'กำลังสมัคร...' : 'สมัครสมาชิก'}
+          </button>
         </form>
       </div>
     </div>

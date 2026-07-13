@@ -1,0 +1,47 @@
+/* ==========================================
+   BRAND BANNER (HERO)
+   ========================================== */
+.brand-banner {
+    position: relative;
+    height: 380px;
+    background-image: url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1200&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(42, 51, 46, 0.6) 0%, rgba(42, 51, 46, 0.7) 100%);
+}
+
+.banner-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 20px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.brand-title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.brand-subtitle {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.9);
+}

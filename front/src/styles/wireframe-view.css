@@ -1,0 +1,247 @@
+/* ==========================================
+   WIREFRAME STYLING (STRICT LAYOUT MATCH)
+   ========================================== */
+.wireframe-view {
+    display: block;
+    margin: 0 auto 80px auto; /* Pushed UP: Removed top margin completely */
+}
+
+.wireframe-view * {
+    /* Reset */
+}
+
+/* WIREFRAME BREADCRUMB / WIREFRAME TITLE HEADER */
+.wireframe-title-container {
+    padding: 10px 0;
+    margin-bottom: 10px;
+    text-align: left;
+    border-bottom: none;
+}
+
+.wireframe-header-text {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #888888; /* Matches small top-left text */
+}
+
+/* MAIN CONTENT LAYOUT */
+.wf-main-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 40px;
+    margin-top: 0;
+}
+
+/* LEFT SIDEBAR FILTERS */
+.wf-sidebar {
+    background-color: #D9D9D9; 
+    border: none;
+    padding: 20px;
+    border-radius: 0 !important; /* NO rounded corners */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: fit-content;
+}
+
+.wf-search-box {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.wf-search-box input {
+    width: 100%;
+    padding: 10px 15px 10px 35px;
+    border: 1px solid #CCCCCC;
+    border-radius: 0 !important; /* NO rounded corners */
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    background-color: #EFEFEF; 
+}
+
+.wf-search-box i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.wf-filter-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    text-align: left;
+    background-color: var(--white);
+    border: 1px solid #CCCCCC;
+    border-radius: 0 !important; /* NO rounded corners */
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+}
+
+.wf-filter-btn:hover {
+    background-color: #F5F5F5;
+}
+
+.wf-filter-btn.active {
+    background-color: var(--primary) !important;
+    color: var(--white) !important;
+}
+
+/* RIGHT COLUMN (TITLE & PRODUCT GRID) */
+.wf-content-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.wf-page-description-link {
+    text-align: center;
+    margin-bottom: 25px; 
+}
+
+.wf-page-description-link a {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.wf-product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 0; /* NO GAP */
+    border-top: 1px solid #777777;
+    border-left: 1px solid #777777;
+}
+
+/* Wf Product Card */
+.wf-product-card {
+    background-color: var(--white);
+    border-radius: 0 !important; /* NO rounded corners */
+    border-right: 1px solid #777777; 
+    border-bottom: 1px solid #777777;
+    box-shadow: none !important;
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* REMOVED PADDING so image touches border */
+}
+
+.wf-product-card:hover {
+    transform: none; 
+    background-color: #FAFAFA;
+}
+
+.wf-image-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 3; 
+    background-color: #D9D9D9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 0.9rem;
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.wf-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wf-product-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+    flex-grow: 1;
+    padding: 20px; /* Padding only around text/button */
+}
+
+.wf-product-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0;
+}
+
+.wf-product-price {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.wf-add-to-cart-btn {
+    margin: auto auto 0 auto; 
+    padding: 8px 16px;
+    background-color: #D9D9D9; 
+    color: var(--text-dark);
+    border: 1px solid #999999 !important; 
+    border-radius: 0 !important; /* NO rounded corners */
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.wf-add-to-cart-btn:hover {
+    background-color: #CCCCCC;
+}
+
+/* RESPONSIVE DESIGN FOR WIREFRAME VIEWS */
+@media (max-width: 992px) {
+    .wf-main-layout {
+        grid-template-columns: 1fr;
+    }
+    .wf-product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 576px) {
+    .wf-product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================
+   WIREFRAME HERO BANNER OVERRIDES
+   ========================================== */
+body.wf-mode #heroBanner {
+    background: #E0E0E0 !important;
+    color: #333333 !important;
+    border-bottom: 2px solid #CCCCCC;
+}
+
+body.wf-mode #heroBanner .banner-overlay {
+    background: transparent !important;
+}
+
+body.wf-mode #heroBanner .brand-title {
+    color: #333333 !important;
+    text-shadow: none !important;
+}
+
+body.wf-mode #heroBanner .brand-subtitle {
+    color: #666666 !important;
+}
+
+body.wf-mode #heroBanner .btn-primary {
+    background-color: #FFFFFF !important;
+    color: #333333 !important;
+    border: 1px solid #666666 !important;
+    box-shadow: none !important;
+}
+
+body.wf-mode #heroBanner .btn-primary:hover {
+    background-color: #F5F5F5 !important;
+    transform: translateY(-2px);
+}
