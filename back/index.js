@@ -7,6 +7,7 @@ const userRoutes = require('./src/routes/userRoutes');
 const productRoutes = require('./src/routes/productRoutes');
 const cartRoutes = require('./src/routes/cartRoutes');
 const orderRoutes = require('./src/routes/orderRoutes');
+const adminRoutes = require('./src/routes/adminRoutes');
 
 const http = require('http');
 const { Server } = require('socket.io');
@@ -52,12 +53,35 @@ app.use('/api/users', userRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Base route for testing
 app.get('/', (req, res) => {
     res.json({ message: 'Welcome to Home Flowers Shop API' });
 });
 
-server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+const os = require('os');
+
+// Helper function to get local IP address
+function getLocalIpAddress() {
+    const interfaces = os.networkInterfaces();
+    for (const devName in interfaces) {
+        const iface = interfaces[devName];
+        for (let i = 0; i < iface.length; i++) {
+            const alias = iface[i];
+            if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+                return alias.address;
+            }
+        }
+    }
+    return '0.0.0.0';
+}
+
+server.listen(PORT, '0.0.0.0', () => {
+    const localIp = getLocalIpAddress();
+    console.log(`=========================================`);
+    console.log(`🚀 Server is running!`);
+    console.log(`- Local:   http://localhost:${PORT}`);
+    console.log(`- Network: http://${localIp}:${PORT}  <-- นำ IP นี้ไปใส่ให้ Frontend`);
+    console.log(`=========================================`);
 });

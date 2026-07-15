@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const orderController = require('../controllers/orderController');
+const adminAuth = require('../middleware/adminAuth');
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -20,5 +21,9 @@ const upload = multer({ storage: storage });
 router.post('/checkout', upload.single('paymentSlip'), orderController.checkout);
 router.get('/user/:userId', orderController.getUserOrders);
 router.get('/:orderId', orderController.getOrderById);
+
+// Admin routes
+router.get('/', adminAuth, orderController.getAllOrders);
+router.put('/:orderId/status', adminAuth, orderController.updateOrderStatus);
 
 module.exports = router;

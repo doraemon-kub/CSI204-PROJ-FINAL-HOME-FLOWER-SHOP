@@ -32,7 +32,7 @@ const checkout = (req, res) => {
         },
         shippingFee: 100, // Fixed EMS fee as per wireframe
         totalAmount: Number(totalAmount),
-        status: 'กำ ลังตรวจสอบการชำ ระเงิน', // "Verifying payment" as per wireframe
+        status: 'กำลังตรวจสอบการชำระเงิน', // "Verifying payment" as per wireframe
         trackingNumber: null,
         createdAt: new Date().toISOString()
     };
@@ -83,5 +83,37 @@ const getOrderById = (req, res) => {
 module.exports = {
     checkout,
     getUserOrders,
-    getOrderById
+    getOrderById,
+    // Get all orders (for Admin)
+    getAllOrders: (req, res) => {
+        const orders = fileDb.readData('orders');
+        // Sort by date descending
+        orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        res.json(orders);
+    },
+
+    // Update order status (for Admin)
+    updateOrderStatus: (req, res) => {
+        const { orderId } = req.params;
+        const { status, trackingNumber } = req.body;
+        const orders = fileDb.readData('orders');
+        
+        const orderIndex = orders.findIndex(o => o.orderId === orderId);
+        if (orderIndex === -1) {
+            return res.status(404).json({ message: 'Order not found' });
+        }
+
+        if (status) orders[orderIndex].status = status;
+        if (trackingNumber !== undefined) orders[orderIndex].trackingNumber = trackingNumber;
+
+        fileDb.writeData('orders', orders);
+
+        // Emit socket event if io is available in req.app
+        const io = req.app.get('io');
+        if (io) {
+            io.to(`user_${orders[orderIndex].userId}`).emit('orderUpdated', { orderId: orders[orderIndex].orderId, status });
+        }
+
+        res.json({ message: 'Order updated successfully', order: orders[orderIndex] });
+    }
 };
