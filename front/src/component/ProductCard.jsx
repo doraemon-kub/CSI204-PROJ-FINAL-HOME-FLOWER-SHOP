@@ -1,58 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function ProductCard({ product, onAddToCart, isWireframe = false }) {
-  const { id, name, price, img, category, badge, rating, reviewsCount } = product;
+export default function ProductCard({ product, onAddToCart }) {
+  const [isOpen, setIsOpen] = useState(false);
 
-  if (isWireframe) {
-    return (
-      <div className="wf-product-card" data-id={id} data-name={name} data-price={price}>
-        <div className="wf-image-placeholder">
-          {img ? <img src={img} alt={name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : <span>Image Placeholder (4:3)</span>}
-        </div>
-        <div className="wf-product-info">
-          <h3 className="wf-product-title">{name}</h3>
-          <span className="wf-product-price">{price.toLocaleString()} ฿</span>
-        </div>
-        <button 
-          className="wf-add-to-cart-btn add-to-cart-btn"
-          onClick={() => onAddToCart(product)}
-        >
-          <i className="fa-solid fa-basket-shopping"></i> หยิบใส่ตะกร้า
-        </button>
-      </div>
-    );
-  }
-
-  // Standard Product Card
   return (
-    <div className="product-card" data-id={id} data-name={name} data-price={price}>
-      {badge && <div className={`product-badge ${badge === 'ใหม่' ? 'badge-new' : ''}`}>{badge}</div>}
-      <div className="product-image">
-        <img src={img || 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600&auto=format&fit=crop'} alt={name} />
+    <div style={{
+      background: '#fff',
+      padding: '20px',
+      borderRadius: '16px',
+      border: '1px solid #ddd',
+      textAlign: 'center',
+      display: 'flex',
+      flexDirection: 'column'
+    }}>
+      <div style={{ width: '100%', height: '150px', background: '#edf2f7', borderRadius: '12px', marginBottom: '15px' }} />
+      <h4 style={{ margin: '0 0 5px 0', fontSize: '1.1rem' }}>{product.name}</h4>
+      <p style={{ margin: '0 0 15px 0', fontWeight: 'bold' }}>{product.price.toLocaleString()} ฿</p>
+
+      {/* Dropdown ส่วนรายละเอียด */}
+      <div style={{ marginBottom: '15px', border: '1px solid #eee', borderRadius: '8px' }}>
+        <button 
+          onClick={() => setIsOpen(!isOpen)}
+          style={{ width: '100%', padding: '10px', background: '#f9f9f9', border: 'none', cursor: 'pointer' }}
+        >
+          {isOpen ? 'ซ่อนรายละเอียด' : 'ดูรายละเอียดสินค้า'}
+        </button>
+        
+        {isOpen && (
+          <div style={{ padding: '10px', fontSize: '0.9rem', color: '#666', borderTop: '1px solid #eee' }}>
+            {product.description || 'ไม่มีรายละเอียดเพิ่มเติม'}
+          </div>
+        )}
       </div>
-      <div className="product-details">
-        {category && <span className="product-category">{category}</span>}
-        <h3 className="product-title">{name}</h3>
-        <div className="product-rating">
-          {[...Array(5)].map((_, i) => (
-            <i 
-              key={i} 
-              className={i < Math.floor(rating || 5) ? "fa-solid fa-star" : "fa-regular fa-star"}
-            ></i>
-          ))}
-          {reviewsCount !== undefined && <span>({reviewsCount} รีวิว)</span>}
-        </div>
-        <div className="product-footer">
-          <span className="product-price">฿{price.toLocaleString()}</span>
-          <button 
-            className="btn-add-to-cart add-to-cart-btn"
-            onClick={() => onAddToCart(product)}
-            aria-label="Add to cart"
-          >
-            <i className="fa-solid fa-cart-plus"></i>
-          </button>
-        </div>
-      </div>
+
+      <button className="add-to-cart-btn" onClick={() => onAddToCart(product)}>
+        หยิบใส่ตะกร้า 🛒
+      </button>
     </div>
   );
 }

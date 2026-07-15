@@ -5,3 +5,28 @@
   padding: 0;
   text-align: left;
 }
+/* คลาสสำหรับปุ่มหยิบใส่ตะกร้า */
+.add-to-cart-btn {
+  background-color: #f8f9fa;
+  border: 1px solid #e2e8f0;
+  color: #4a4a4a;
+  padding: 12px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  width: 100%;
+}
+
+/* เอฟเฟกต์ตอน Hover */
+.add-to-cart-btn:hover {
+  background-color: #b76e79; /* สี Dusty Rose */
+  color: #ffffff;
+  border-color: #b76e79;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(183, 110, 121, 0.3);
+}

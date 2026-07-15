@@ -11,6 +11,8 @@ import CartDrawer from './component/CartDrawer';
 import AuthModal from './component/AuthModal';
 import OrdersModal from './component/OrdersModal';
 import CheckoutModal from './component/CheckoutModal';
+import OrderTermsView from './component/OrderTermsView';
+import ErrorBoundary from './component/ErrorBoundary';
 
 const API_URL = 'http://localhost:3000/api';
 
@@ -149,7 +151,7 @@ export default function App() {
 
   // Body class toggle for wireframe mode
   useEffect(() => {
-    const isWireframe = ['#dried-flowers', '#artificial-flowers', '#gifts'].includes(view);
+    const isWireframe = ['#dried-flowers', '#artificial-flowers', '#gifts', '#order-terms'].includes(view);
     if (isWireframe) {
       document.body.classList.add('wf-mode');
     } else {
@@ -215,7 +217,8 @@ export default function App() {
         })
       );
       setCart(mappedItems);
-      setIsCartOpen(true);
+      
+      // 💡 จุดที่แก้ไข: เอา setIsCartOpen(true) ออก เพื่อไม่ให้ตะกร้าเด้งเปิดขึ้นมาทุกครั้งหลังเพิ่มสินค้า
     } catch (err) {
       console.error('Failed to add to cart', err);
       alert('เกิดข้อผิดพลาดในการเพิ่มสินค้า');
@@ -275,10 +278,12 @@ export default function App() {
   const handleDecreaseQty = async (id) => {
     const item = cart.find(i => i.id === id);
     if (!item || !user) return;
+    
+    // 💡 จุดที่แก้ไข: ถ้ามีสินค้าอยู่ 1 ชิ้นแล้วกดลบ จะ return ออกไปทันที ไม่มีการลบสินค้าทิ้ง
     if (item.quantity <= 1) {
-      handleRemoveItem(id);
       return;
     }
+    
     try {
       await axios.put(`${API_URL}/cart/${user.id}/update/${item.cartItemId}`, {
         quantity: item.quantity - 1,
@@ -313,6 +318,7 @@ export default function App() {
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
+    <ErrorBoundary>
     <>
       <Navbar 
         currentView={view}
@@ -379,6 +385,10 @@ export default function App() {
             onAddToCart={handleAddToCart}
           />
         )}
+
+        {view === '#order-terms' && (
+          <OrderTermsView onViewChange={handleViewChange} />
+        )}
       </main>
 
       <Footer onViewChange={handleViewChange} />
@@ -416,5 +426,6 @@ export default function App() {
         onCartUpdated={refetchCart}
       />
     </>
+    </ErrorBoundary>
   );
 }

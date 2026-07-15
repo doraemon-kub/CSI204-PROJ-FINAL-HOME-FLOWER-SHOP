@@ -1,89 +1,133 @@
 import React, { useState } from 'react';
-import ProductCard from './ProductCard';
 
 export default function WireframeView({
   headerText = 'หน้าสินค้า',
-  descriptionLinkText,
   filters = [],
   products = [],
   onAddToCart
 }) {
+  const [selectedFilter, setSelectedFilter] = useState('ทั้งหมด');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedFilter, setSelectedFilter] = useState('');
 
-  const handleFilterClick = (filter) => {
-    if (selectedFilter === filter) {
-      setSelectedFilter(''); // toggle off
-    } else {
-      setSelectedFilter(filter);
-    }
-  };
-
-  // Filter products by search query and optional selected filter button
-  const filteredProducts = products.filter((product) => {
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
-    
-    // Simple filter matching: if selectedFilter is set, check if it matches product tag/category (just a mock filter)
-    const matchesFilter = selectedFilter 
-      ? (product.tag === selectedFilter || product.name.toLowerCase().includes(selectedFilter.toLowerCase()))
-      : true;
-      
-    return matchesSearch && matchesFilter;
+  const filteredProducts = products.filter((p) => {
+    const matchesCategory = selectedFilter === 'ทั้งหมด' || p.category === selectedFilter;
+    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
 
+  const theme = {
+    primary: '#846F5B',
+    primaryDark: '#6b5a49',
+    tan: '#E6D8C3',
+    bgLight: '#F5F5F0',
+    textDark: '#665342',
+    shadow: '0 4px 12px rgba(102, 83, 66, 0.08)'
+  };
+
   return (
-    <div className="wireframe-view container">
-      <div className="wireframe-title-container">
-        <span className="wireframe-header-text">{headerText}</span>
+    <div style={{ background: theme.bgLight, minHeight: '100vh', paddingBottom: '60px', fontFamily: "'Prompt', sans-serif" }}>
+      
+      {/* Header มินิมอล */}
+      <div style={{ textAlign: 'center', padding: '80px 20px 40px' }}>
+        <h1 style={{ 
+          fontSize: '2.5rem', 
+          color: theme.textDark, 
+          fontWeight: '300', 
+          letterSpacing: '0.15em', 
+          textTransform: 'uppercase', 
+          marginBottom: '20px' 
+        }}>
+          {headerText}
+        </h1>
+        <div style={{ width: '60px', height: '1px', backgroundColor: theme.primary, margin: '0 auto' }}></div>
       </div>
-      <div className="wf-main-layout">
-        <aside className="wf-sidebar">
-          <div className="wf-search-box">
-            <i className="fa-solid fa-magnifying-glass"></i>
+
+      <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', gap: '40px', alignItems: 'flex-start', padding: '0 20px' }}>
+        
+        {/* Sidebar */}
+        <aside style={{ width: '260px', flexShrink: 0 }}>
+          <div style={{ background: '#fff', borderRadius: '16px', padding: '20px', boxShadow: theme.shadow }}>
+            
+            <h3 style={{ marginBottom: '15px', fontSize: '1rem', color: theme.textDark }}>ค้นหาสินค้า</h3>
             <input 
               type="text" 
-              placeholder="ค้นหา..." 
+              placeholder="พิมพ์ชื่อสินค้า..." 
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          {filters.map((filter, index) => (
-            <button 
-              key={index}
-              className={`wf-filter-btn ${selectedFilter === filter ? 'active' : ''}`}
-              onClick={() => handleFilterClick(filter)}
               style={{
-                backgroundColor: selectedFilter === filter ? 'var(--color-primary)' : '',
-                color: selectedFilter === filter ? 'white' : ''
+                width: '100%',
+                padding: '12px 15px',
+                marginBottom: '25px',
+                borderRadius: '8px',
+                border: '1px solid #e2e8f0',
+                boxSizing: 'border-box',
+                outline: 'none'
               }}
-            >
-              {filter}
-            </button>
-          ))}
-        </aside>
-        <div className="wf-content-area">
-          {descriptionLinkText && (
-            <div className="wf-page-description-link">
-              <a href="#" onClick={(e) => e.preventDefault()}>{descriptionLinkText}</a>
+            />
+
+            <h3 style={{ marginBottom: '15px', fontSize: '1rem', color: theme.textDark }}>หมวดหมู่</h3>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {['ทั้งหมด', ...filters].map((f) => (
+                <button 
+                  key={f}
+                  onClick={() => setSelectedFilter(f)}
+                  style={{
+                    textAlign: 'left',
+                    padding: '10px 15px',
+                    borderRadius: '8px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    fontWeight: selectedFilter === f ? '600' : '500',
+                    background: selectedFilter === f ? theme.primary : theme.bgLight,
+                    color: selectedFilter === f ? '#fff' : theme.textDark,
+                    transition: 'all 0.2s'
+                  }}
+                  onMouseEnter={(e) => {
+                    if (selectedFilter !== f) {
+                      e.currentTarget.style.background = theme.tan;
+                    } else {
+                      e.currentTarget.style.background = theme.primaryDark;
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = selectedFilter === f ? theme.primary : theme.bgLight;
+                  }}
+                >
+                  {f}
+                </button>
+              ))}
             </div>
-          )}
-          <div className="wf-product-grid">
-            {filteredProducts.length === 0 ? (
-              <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '40px 0', color: '#888' }}>
-                ไม่พบสินค้าที่คุณค้นหา
-              </div>
-            ) : (
-              filteredProducts.map((product) => (
-                <ProductCard 
-                  key={product.id} 
-                  product={product} 
-                  onAddToCart={onAddToCart} 
-                  isWireframe={true}
-                />
-              ))
-            )}
           </div>
-        </div>
+        </aside>
+
+        {/* Product Grid */}
+        <section style={{ flex: 1, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '30px' }}>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <div key={product.id} style={{ 
+                background: '#fff', 
+                borderRadius: '16px', 
+                padding: '15px', 
+                boxShadow: theme.shadow,
+                textAlign: 'center' 
+              }}>
+                <div style={{ width: '100%', height: '200px', background: '#edf2f7', borderRadius: '12px', marginBottom: '15px' }} />
+                <h4 style={{ margin: '0 0 5px 0', fontSize: '1.1rem', color: theme.textDark }}>{product.name}</h4>
+                <p style={{ margin: '0 0 15px 0', fontWeight: 'bold', color: theme.primary }}>{product.price.toLocaleString()} ฿</p>
+                
+                {/* ปุ่มที่ใช้ CSS Class ใหม่ */}
+                <button 
+                  className="add-to-cart-btn"
+                  onClick={() => onAddToCart(product)}
+                >
+                  หยิบใส่ตะกร้า 🛒
+                </button>
+              </div>
+            ))
+          ) : (
+            <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '40px', color: '#999' }}>ไม่พบสินค้าที่ค้นหา</div>
+          )}
+        </section>
       </div>
     </div>
   );
