@@ -81,6 +81,10 @@ export default function CheckoutModal({
 
       const generatedId = response.data?.order?.orderId || response.data?.orderId || 'ไม่ระบุเลขที่';
       setOrderId(generatedId);
+      
+      // เคลียร์ตะกร้าบน Navbar ทันทีหลัง checkout สำเร็จ (ไม่ต้องรอกดปิด)
+      if (onCartUpdated) onCartUpdated();
+      
       setShowSuccess(true); // แสดงหน้าต่างสั่งซื้อสำเร็จแทนการใช้ Browser Alert
       
     } catch (err) {

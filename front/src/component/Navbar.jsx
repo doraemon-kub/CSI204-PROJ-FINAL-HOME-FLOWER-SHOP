@@ -116,30 +116,28 @@ export default function Navbar({
           .nav-menu.open { display: flex !important; }
         }
 
-        /* Hero banner */
-        .brand-banner { position: relative; background: linear-gradient(135deg, var(--tan) 0%, #d9c7a8 100%); color: var(--text-dark); text-align: center; padding: 110px 20px; overflow: hidden; }
+        /* Hero banner — HeroBanner component จัดการ styles เอง */
+        .brand-banner { position: relative; text-align: center; overflow: hidden; }
         .banner-content { position: relative; z-index: 2; }
-        .brand-title { font-size: 3rem; font-weight: 700; margin: 0 0 14px; color: var(--text-dark); }
-        .brand-subtitle { font-size: 1.1rem; margin: 0 0 30px; color: var(--primary-dark); opacity: 0.9; }
 
         /* Buttons */
-        .btn { display: inline-block; padding: 13px 32px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; cursor: pointer; border: none; transition: all 0.25s ease; }
+        .btn { display: inline-block; padding: 13px 32px; border-radius: 30px; font-weight: 600; font-size: 0.95rem; cursor: pointer; border: none; transition: all 0.25s ease; text-decoration: none; }
         .btn-primary { background: var(--primary); color: #fff; box-shadow: var(--shadow-sm); }
         .btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
         .btn-secondary { background: #fff; color: var(--primary); border: 1px solid var(--primary); }
         .btn-secondary:hover { background: var(--primary); color: #fff; }
         .btn-block { width: 100%; text-align: center; }
-        .add-to-cart-btn { background: var(--primary); color: #fff; border: none; padding: 11px 20px; border-radius: 24px; font-weight: 600; cursor: pointer; width: 100%; transition: all 0.2s ease; }
+        .add-to-cart-btn { background: var(--primary); color: #fff; border: none; padding: 11px 20px; border-radius: 24px; font-weight: 600; cursor: pointer; width: 100%; transition: all 0.2s ease; font-family: inherit; }
         .add-to-cart-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
 
         /* Sections */
         .section { padding: 70px 0; }
-        .section.categories-section, .section.info-section { background: #fff; }
-        .info-section { background: var(--tan) !important; }
-        .section-header { text-align: center; margin-bottom: 40px; }
-        .section-title { font-size: 1.9rem; font-weight: 700; color: var(--text-dark); margin: 0 0 10px; position: relative; display: inline-block; padding-bottom: 14px; }
-        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--primary); border-radius: 3px; }
-        .section-subtitle { color: var(--primary-dark); opacity: 0.85; font-size: 0.98rem; margin: 0; }
+        .section.categories-section { background: #fff; }
+        .info-section { background: linear-gradient(135deg, var(--tan) 0%, #d9c7a8 50%, var(--tan) 100%) !important; }
+        .section-header { text-align: center; margin-bottom: 48px; }
+        .section-title { font-size: 1.9rem; font-weight: 700; color: var(--text-dark); margin: 0 0 12px; position: relative; display: inline-block; padding-bottom: 16px; }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 50px; height: 2px; background: var(--primary); border-radius: 2px; }
+        .section-subtitle { color: var(--primary-dark); opacity: 0.8; font-size: 0.95rem; margin: 0; }
 
         /* Category carousel */
         .carousel-container { position: relative; display: flex; align-items: center; }
@@ -161,7 +159,8 @@ export default function Navbar({
         .right-btn { margin-left: 12px; }
 
         /* Product grid */
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 26px; }
+        .products-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 26px; }
+        .products-grid > * { flex: 0 1 230px; max-width: 280px; }
 
         /* Steps */
         .steps-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; }

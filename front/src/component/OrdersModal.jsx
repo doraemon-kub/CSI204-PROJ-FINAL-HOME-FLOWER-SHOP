@@ -249,12 +249,38 @@ export default function OrdersModal({ isOpen, onClose, user }) {
                                     <span>สถานะ</span>
                                     <span style={{ fontWeight: 'bold', letterSpacing: 'normal', wordSpacing: 'normal' }}>{cleanThaiText(order.status)}</span>
                                   </div>
-                                  <div className="order-tracking-row">
+                                  <div className="order-tracking-row" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
                                     <span>เลขพัสดุ (Tracking Number)</span>
-                                    <button className="track-package-btn" onClick={(e) => handleTrackPackage(order, e)}>
-                                      <i className="fa-solid fa-truck-fast" style={{ marginRight: '6px' }}></i>
-                                      ติดตามพัสดุ
-                                    </button>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '100%', justifyContent: 'space-between' }}>
+                                      {order.trackingNumber ? (
+                                        <span style={{
+                                          fontWeight: 'bold',
+                                          fontSize: '0.95rem',
+                                          color: 'var(--text-dark, #665342)',
+                                          letterSpacing: '0.5px',
+                                          userSelect: 'all',
+                                          cursor: 'text',
+                                          background: 'var(--light-bg, #f9f5f5)',
+                                          padding: '6px 14px',
+                                          borderRadius: '8px',
+                                          border: '1px solid var(--border-color, #e2d9c9)'
+                                        }}>
+                                          {order.trackingNumber}
+                                        </span>
+                                      ) : (
+                                        <span style={{
+                                          fontSize: '0.88rem',
+                                          color: '#a89a89',
+                                          fontStyle: 'italic'
+                                        }}>
+                                          รอเลขพัสดุ
+                                        </span>
+                                      )}
+                                      <button className="track-package-btn" onClick={(e) => handleTrackPackage(order, e)}>
+                                        <i className="fa-solid fa-truck-fast" style={{ marginRight: '6px' }}></i>
+                                        ติดตามพัสดุ
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
