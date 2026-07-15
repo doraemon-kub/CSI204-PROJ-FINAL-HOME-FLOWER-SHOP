@@ -144,3 +144,60 @@
 .forgot-password:hover {
     text-decoration: underline;
 }
+
+/* ==========================================
+   CHECKOUT MODAL
+   ========================================== */
+.checkout-modal-content {
+    width: 90%;
+    max-width: 900px;
+    border-radius: 12px;
+    padding: 30px;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.checkout-modal-content h2 {
+    margin-bottom: 20px;
+}
+
+.checkout-modal-content form {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-modal-content .form-group {
+    margin-bottom: 12px;
+}
+
+.checkout-modal-content .form-group label {
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.checkout-modal-content .form-group input,
+.checkout-modal-content .form-group textarea {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.checkout-modal-content .form-group textarea {
+    resize: vertical;
+    min-height: 50px;
+}
+
+@media (max-width: 768px) {
+    .checkout-modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .checkout-modal-content h2 {
+        font-size: 1.3rem;
+    }
+}

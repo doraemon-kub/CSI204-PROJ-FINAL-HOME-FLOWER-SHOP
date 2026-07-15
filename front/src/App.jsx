@@ -10,6 +10,7 @@ import Footer from './component/Footer';
 import CartDrawer from './component/CartDrawer';
 import AuthModal from './component/AuthModal';
 import OrdersModal from './component/OrdersModal';
+import CheckoutModal from './component/CheckoutModal';
 
 const API_URL = 'http://localhost:3000/api';
 
@@ -21,6 +22,7 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isOrdersOpen, setIsOrdersOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   // Authentication State — stored as JSON object in localStorage
   const [user, setUser] = useState(() => {
@@ -390,7 +392,7 @@ export default function App() {
         onIncreaseQty={handleIncreaseQty}
         onDecreaseQty={handleDecreaseQty}
         onRemoveItem={handleRemoveItem}
-        onCartUpdated={refetchCart}
+        onOpenCheckout={() => setIsCheckoutOpen(true)}
       />
 
       {/* Modals */}
@@ -404,6 +406,14 @@ export default function App() {
         isOpen={isOrdersOpen}
         onClose={() => setIsOrdersOpen(false)}
         user={user}
+      />
+
+      <CheckoutModal 
+        isOpen={isCheckoutOpen}
+        onClose={() => setIsCheckoutOpen(false)}
+        cart={cart}
+        user={user}
+        onCartUpdated={refetchCart}
       />
     </>
   );
