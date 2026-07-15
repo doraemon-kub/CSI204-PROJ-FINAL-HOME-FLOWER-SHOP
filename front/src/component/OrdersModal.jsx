@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = '/api';
 
 // Backend อาจส่งบาง field (เช่น items, buyerInfo, recipientInfo, payment)
 // กลับมาเป็น JSON string แทนที่จะเป็น object/array ที่ parse แล้ว

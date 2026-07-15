@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = '/api';
 
 export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
   const [activeTab, setActiveTab] = useState('login'); // 'login' | 'register'

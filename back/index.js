@@ -33,6 +33,12 @@ io.on('connection', (socket) => {
         console.log(`Socket ${socket.id} joined room user_${userId}`);
     });
 
+    // Admin can join a specific admin room to receive notifications
+    socket.on('joinAdminRoom', () => {
+        socket.join('admin_room');
+        console.log(`Socket ${socket.id} joined room admin_room`);
+    });
+
     socket.on('disconnect', () => {
         console.log('User disconnected:', socket.id);
     });

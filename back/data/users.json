@@ -43,5 +43,14 @@
     "phone": "0000000000",
     "role": "ADMIN",
     "createdAt": "2026-07-13T17:00:00.000Z"
+  },
+  {
+    "id": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "name": "แฮม",
+    "email": "ham@gmail.com",
+    "password": "asd456123",
+    "phone": "1234567890",
+    "role": "MEMBER",
+    "createdAt": "2026-07-15T18:04:18.883Z"
   }
 ]

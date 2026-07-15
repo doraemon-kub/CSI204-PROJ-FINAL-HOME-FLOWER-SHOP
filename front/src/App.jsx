@@ -14,7 +14,7 @@ import CheckoutModal from './component/CheckoutModal';
 import OrderTermsView from './component/OrderTermsView';
 import ErrorBoundary from './component/ErrorBoundary';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = '/api';
 
 export default function App() {
   // Navigation View State

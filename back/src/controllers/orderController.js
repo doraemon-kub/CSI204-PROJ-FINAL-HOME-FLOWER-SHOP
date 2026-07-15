@@ -55,6 +55,9 @@ const checkout = (req, res) => {
         if (userCart) {
             io.to(`user_${userId}`).emit('cartUpdated', userCart); // Also tell frontend cart is empty now
         }
+        
+        // Notify admin about the new order
+        io.to('admin_room').emit('newOrderToAdmin', newOrder);
     }
 
     res.status(201).json({ message: 'Order placed successfully', order: newOrder });

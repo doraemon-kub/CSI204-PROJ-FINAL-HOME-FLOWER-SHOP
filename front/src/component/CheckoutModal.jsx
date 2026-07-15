@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = '/api';
 
 export default function CheckoutModal({
   isOpen,
