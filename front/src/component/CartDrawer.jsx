@@ -4,18 +4,25 @@ export default function CartDrawer({
   isOpen,
   onClose,
   cart,
+  user,
   onIncreaseQty,
   onDecreaseQty,
-  onRemoveItem
+  onRemoveItem,
+  onOpenCheckout
 }) {
   const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  const handleCheckout = () => {
+  const handleProceedToCheckout = () => {
     if (cart.length === 0) {
       alert('กรุณาเลือกสินค้าใส่ตะกร้าก่อนดำเนินการสั่งซื้อ');
       return;
     }
-    alert(`ดำเนินการสั่งซื้อเสร็จสิ้น! ยอดรวมทั้งสิ้น: ฿${totalPrice.toLocaleString()}`);
+    if (!user) {
+      alert('กรุณาเข้าสู่ระบบก่อนทำการสั่งซื้อ');
+      return;
+    }
+    onClose();
+    onOpenCheckout();
   };
 
   return (
@@ -37,7 +44,7 @@ export default function CartDrawer({
             </div>
           ) : (
             cart.map((item) => (
-              <div className="cart-item" key={item.id}>
+              <div className="cart-item" key={item.cartItemId || item.id}>
                 <img 
                   src={item.img || 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?q=80&w=600&auto=format&fit=crop'} 
                   alt={item.name} 
@@ -79,7 +86,7 @@ export default function CartDrawer({
             <span>ราคารวมทั้งหมด:</span>
             <span id="cartTotalAmount">฿{totalPrice.toLocaleString()}</span>
           </div>
-          <button onClick={handleCheckout} className="btn btn-primary btn-block checkout-btn">
+          <button onClick={handleProceedToCheckout} className="btn btn-primary btn-block checkout-btn">
             ดำเนินการสั่งซื้อ
           </button>
         </div>

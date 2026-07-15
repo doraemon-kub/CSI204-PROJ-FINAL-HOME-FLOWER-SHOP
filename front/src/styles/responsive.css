@@ -1,0 +1,116 @@
+/* ==========================================
+   MEDIA QUERIES (RESPONSIVENESS)
+   ========================================== */
+@media (max-width: 1024px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .category-card {
+        min-width: calc((100% - (24px * 2)) / 3);
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .brand-title {
+        font-size: 2.5rem;
+    }
+
+    .brand-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .brand-banner {
+        height: 320px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: var(--nav-height);
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - var(--nav-height));
+        background-color: var(--white);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px;
+        transition: var(--transition-smooth);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+        gap: 20px;
+    }
+
+    .nav-menu.open {
+        left: 0;
+    }
+
+    .nav-link {
+        font-size: 1.1rem;
+    }
+
+    .category-card {
+        min-width: calc((100% - 24px) / 2);
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .steps-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .step-card {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .top-bar {
+        display: none;
+        /* Hide top bar on very small devices */
+    }
+
+    .brand-title {
+        font-size: 2rem;
+    }
+
+    .category-card {
+        min-width: 90%;
+        /* Center single card on mobile */
+    }
+
+    .carousel-container {
+        padding: 0 10px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        padding: 24px;
+    }
+}

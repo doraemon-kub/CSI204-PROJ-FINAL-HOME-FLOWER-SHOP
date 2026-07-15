@@ -1,0 +1,92 @@
+/* ==========================================
+   FOOTER
+   ========================================== */
+.footer {
+    background-color: #2A332E;
+    /* Rich deep forest background */
+    color: rgba(255, 255, 255, 0.7);
+    padding: 70px 0 0;
+    font-size: 0.9rem;
+    border-top: 5px solid var(--primary);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.footer-brand .logo {
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+.footer-brand p {
+    margin-bottom: 24px;
+    font-weight: 300;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.social-links a:hover {
+    background-color: var(--secondary);
+    color: var(--white);
+    transform: translateY(-3px);
+}
+
+.footer-links h3,
+.footer-contact h3 {
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a:hover {
+    color: var(--white);
+    padding-left: 4px;
+}
+
+.footer-contact p {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-weight: 300;
+}
+
+.footer-contact i {
+    color: var(--secondary);
+    margin-top: 4px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 24px 0;
+    font-size: 0.8rem;
+    text-align: center;
+}
