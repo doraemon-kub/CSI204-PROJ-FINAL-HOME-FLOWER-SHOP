@@ -105,5 +105,32 @@
     "status": "กำลังตรวจสอบการชำระเงิน",
     "trackingNumber": null,
     "createdAt": "2026-07-15T18:14:12.836Z"
+  },
+  {
+    "orderId": "ORD-1784183435638",
+    "userId": "a07bca3b-1917-4a96-9ac9-b3bbe206bd30",
+    "items": "[{\"productId\":\"p1\",\"name\":\"Basic 1\",\"price\":1000,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "ทดสอบ",
+      "phone": "0812345678",
+      "email": "test@test.com"
+    },
+    "recipientInfo": {
+      "name": "asd",
+      "address": "asd",
+      "phone": "asd"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-16T13:30",
+      "slipUrl": null,
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 1100,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-16T06:30:35.638Z"
   }
 ]

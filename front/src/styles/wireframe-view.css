@@ -34,10 +34,11 @@
 
 /* LEFT SIDEBAR FILTERS */
 .wf-sidebar {
-    background-color: #D9D9D9; 
-    border: none;
-    padding: 20px;
-    border-radius: 0 !important; /* NO rounded corners */
+    background-color: #ffffff;
+    border: 1px solid #f0ebe4;
+    padding: 24px 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 12px rgba(102, 83, 66, 0.07);
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -51,13 +52,13 @@
 
 .wf-search-box input {
     width: 100%;
-    padding: 10px 15px 10px 35px;
-    border: 1px solid #CCCCCC;
-    border-radius: 0 !important; /* NO rounded corners */
+    padding: 11px 14px 11px 38px;
+    border: 1.5px solid #e8e0d5;
+    border-radius: 10px;
     font-family: inherit;
     font-size: 0.95rem;
     outline: none;
-    background-color: #EFEFEF; 
+    background-color: #ffffff;
 }
 
 .wf-search-box i {
@@ -71,11 +72,11 @@
 .wf-filter-btn {
     display: block;
     width: 100%;
-    padding: 10px 15px;
+    padding: 10px 14px;
     text-align: left;
     background-color: var(--white);
-    border: 1px solid #CCCCCC;
-    border-radius: 0 !important; /* NO rounded corners */
+    border: none;
+    border-radius: 10px;
     font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-dark);
@@ -112,21 +113,20 @@
 .wf-product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
-    gap: 0; /* NO GAP */
-    border-top: 1px solid #777777;
-    border-left: 1px solid #777777;
+    gap: 24px;
+    border: none;
 }
 
 /* Wf Product Card */
 .wf-product-card {
     background-color: var(--white);
-    border-radius: 0 !important; /* NO rounded corners */
-    border-right: 1px solid #777777; 
-    border-bottom: 1px solid #777777;
-    box-shadow: none !important;
+    border-radius: 20px;
+    border: 1px solid #f0ebe4;
+    box-shadow: 0 2px 12px rgba(102, 83, 66, 0.07);
     display: flex;
     flex-direction: column;
-    padding: 0; /* REMOVED PADDING so image touches border */
+    padding: 14px;
+    overflow: hidden;
 }
 
 .wf-product-card:hover {
@@ -137,7 +137,7 @@
 .wf-image-placeholder {
     width: 100%;
     aspect-ratio: 4 / 3; 
-    background-color: #D9D9D9;
+    background-color: #f7f4f0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,6 +145,7 @@
     font-size: 0.9rem;
     overflow: hidden;
     margin-bottom: 0;
+    border-radius: 16px;
 }
 
 .wf-image-placeholder img {
@@ -180,10 +181,10 @@
 .wf-add-to-cart-btn {
     margin: auto auto 0 auto; 
     padding: 8px 16px;
-    background-color: #D9D9D9; 
+    background-color: #ffffff; 
     color: var(--text-dark);
-    border: 1px solid #999999 !important; 
-    border-radius: 0 !important; /* NO rounded corners */
+    border: 1px solid #f0ebe4;
+    border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 500;
     display: inline-flex;
@@ -191,10 +192,12 @@
     justify-content: center;
     gap: 8px;
     cursor: pointer;
+    box-shadow: 0 2px 8px rgba(102, 83, 66, 0.1);
 }
 
 .wf-add-to-cart-btn:hover {
-    background-color: #CCCCCC;
+    background-color: var(--primary, #846F5B);
+    color: #fff;
 }
 
 /* RESPONSIVE DESIGN FOR WIREFRAME VIEWS */

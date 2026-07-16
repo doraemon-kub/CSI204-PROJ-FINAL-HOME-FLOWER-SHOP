@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const TERMS_SECTIONS = [
   {
@@ -69,11 +69,54 @@ const TERMS_SECTIONS = [
         </p>
       </>
     )
+  },
+  {
+    id: 'faq',
+    title: 'คำถามที่พบบ่อย (FAQs)',
+    content: (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+        <div>
+          <strong style={{ color: 'var(--primary)' }}>ถาม: ดอกไม้แห้งและดอกไม้ประดิษฐ์เก็บได้นานแค่ไหน?</strong>
+          <p style={{ margin: '4px 0 0' }}>ตอบ: ดอกไม้แห้งคัดสรรพิเศษเก็บได้นานประมาณ 1-2 ปี หากหลีกเลี่ยงความชื้นและแสงแดดจัด ส่วนดอกไม้ประดิษฐ์สามารถเก็บรักษาไว้ได้ยาวนานหลายปี</p>
+        </div>
+        <div>
+          <strong style={{ color: 'var(--primary)' }}>ถาม: การจัดส่งใช้เวลากี่วัน?</strong>
+          <p style={{ margin: '4px 0 0' }}>ตอบ: ปกติจัดส่งพัสดุด่วน EMS ทั่วประเทศ โดยทั่วไปใช้เวลาเดินทาง 2-4 วันทำการ (ไม่รวมวันหยุดนักขัตฤกษ์ของไปรษณีย์)</p>
+        </div>
+        <div>
+          <strong style={{ color: 'var(--primary)' }}>ถาม: สามารถระบุข้อความในการ์ดได้หรือไม่?</strong>
+          <p style={{ margin: '4px 0 0' }}>ตอบ: ได้ค่ะ ลูกค้าสามารถระบุข้อความพิเศษหรือคำอวยพรได้ในขั้นตอนกรอกข้อมูลการจัดส่งและชำระเงิน ทางร้านจะแนบการ์ดเขียนมือสวยงามไปพร้อมกับสินค้าค่ะ</p>
+        </div>
+      </div>
+    )
   }
 ];
 
 export default function OrderTermsView({ onViewChange }) {
   const [openSection, setOpenSection] = useState('shipping');
+
+  useEffect(() => {
+    const handleHashCheck = () => {
+      const hash = window.location.hash;
+      if (hash === '#refund') {
+        setOpenSection('refund');
+      } else if (hash === '#faq') {
+        setOpenSection('faq');
+      } else if (hash === '#shipping') {
+        setOpenSection('shipping');
+      } else if (hash === '#conditions') {
+        setOpenSection('conditions');
+      } else if (hash === '#replacement') {
+        setOpenSection('replacement');
+      }
+    };
+
+    handleHashCheck();
+    window.addEventListener('hashchange', handleHashCheck);
+    return () => {
+      window.removeEventListener('hashchange', handleHashCheck);
+    };
+  }, []);
 
   const toggleSection = (id) => {
     setOpenSection((prev) => (prev === id ? '' : id));

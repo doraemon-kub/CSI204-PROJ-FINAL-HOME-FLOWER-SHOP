@@ -6,5 +6,16 @@
   {
     "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
     "items": []
+  },
+  {
+    "userId": "a07bca3b-1917-4a96-9ac9-b3bbe206bd30",
+    "items": [
+      {
+        "cartItemId": "7fc25f3b-eec1-4434-999e-1f4496188cbc",
+        "productId": "p2",
+        "quantity": 1,
+        "customOptions": null
+      }
+    ]
   }
 ]

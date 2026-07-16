@@ -151,13 +151,31 @@ export default function App() {
 
   // Body class toggle for wireframe mode
   useEffect(() => {
-    const isWireframe = ['#dried-flowers', '#artificial-flowers', '#gifts', '#order-terms'].includes(view);
+    const isWireframe = [
+      '#dried-flowers', 
+      '#artificial-flowers', 
+      '#gifts', 
+      '#order-terms',
+      '#refund',
+      '#faq'
+    ].includes(view);
     if (isWireframe) {
       document.body.classList.add('wf-mode');
     } else {
       document.body.classList.remove('wf-mode');
     }
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    
+    if (view === '#best-sellers' || view === '#how-to-buy') {
+      const targetId = view.substring(1);
+      setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
   }, [view]);
 
   // Handler for view changing
@@ -340,7 +358,7 @@ export default function App() {
       {view === '#home' && <HeroBanner />}
 
       <main>
-        {view === '#home' && (
+        {(view === '#home' || view === '#best-sellers' || view === '#how-to-buy') && (
           <HomeView 
             onViewChange={handleViewChange} 
             bestSellers={bestSellers} 
@@ -378,15 +396,7 @@ export default function App() {
           />
         )}
 
-        {(view === '#how-to-buy') && (
-          <HomeView 
-            onViewChange={handleViewChange} 
-            bestSellers={bestSellers} 
-            onAddToCart={handleAddToCart}
-          />
-        )}
-
-        {view === '#order-terms' && (
+        {(view === '#order-terms' || view === '#refund' || view === '#faq') && (
           <OrderTermsView onViewChange={handleViewChange} />
         )}
       </main>

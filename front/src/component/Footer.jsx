@@ -24,7 +24,7 @@ export default function Footer({ onViewChange }) {
         <div className="footer-links">
           <h3>หมวดหมู่สินค้า</h3>
           <ul>
-            <li><a href="#home" className="footer-nav-link" id="footHome" onClick={(e) => handleNavClick('#home', e)}>ช่อแนะนำ</a></li>
+            <li><a href="#best-sellers" className="footer-nav-link" id="footHome" onClick={(e) => handleNavClick('#best-sellers', e)}>ช่อแนะนำ</a></li>
             <li><a href="#dried-flowers" className="footer-nav-link" id="footDried" onClick={(e) => handleNavClick('#dried-flowers', e)}>ดอกไม้แห้ง</a></li>
             <li><a href="#artificial-flowers" className="footer-nav-link" id="footArtificial" onClick={(e) => handleNavClick('#artificial-flowers', e)}>ดอกไม้ประดิษฐ์</a></li>
             <li><a href="#gifts" className="footer-nav-link" id="footGifts" onClick={(e) => handleNavClick('#gifts', e)}>ของขวัญ / ของชำร่วย</a></li>
@@ -35,9 +35,8 @@ export default function Footer({ onViewChange }) {
           <h3>ช่วยเหลือ & ข้อมูล</h3>
           <ul>
             <li><a href="#how-to-buy" onClick={(e) => handleNavClick('#how-to-buy', e)}>วิธีการสั่งซื้อ</a></li>
-            <li><a href="#">นโยบายการคืนสินค้า</a></li>
-            <li><a href="#">คำถามที่พบบ่อย (FAQs)</a></li>
-            <li><a href="#">ติดตามการจัดส่ง</a></li>
+            <li><a href="#refund" onClick={(e) => handleNavClick('#refund', e)}>นโยบายการคืนสินค้า</a></li>
+            <li><a href="#faq" onClick={(e) => handleNavClick('#faq', e)}>คำถามที่พบบ่อย (FAQs)</a></li>
           </ul>
         </div>
 

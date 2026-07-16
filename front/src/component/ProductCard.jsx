@@ -30,18 +30,21 @@ export default function ProductCard({ product, onAddToCart }) {
           border: 1px solid #f0ebe4;
           display: flex;
           flex-direction: column;
+          padding: 16px;
+          text-align: center;
+          height: 100%;
         }
         .product-card-wrap:hover {
           transform: translateY(-6px);
-          box-shadow: 0 12px 40px rgba(102, 83, 66, 0.15);
-          border-color: var(--tan, #E6D8C3);
+          box-shadow: 0 12px 30px rgba(102, 83, 66, 0.12);
         }
         .product-img-container {
           position: relative;
           width: 100%;
-          height: 220px;
+          height: 200px;
           overflow: hidden;
           background: linear-gradient(135deg, #f5f0ea 0%, #ede6dc 100%);
+          border-radius: 12px;
         }
         .product-img-container img {
           width: 100%;
@@ -77,19 +80,20 @@ export default function ProductCard({ product, onAddToCart }) {
           flex: 1;
         }
         .product-card-name {
-          margin: 0 0 6px;
+          margin: 0 0 8px;
           font-size: 1.05rem;
-          font-weight: 600;
+          font-weight: 500;
           color: var(--text-dark, #665342);
           line-height: 1.4;
         }
         .product-card-price {
-          margin: 0 0 14px;
+          margin: 0 0 12px;
           font-size: 1.15rem;
           font-weight: 700;
           color: var(--primary, #846F5B);
           display: flex;
           align-items: baseline;
+          justify-content: center;
           gap: 4px;
         }
         .product-card-price .currency {
@@ -98,20 +102,21 @@ export default function ProductCard({ product, onAddToCart }) {
         }
         .product-detail-toggle {
           width: 100%;
-          padding: 10px 14px;
+          padding: 8px 12px;
           background: var(--light-bg, #F5F5F0);
           border: none;
           border-radius: 10px;
           cursor: pointer;
           font-family: inherit;
-          font-size: 0.85rem;
+          font-size: 0.82rem;
           font-weight: 500;
           color: var(--text-dark, #665342);
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          justify-content: center;
+          gap: 6px;
           transition: all 0.2s ease;
-          margin-bottom: 14px;
+          margin-bottom: 12px;
         }
         .product-detail-toggle:hover {
           background: var(--tan, #E6D8C3);
@@ -122,11 +127,12 @@ export default function ProductCard({ product, onAddToCart }) {
           transition: transform 0.25s ease;
         }
         .product-detail-content {
-          padding: 0 2px 14px;
-          font-size: 0.88rem;
+          padding: 0 2px 12px;
+          font-size: 0.85rem;
           color: #8a7a68;
           line-height: 1.6;
           animation: detailSlide 0.25s ease;
+          text-align: left;
         }
         @keyframes detailSlide {
           from { opacity: 0; transform: translateY(-8px); }
@@ -181,7 +187,8 @@ export default function ProductCard({ product, onAddToCart }) {
         </div>
 
         <div className="product-card-body">
-          <h4 className="product-card-name">{product.name}</h4>
+          <h5 className="product-card-name" style={{ margin: '0 0 8px' }}>{product.name}</h5>
+          
           <p className="product-card-price">
             {product.price.toLocaleString()} <span className="currency">฿</span>
           </p>
@@ -192,7 +199,7 @@ export default function ProductCard({ product, onAddToCart }) {
             onClick={() => setIsOpen(!isOpen)}
           >
             <span>{isOpen ? 'ซ่อนรายละเอียด' : 'ดูรายละเอียดสินค้า'}</span>
-            <i className={`fa-solid fa-chevron-down`} style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0)' }}></i>
+            <i className="fa-solid fa-chevron-down" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0)' }}></i>
           </button>
 
           {isOpen && (
