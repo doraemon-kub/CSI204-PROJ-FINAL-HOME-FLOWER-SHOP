@@ -19,7 +19,7 @@ export default function WireframeView({
     <>
       <style>{`
         .wf-page {
-          background: var(--light-bg, #F5F5F0);
+          background: #fff;
           min-height: 100vh;
           padding-bottom: 60px;
           font-family: 'Prompt', sans-serif;
@@ -81,9 +81,9 @@ export default function WireframeView({
 
         .wf-sidebar-card {
           background: #fff;
-          border-radius: 16px;
+          border-radius: 20px;
           padding: 24px 20px;
-          box-shadow: 0 2px 12px rgba(102, 83, 66, 0.06);
+          box-shadow: 0 2px 12px rgba(102, 83, 66, 0.07);
           border: 1px solid #f0ebe4;
         }
 
@@ -108,7 +108,7 @@ export default function WireframeView({
           outline: none;
           font-family: inherit;
           font-size: 0.88rem;
-          background: var(--light-bg, #F5F5F0);
+          background: #fff;
           transition: all 0.2s ease;
           color: var(--text-dark, #665342);
         }
@@ -173,7 +173,7 @@ export default function WireframeView({
         }
 
         .wf-filter-btn:not(.active) {
-          background: transparent;
+          background: #fff;
           color: var(--text-dark, #665342);
         }
 
@@ -203,26 +203,30 @@ export default function WireframeView({
           flex: 0 1 calc(33.333% - 16px);
           min-width: 220px;
           background: #fff;
-          border-radius: 16px;
+          border-radius: 24px;
           overflow: hidden;
-          border: 1px solid #f0ebe4;
+          border: none;
+          box-shadow: 0 2px 12px rgba(102, 83, 66, 0.07);
           transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
           display: flex;
           flex-direction: column;
+          padding: 14px;
         }
 
         .wf-product-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 12px 40px rgba(102, 83, 66, 0.14);
-          border-color: var(--tan, #E6D8C3);
+          transform: translateY(-5px);
+          box-shadow: 0 12px 32px rgba(102, 83, 66, 0.13);
         }
 
         .wf-product-img {
           width: 100%;
           height: 200px;
-          background: linear-gradient(135deg, #f5f0ea 0%, #ede6dc 100%);
+          background: #f7f4f0;
+          border: 1px solid #f0ebe4;
+          border-radius: 16px;
           overflow: hidden;
           position: relative;
+          box-sizing: border-box;
         }
 
         .wf-product-img img {
@@ -233,7 +237,7 @@ export default function WireframeView({
         }
 
         .wf-product-card:hover .wf-product-img img {
-          transform: scale(1.08);
+          transform: scale(1.06);
         }
 
         .wf-product-img-placeholder {
@@ -243,60 +247,121 @@ export default function WireframeView({
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          color: #c4b5a4;
-          gap: 6px;
+          color: #7f8c8d;
+          gap: 8px;
+          text-align: center;
+          padding: 12px;
+          box-sizing: border-box;
         }
 
         .wf-product-img-placeholder i {
-          font-size: 2rem;
-          opacity: 0.5;
+          font-size: 2.6rem;
+          color: #7f8c8d;
+        }
+
+        .wf-placeholder-label {
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: #2c3e50;
+        }
+
+        .wf-placeholder-hint {
+          font-size: 0.72rem;
+          color: #7f8c8d;
+        }
+
+        .wf-badge-hot {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          background: #C28C7E;
+          color: #fff;
+          font-size: 0.78rem;
+          font-weight: 600;
+          padding: 3px 14px;
+          border-radius: 20px;
+          z-index: 5;
         }
 
         .wf-product-body {
-          padding: 16px 18px 18px;
+          padding: 12px 4px 2px;
           display: flex;
           flex-direction: column;
           flex: 1;
-          text-align: center;
+          text-align: left;
+        }
+
+        .wf-product-category {
+          font-size: 0.8rem;
+          color: #888;
+          margin: 0 0 4px;
         }
 
         .wf-product-name {
-          margin: 0 0 6px;
+          margin: 0 0 8px;
           font-size: 1rem;
-          font-weight: 600;
-          color: var(--text-dark, #665342);
+          font-weight: 700;
+          color: #2c3e50;
+          line-height: 1.4;
+        }
+
+        .wf-product-rating {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          margin-bottom: 12px;
+        }
+
+        .wf-stars {
+          display: flex;
+          color: #ffc107;
+          gap: 1px;
+          font-size: 0.85rem;
+        }
+
+        .wf-reviews-count {
+          font-size: 0.78rem;
+          color: #888;
+        }
+
+        .wf-product-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-top: auto;
         }
 
         .wf-product-price {
-          margin: 0 0 14px;
-          font-size: 1.1rem;
+          margin: 0;
+          font-size: 1.35rem;
           font-weight: 700;
-          color: var(--primary, #846F5B);
+          color: #C28C7E;
         }
 
         .wf-add-btn {
-          margin-top: auto;
-          width: 100%;
-          padding: 11px 18px;
-          background: var(--primary, #846F5B);
-          color: #fff;
-          border: none;
-          border-radius: 12px;
-          font-family: inherit;
-          font-weight: 600;
-          font-size: 0.88rem;
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          background: #fff;
+          border: 1px solid #f0ebe4;
+          box-shadow: 0 2px 8px rgba(102, 83, 66, 0.1);
+          color: var(--primary, #846F5B);
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 8px;
-          transition: all 0.25s ease;
+          font-size: 0.95rem;
+          transition: all 0.2s ease;
+          padding: 0;
+          flex-shrink: 0;
         }
 
         .wf-add-btn:hover {
-          background: var(--primary-dark, #6b5a49);
-          transform: translateY(-2px);
-          box-shadow: 0 4px 16px rgba(132, 111, 91, 0.3);
+          background: var(--primary, #846F5B);
+          border-color: var(--primary, #846F5B);
+          color: #fff;
+          transform: scale(1.08);
+          box-shadow: 0 4px 14px rgba(132, 111, 91, 0.3);
         }
 
         .wf-empty {
@@ -391,25 +456,46 @@ export default function WireframeView({
               filteredProducts.map((product) => {
                 const hasImage = product.img || product.image;
                 const imgSrc = product.img || (product.image ? `http://localhost:3000/uploads/${product.image}` : '');
+                const categoryLabel = product.category === 'ready-made' ? 'ดอกไม้แห้ง' 
+                                    : product.category === 'custom' ? 'ดอกไม้ประดิษฐ์' 
+                                    : product.category === 'gift' ? 'ของขวัญ' 
+                                    : 'สินค้า';
+                const reviews = product.id === 'p1' ? 24 : product.id === 'p2' ? 18 : 35;
+                const isHot = product.id === 'p1' || product.id === 'p2';
 
                 return (
                   <div key={product.id} className="wf-product-card">
                     <div className="wf-product-img">
+                      {isHot && <div className="wf-badge-hot">ขายดี</div>}
                       {hasImage ? (
                         <img src={imgSrc} alt={product.name} loading="lazy" />
                       ) : (
                         <div className="wf-product-img-placeholder">
-                          <i className="fa-solid fa-spa"></i>
+                          <i className="fa-regular fa-image"></i>
+                          <span className="wf-placeholder-label">รูป{product.name} (280X280)</span>
+                          <span className="wf-placeholder-hint">(คลิกแก้ไขโค้ดเพื่อใส่รูปภาพของคุณ)</span>
                         </div>
                       )}
                     </div>
                     <div className="wf-product-body">
+                      <div className="wf-product-category">{categoryLabel}</div>
                       <h4 className="wf-product-name">{product.name}</h4>
-                      <p className="wf-product-price">{product.price.toLocaleString()} ฿</p>
-                      <button className="wf-add-btn" onClick={() => onAddToCart(product)}>
-                        <i className="fa-solid fa-basket-shopping"></i>
-                        หยิบใส่ตะกร้า
-                      </button>
+                      <div className="wf-product-rating">
+                        <div className="wf-stars">
+                          {[1,2,3,4,5].map(s => <i key={s} className="fa-solid fa-star"></i>)}
+                        </div>
+                        <span className="wf-reviews-count">({reviews} รีวิว)</span>
+                      </div>
+                      <div className="wf-product-footer">
+                        <p className="wf-product-price">฿{product.price.toLocaleString()}</p>
+                        <button
+                          className="wf-add-btn"
+                          onClick={() => onAddToCart(product)}
+                          aria-label="หยิบใส่ตะกร้า"
+                        >
+                          <i className="fa-solid fa-cart-shopping"></i>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 );

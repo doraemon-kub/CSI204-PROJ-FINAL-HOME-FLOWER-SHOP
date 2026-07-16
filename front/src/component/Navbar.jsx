@@ -68,7 +68,7 @@ export default function Navbar({
     { label: 'คำสั่งซื้อ', hash: '#orders' }
   ];
 
-  const isOrderSectionActive = currentView === '#how-to-buy' || currentView === '#order-terms';
+  const isOrderSectionActive = currentView === '#how-to-buy' || currentView === '#order-terms' || currentView === '#refund' || currentView === '#faq';
 
   return (
     <>

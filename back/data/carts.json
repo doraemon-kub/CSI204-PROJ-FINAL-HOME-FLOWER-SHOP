@@ -40,5 +40,16 @@
   {
     "userId": "a2b0806f-ad4e-4fb7-ab78-0203fe3f4bcb",
     "items": []
+  },
+  {
+    "userId": "a07bca3b-1917-4a96-9ac9-b3bbe206bd30",
+    "items": [
+      {
+        "cartItemId": "7fc25f3b-eec1-4434-999e-1f4496188cbc",
+        "productId": "p2",
+        "quantity": 1,
+        "customOptions": null
+      }
+    ]
   }
 ]
