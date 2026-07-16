@@ -12,6 +12,7 @@ import AuthModal from './component/AuthModal';
 import OrdersModal from './component/OrdersModal';
 import CheckoutModal from './component/CheckoutModal';
 import OrderTermsView from './component/OrderTermsView';
+import ProfileView from './component/ProfileView';
 import ErrorBoundary from './component/ErrorBoundary';
 
 const API_URL = '/api';
@@ -35,6 +36,31 @@ export default function App() {
       return null;
     }
   });
+
+  const fetchUserProfile = async (userId) => {
+    const uid = userId || user?.id;
+    if (!uid) return;
+    try {
+      const response = await axios.get(`${API_URL}/users/${uid}`);
+      const updatedUser = response.data;
+      localStorage.setItem('hf_user', JSON.stringify(updatedUser));
+      setUser(updatedUser);
+    } catch (err) {
+      console.error('Failed to fetch user profile', err);
+    }
+  };
+
+  // Fetch profile once when user logs in (not on every user state change)
+  const hasFetchedProfile = React.useRef(false);
+  useEffect(() => {
+    if (user && user.id && !hasFetchedProfile.current) {
+      hasFetchedProfile.current = true;
+      fetchUserProfile(user.id);
+    }
+    if (!user) {
+      hasFetchedProfile.current = false;
+    }
+  }, [user?.id]);
 
   // Shopping Cart State (synced with backend)
   const [cart, setCart] = useState([]);
@@ -332,7 +358,7 @@ export default function App() {
           setIsCartOpen(true);
         }}
         onAuthToggle={() => setIsAuthOpen(true)}
-        user={user ? user.email : null}
+        user={user}
         onLogout={handleLogout}
       />
 
@@ -389,6 +415,10 @@ export default function App() {
         {view === '#order-terms' && (
           <OrderTermsView onViewChange={handleViewChange} />
         )}
+
+        {view === '#profile' && (
+          <ProfileView user={user} onLogout={handleLogout} onViewChange={handleViewChange} refetchUser={fetchUserProfile} />
+        )}
       </main>
 
       <Footer onViewChange={handleViewChange} />
@@ -424,6 +454,7 @@ export default function App() {
         cart={cart}
         user={user}
         onCartUpdated={refetchCart}
+        refetchUser={fetchUserProfile}
       />
     </>
     </ErrorBoundary>

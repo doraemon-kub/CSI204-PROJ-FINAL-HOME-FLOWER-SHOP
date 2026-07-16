@@ -45,3 +45,6 @@
 
 /* 14. Orders Modal: .orders-modal-content, .orders-table */
 @import './styles/orders-modal.css';
+
+/* 15. Profile View: .profile-section, .profile-card */
+@import './styles/profile-view.css';

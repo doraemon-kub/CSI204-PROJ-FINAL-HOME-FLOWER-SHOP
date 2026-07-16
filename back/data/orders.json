@@ -105,5 +105,140 @@
     "status": "กำลังตรวจสอบการชำระเงิน",
     "trackingNumber": null,
     "createdAt": "2026-07-15T18:14:12.836Z"
+  },
+  {
+    "orderId": "ORD-1784177310787",
+    "userId": "admin-id-001",
+    "items": "[{\"productId\":\"p3\",\"name\":\"Teddy\",\"price\":200,\"quantity\":6}]",
+    "buyerInfo": {
+      "name": "Shop Owner (Admin)",
+      "phone": "0000000000",
+      "email": "admin@homeflowershop.com"
+    },
+    "recipientInfo": {
+      "name": "เหกดพหกพ",
+      "address": "เกพเกพเกเ",
+      "phone": "ะเกพ"
+    },
+    "cardMessage": "กหเกเกเ",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-08T11:48",
+      "slipUrl": null,
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 1300,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-16T04:48:30.787Z"
+  },
+  {
+    "orderId": "ORD-1784180529603",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "items": "[{\"productId\":\"p1\",\"name\":\"Basic 1\",\"price\":1000,\"quantity\":9}]",
+    "buyerInfo": {
+      "name": "แฮม",
+      "phone": "1234567890",
+      "email": "ham@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "แฮม",
+      "address": "ฟหกไฟฟก ต.บางพูด อ.ปากเกร็ด จ.นนทบุรี 11120",
+      "phone": "1234567890"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-04-15T12:41",
+      "slipUrl": null,
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 9100,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-16T05:42:09.603Z"
+  },
+  {
+    "orderId": "ORD-1784180652690",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "items": "[{\"productId\":\"p1\",\"name\":\"Basic 1\",\"price\":1000,\"quantity\":6}]",
+    "buyerInfo": {
+      "name": "แฮม",
+      "phone": "1234567890",
+      "email": "ham@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "แฮม",
+      "address": "ไำฟำดกหฟำ ต.บางกรวย อ.บางกรวย จ.นนทบุรี 11130",
+      "phone": "1234567890"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-16T12:44",
+      "slipUrl": null,
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 6100,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-16T05:44:12.690Z"
+  },
+  {
+    "orderId": "ORD-1784181255409",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "items": "[{\"productId\":\"p2\",\"name\":\"Custom 1\",\"price\":690,\"quantity\":10},{\"productId\":\"p3\",\"name\":\"Teddy\",\"price\":200,\"quantity\":5},{\"productId\":\"p1\",\"name\":\"Basic 1\",\"price\":1000,\"quantity\":6}]",
+    "buyerInfo": {
+      "name": "แฮม",
+      "phone": "1234567890",
+      "email": "ham@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "แฮม",
+      "address": "ฟหกไฟฟก ต.บางพูด อ.ปากเกร็ด จ.นนทบุรี 11120",
+      "phone": "1234567890"
+    },
+    "cardMessage": "dzfszdf",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-16T12:54",
+      "slipUrl": null,
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 14000,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-16T05:54:15.409Z"
+  },
+  {
+    "orderId": "ORD-1784184900512",
+    "userId": "a2b0806f-ad4e-4fb7-ab78-0203fe3f4bcb",
+    "items": "[{\"productId\":\"p3\",\"name\":\"Teddy\",\"price\":200,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "Test Flower",
+      "phone": "1234567890",
+      "email": "testflower@somemail.com"
+    },
+    "recipientInfo": {
+      "name": "Test Flower",
+      "address": "123 abc def",
+      "phone": "123456789"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-16T13:54",
+      "slipUrl": null,
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 300,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-16T06:55:00.512Z"
   }
 ]

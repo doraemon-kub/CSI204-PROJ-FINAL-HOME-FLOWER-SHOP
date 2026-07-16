@@ -336,9 +336,14 @@ export default function Navbar({
           </div>
           <div className="top-bar-right">
             {user ? (
-              <a href="#" onClick={(e) => { e.preventDefault(); onLogout(); }} id="loginBtn">
-                <i className="fa-solid fa-user-check"></i> สวัสดี, {user.split('@')[0]} (ออกจากระบบ)
-              </a>
+              <div style={{ display: 'flex', gap: '15px' }}>
+                <a href="#profile" onClick={(e) => { e.preventDefault(); onViewChange('#profile'); }} id="profileBtn">
+                  <i className="fa-solid fa-user-check"></i> สวัสดี, {user.name || (user.email && user.email.split('@')[0]) || 'สมาชิก'}
+                </a>
+                <a href="#" onClick={(e) => { e.preventDefault(); onLogout(); }} id="logoutBtn" style={{ opacity: 0.7 }}>
+                  <i className="fa-solid fa-sign-out-alt"></i> ออกจากระบบ
+                </a>
+              </div>
             ) : (
               <a href="#" onClick={(e) => { e.preventDefault(); onAuthToggle(); }} id="loginBtn">
                 <i className="fa-regular fa-user"></i> เข้าสู่ระบบ / สมัครสมาชิก

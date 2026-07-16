@@ -52,5 +52,14 @@
     "phone": "1234567890",
     "role": "MEMBER",
     "createdAt": "2026-07-15T18:04:18.883Z"
+  },
+  {
+    "id": "a2b0806f-ad4e-4fb7-ab78-0203fe3f4bcb",
+    "name": "Test Flower",
+    "email": "testflower@somemail.com",
+    "password": "12345",
+    "phone": "1234567890",
+    "role": "MEMBER",
+    "createdAt": "2026-07-16T06:54:02.205Z"
   }
 ]

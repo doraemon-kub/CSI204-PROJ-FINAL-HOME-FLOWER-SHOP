@@ -25,6 +25,7 @@ export default function CheckoutModal({
   const [cardMessage, setCardMessage] = useState('');
   const [paymentSlip, setPaymentSlip] = useState(null);
   const [paymentTime, setPaymentTime] = useState('');
+  const [selectedAddressId, setSelectedAddressId] = useState('new');
 
   // โหลดข้อมูลผู้เข้าใช้งานเข้าฟอร์มฝั่งซ้ายอัตโนมัติ
   useEffect(() => {
@@ -32,6 +33,19 @@ export default function CheckoutModal({
       setBuyerName(user.name || '');
       setBuyerPhone(user.phone || '');
       setBuyerEmail(user.email || '');
+
+      if (user.addresses && user.addresses.length > 0) {
+        const defaultAddr = user.addresses.find(a => a.isDefault) || user.addresses[0];
+        setRecipientName(defaultAddr.name);
+        setRecipientPhone(defaultAddr.phone);
+        setRecipientAddress(defaultAddr.address);
+        setSelectedAddressId(defaultAddr.id);
+      } else {
+        setSelectedAddressId('new');
+        setRecipientName('');
+        setRecipientPhone('');
+        setRecipientAddress('');
+      }
     }
   }, [user]);
 
@@ -329,6 +343,41 @@ export default function CheckoutModal({
                   <i className="fa-solid fa-truck" style={{ color: 'var(--primary)' }}></i>
                   ข้อมูลผู้รับจัดส่ง
                 </h4>
+
+                {/* Dropdown สำหรับเลือกที่อยู่ที่บันทึกไว้ */}
+                {user?.addresses && user.addresses.length > 0 && (
+                  <div className="form-group" style={{ marginBottom: '12px' }}>
+                    <label style={labelStyle}>เลือกที่อยู่จัดส่ง</label>
+                    <select
+                      style={inputStyle}
+                      value={selectedAddressId}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setSelectedAddressId(val);
+                        if (val === 'new') {
+                          setRecipientName('');
+                          setRecipientPhone('');
+                          setRecipientAddress('');
+                        } else {
+                          const addr = user.addresses.find(a => a.id === val);
+                          if (addr) {
+                            setRecipientName(addr.name);
+                            setRecipientPhone(addr.phone);
+                            setRecipientAddress(addr.address);
+                          }
+                        }
+                      }}
+                    >
+                      {user.addresses.map(a => (
+                        <option key={a.id} value={a.id}>
+                          {a.name} - {a.address.substring(0, 30)}{a.address.length > 30 ? '...' : ''} {a.isDefault ? '(ค่าเริ่มต้น)' : ''}
+                        </option>
+                      ))}
+                      <option value="new">+ ระบุที่อยู่ใหม่</option>
+                    </select>
+                  </div>
+                )}
+
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label style={labelStyle}>ชื่อผู้รับ *</label>

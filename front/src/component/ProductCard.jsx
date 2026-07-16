@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 export default function ProductCard({ product, onAddToCart }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
 
   const handleAdd = () => {
@@ -166,8 +165,6 @@ export default function ProductCard({ product, onAddToCart }) {
 
       <div
         className="product-card-wrap"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       >
         <div className="product-img-container">
           {hasImage ? (

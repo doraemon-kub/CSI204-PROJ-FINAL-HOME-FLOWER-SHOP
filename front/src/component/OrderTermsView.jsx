@@ -72,7 +72,7 @@ const TERMS_SECTIONS = [
   }
 ];
 
-export default function OrderTermsView({ onViewChange }) {
+export default function OrderTermsView() {
   const [openSection, setOpenSection] = useState('shipping');
 
   const toggleSection = (id) => {
