@@ -5,37 +5,11 @@
   },
   {
     "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
-    "items": [
-      {
-        "cartItemId": "491071a4-d4f0-4563-8d74-2779878b0de9",
-        "productId": "p1",
-        "quantity": 6,
-        "customOptions": null
-      },
-      {
-        "cartItemId": "59a1245a-6faa-4947-86b5-99b25a6ac27a",
-        "productId": "p2",
-        "quantity": 2,
-        "customOptions": null
-      }
-    ]
+    "items": []
   },
   {
     "userId": "admin-id-001",
-    "items": [
-      {
-        "cartItemId": "2a076f03-d677-4a89-af74-3c7cfa246b4b",
-        "productId": "p3",
-        "quantity": 32,
-        "customOptions": null
-      },
-      {
-        "cartItemId": "5c9a4ae9-f00b-4093-9376-dc7ab3c84305",
-        "productId": "p1",
-        "quantity": 7,
-        "customOptions": null
-      }
-    ]
+    "items": []
   },
   {
     "userId": "a2b0806f-ad4e-4fb7-ab78-0203fe3f4bcb",

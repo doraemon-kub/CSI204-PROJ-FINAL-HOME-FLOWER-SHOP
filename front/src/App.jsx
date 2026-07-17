@@ -14,6 +14,7 @@ import CheckoutModal from './component/CheckoutModal';
 import OrderTermsView from './component/OrderTermsView';
 import ProfileView from './component/ProfileView';
 import ErrorBoundary from './component/ErrorBoundary';
+import AdminDashboard from './component/admin/AdminDashboard';
 
 const API_URL = '/api';
 
@@ -153,6 +154,16 @@ export default function App() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash || '#home';
+      if (hash === '#admin') {
+        const savedUser = localStorage.getItem('hf_user');
+        let parsed = null;
+        try { parsed = savedUser ? JSON.parse(savedUser) : null; } catch { /* ignore */ }
+        if (!parsed || (parsed.role !== 'ADMIN' && parsed.role !== 'STAFF')) {
+          window.location.hash = '#home';
+          setView('#home');
+          return;
+        }
+      }
       setView(hash);
     };
 
@@ -213,6 +224,13 @@ export default function App() {
           return;
         }
         setIsOrdersOpen(true);
+      } else if (newView === '#admin') {
+        if (!user || (user.role !== 'ADMIN' && user.role !== 'STAFF')) {
+          alert('คุณไม่มีสิทธิ์เข้าถึงหน้านี้');
+          return;
+        }
+        window.location.hash = newView;
+        setView(newView);
       } else {
         window.location.hash = newView;
         setView(newView);
@@ -428,6 +446,18 @@ export default function App() {
 
         {view === '#profile' && (
           <ProfileView user={user} onLogout={handleLogout} onViewChange={handleViewChange} refetchUser={fetchUserProfile} />
+        )}
+
+        {view === '#admin' && (
+          user && (user.role === 'ADMIN' || user.role === 'STAFF') ? (
+            <AdminDashboard user={user} onViewChange={handleViewChange} />
+          ) : (
+            <div style={{ padding: '100px 20px', textAlign: 'center', background: '#fff', minHeight: '60vh' }}>
+              <h2 style={{ color: '#b91c1c' }}>Access Denied / ไม่มีสิทธิ์เข้าถึง</h2>
+              <p style={{ color: '#475569', margin: '20px 0' }}>คุณไม่มีสิทธิ์ในการเข้าถึงหน้าจัดการระบบ</p>
+              <button className="btn btn-primary" onClick={() => handleViewChange('#home')}>กลับสู่หน้าหลัก</button>
+            </div>
+          )
         )}
       </main>
 

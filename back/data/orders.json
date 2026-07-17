@@ -21,7 +21,7 @@
     },
     "shippingFee": 100,
     "totalAmount": 2990,
-    "status": "กำ ลังตรวจสอบการชำ ระเงิน",
+    "status": "กำลังตรวจสอบการชำระเงิน",
     "trackingNumber": null,
     "createdAt": "2026-07-15T04:36:43.104Z"
   },
@@ -48,7 +48,7 @@
     },
     "shippingFee": 100,
     "totalAmount": 1100,
-    "status": "กำ ลังตรวจสอบการชำ ระเงิน",
+    "status": "กำลังตรวจสอบการชำระเงิน",
     "trackingNumber": null,
     "createdAt": "2026-07-15T04:46:35.067Z"
   },
@@ -107,7 +107,6 @@
     "createdAt": "2026-07-15T18:14:12.836Z"
   },
   {
-<<<<<<< HEAD
     "orderId": "ORD-1784177310787",
     "userId": "admin-id-001",
     "items": "[{\"productId\":\"p3\",\"name\":\"Teddy\",\"price\":200,\"quantity\":6}]",
@@ -147,7 +146,21 @@
       "name": "แฮม",
       "address": "ฟหกไฟฟก ต.บางพูด อ.ปากเกร็ด จ.นนทบุรี 11120",
       "phone": "1234567890"
-=======
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-04-15T12:41",
+      "slipUrl": null,
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 9100,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-16T05:42:09.603Z"
+  },
+  {
     "orderId": "ORD-1784183435638",
     "userId": "a07bca3b-1917-4a96-9ac9-b3bbe206bd30",
     "items": "[{\"productId\":\"p1\",\"name\":\"Basic 1\",\"price\":1000,\"quantity\":1}]",
@@ -160,25 +173,19 @@
       "name": "asd",
       "address": "asd",
       "phone": "asd"
->>>>>>> 3960306e7a04be7bb10cceea70b7e0aa2c3d2a54
     },
     "cardMessage": "",
     "payment": {
       "method": "Bank Transfer (Mock)",
-<<<<<<< HEAD
-      "time": "2026-04-15T12:41",
-=======
       "time": "2026-07-16T13:30",
->>>>>>> 3960306e7a04be7bb10cceea70b7e0aa2c3d2a54
       "slipUrl": null,
       "status": "PENDING"
     },
     "shippingFee": 100,
-<<<<<<< HEAD
-    "totalAmount": 9100,
+    "totalAmount": 1100,
     "status": "กำลังตรวจสอบการชำระเงิน",
     "trackingNumber": null,
-    "createdAt": "2026-07-16T05:42:09.603Z"
+    "createdAt": "2026-07-16T06:30:35.638Z"
   },
   {
     "orderId": "ORD-1784180652690",
@@ -230,7 +237,7 @@
     },
     "shippingFee": 100,
     "totalAmount": 14000,
-    "status": "กำลังตรวจสอบการชำระเงิน",
+    "status": "ชำระเงินแล้ว",
     "trackingNumber": null,
     "createdAt": "2026-07-16T05:54:15.409Z"
   },
@@ -257,14 +264,8 @@
     },
     "shippingFee": 100,
     "totalAmount": 300,
-    "status": "กำลังตรวจสอบการชำระเงิน",
-    "trackingNumber": null,
+    "status": "จัดส่งแล้ว",
+    "trackingNumber": "EMS123456789TH",
     "createdAt": "2026-07-16T06:55:00.512Z"
-=======
-    "totalAmount": 1100,
-    "status": "กำลังตรวจสอบการชำระเงิน",
-    "trackingNumber": null,
-    "createdAt": "2026-07-16T06:30:35.638Z"
->>>>>>> 3960306e7a04be7bb10cceea70b7e0aa2c3d2a54
   }
 ]

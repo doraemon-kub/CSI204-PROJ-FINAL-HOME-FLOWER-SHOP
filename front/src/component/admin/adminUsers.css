@@ -1,0 +1,68 @@
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.admin-table th, .admin-table td {
+  padding: 16px;
+  border-bottom: 1px solid #f0ebe1;
+  text-align: left;
+}
+
+.admin-table th {
+  background: #faf8f5;
+  color: var(--text-dark, #665342);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.admin-table td {
+  color: #665342;
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.role-admin { background: #faeff1; color: #a35d6a; border: 1px solid #eeb6c1; }
+.role-staff { background: #e0ece4; color: #446652; border: 1px solid #a3c2af; }
+.role-member { background: #fdf6ed; color: #a17849; border: 1px solid #d9c7a8; }
+
+.btn-promote { 
+  background: var(--primary, #846F5B); 
+  color: white; 
+  border: none; 
+  padding: 8px 16px; 
+  border-radius: 20px; 
+  cursor: pointer; 
+  font-size: 0.8rem; 
+  font-weight: 600; 
+  transition: all 0.2s; 
+}
+.btn-promote:hover { 
+  background: var(--primary-dark, #6b5a49); 
+  transform: translateY(-1px); 
+}
+.btn-demote { 
+  background: #fff; 
+  color: #8a7a68; 
+  border: 1px solid #d9c7a8; 
+  padding: 8px 16px; 
+  border-radius: 20px; 
+  cursor: pointer; 
+  font-size: 0.8rem; 
+  font-weight: 600; 
+  transition: all 0.2s; 
+}
+.btn-demote:hover { 
+  background: #f5f0e6; 
+  color: var(--text-dark, #665342); 
+}

@@ -29,7 +29,7 @@ const getProductById = (req, res) => {
 };
 
 const createProduct = (req, res) => {
-    const { name, category, price, tag, badge } = req.body;
+    const { name, category, price, tag, badge, description } = req.body;
     if (!name || !price) {
         return res.status(400).json({ message: 'Name and price are required' });
     }
@@ -48,6 +48,7 @@ const createProduct = (req, res) => {
         price: parseFloat(price),
         tag: tag || '',
         badge: badge || '',
+        description: description || '',
         image: imageUrl,
         createdAt: new Date().toISOString()
     };

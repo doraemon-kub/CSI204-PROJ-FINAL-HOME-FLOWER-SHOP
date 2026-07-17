@@ -22,15 +22,19 @@ const getStats = (req, res) => {
         // Calculate Total Products
         const totalProductsCount = products.length;
 
-        // Calculate Total Members (excluding admins)
+        // Calculate Total Members (excluding admins/staff)
         const totalMembersCount = users.filter(u => u.role === 'MEMBER').length;
+
+        // Calculate Total Staff
+        const totalStaffCount = users.filter(u => u.role === 'STAFF').length;
 
         res.json({
             totalSales,
             totalOrders: totalOrdersCount,
             pendingOrders: pendingOrdersCount,
             totalProducts: totalProductsCount,
-            totalMembers: totalMembersCount
+            totalMembers: totalMembersCount,
+            totalStaff: totalStaffCount
         });
     } catch (err) {
         console.error('Error fetching admin stats:', err);
@@ -38,6 +42,52 @@ const getStats = (req, res) => {
     }
 };
 
+const getAllUsers = (req, res) => {
+    try {
+        const users = fileDb.readData('users');
+        // Remove password before returning
+        const safeUsers = users.map(({ password, ...user }) => user);
+        res.json(safeUsers);
+    } catch (err) {
+        console.error('Error fetching users:', err);
+        res.status(500).json({ message: 'Error fetching users' });
+    }
+};
+
+const updateUserRole = (req, res) => {
+    try {
+        const { userId } = req.params;
+        const { role } = req.body; // should be 'MEMBER' or 'STAFF'
+
+        if (!role || (role !== 'MEMBER' && role !== 'STAFF')) {
+            return res.status(400).json({ message: 'Invalid role. Must be MEMBER or STAFF' });
+        }
+
+        const users = fileDb.readData('users');
+        const userIndex = users.findIndex(u => u.id === userId);
+
+        if (userIndex === -1) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Prevent modifying the default Admin
+        if (users[userIndex].role === 'ADMIN') {
+            return res.status(400).json({ message: 'Cannot modify Admin role' });
+        }
+
+        users[userIndex].role = role;
+        fileDb.writeData('users', users);
+
+        const { password, ...updatedUser } = users[userIndex];
+        res.json({ message: `User role updated to ${role} successfully`, user: updatedUser });
+    } catch (err) {
+        console.error('Error updating user role:', err);
+        res.status(500).json({ message: 'Error updating user role' });
+    }
+};
+
 module.exports = {
-    getStats
+    getStats,
+    getAllUsers,
+    updateUserRole
 };

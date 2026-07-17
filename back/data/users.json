@@ -1,12 +1,12 @@
 [
   {
-    "id": "a07bca3b-1917-4a96-9ac9-b3bbe206bd30",
-    "name": "ทดสอบ",
-    "email": "test@test.com",
-    "password": "123",
-    "phone": "0812345678",
-    "role": "MEMBER",
-    "createdAt": "2026-07-12T13:12:48.353Z"
+    "id": "admin-id-001",
+    "name": "Shop Owner (Admin)",
+    "email": "admin@homeflowershop.com",
+    "password": "admin",
+    "phone": "0000000000",
+    "role": "ADMIN",
+    "createdAt": "2026-07-13T17:00:00.000Z"
   },
   {
     "id": "acf186e6-82cc-43fe-b614-f3d17d18350c",
@@ -36,13 +36,13 @@
     "createdAt": "2026-07-13T16:45:17.060Z"
   },
   {
-    "id": "admin-id-001",
-    "name": "Shop Owner (Admin)",
-    "email": "admin@homeflowershop.com",
-    "password": "admin",
-    "phone": "0000000000",
-    "role": "ADMIN",
-    "createdAt": "2026-07-13T17:00:00.000Z"
+    "id": "a07bca3b-1917-4a96-9ac9-b3bbe206bd30",
+    "name": "ทดสอบ",
+    "email": "test@test.com",
+    "password": "123",
+    "phone": "0812345678",
+    "role": "MEMBER",
+    "createdAt": "2026-07-12T13:12:48.353Z"
   },
   {
     "id": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
@@ -50,7 +50,7 @@
     "email": "ham@gmail.com",
     "password": "asd456123",
     "phone": "1234567890",
-    "role": "MEMBER",
+    "role": "STAFF",
     "createdAt": "2026-07-15T18:04:18.883Z"
   },
   {

@@ -336,10 +336,15 @@ export default function Navbar({
           </div>
           <div className="top-bar-right">
             {user ? (
-              <div style={{ display: 'flex', gap: '15px' }}>
+              <div style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
                 <a href="#profile" onClick={(e) => { e.preventDefault(); onViewChange('#profile'); }} id="profileBtn">
                   <i className="fa-solid fa-user-check"></i> สวัสดี, {user.name || (user.email && user.email.split('@')[0]) || 'สมาชิก'}
                 </a>
+                {(user.role === 'ADMIN' || user.role === 'STAFF') && (
+                  <a href="#admin" onClick={(e) => { e.preventDefault(); onViewChange('#admin'); }} style={{ color: '#E6D8C3', fontWeight: 'bold' }}>
+                    <i className="fa-solid fa-screwdriver-wrench"></i> จัดการระบบ
+                  </a>
+                )}
                 <a href="#" onClick={(e) => { e.preventDefault(); onLogout(); }} id="logoutBtn" style={{ opacity: 0.7 }}>
                   <i className="fa-solid fa-sign-out-alt"></i> ออกจากระบบ
                 </a>
