@@ -1,5 +1,50 @@
 [
   {
+    "id": "LOG-178438795361234",
+    "timestamp": "2026-07-18T15:19:13.612Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784387953610"
+  },
+  {
+    "id": "LOG-1784387945544410",
+    "timestamp": "2026-07-18T15:19:05.544Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-1784387796186252",
+    "timestamp": "2026-07-18T15:16:36.186Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784387796183"
+  },
+  {
+    "id": "LOG-1784387787955197",
+    "timestamp": "2026-07-18T15:16:27.955Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-1784387777966915",
+    "timestamp": "2026-07-18T15:16:17.966Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784387777964"
+  },
+  {
     "id": "LOG-1784386584658113",
     "timestamp": "2026-07-18T14:56:24.658Z",
     "userId": "admin-id-001",

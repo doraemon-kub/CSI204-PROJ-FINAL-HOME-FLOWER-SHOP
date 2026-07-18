@@ -16,20 +16,7 @@
   },
   {
     "userId": "admin-id-001",
-    "items": [
-      {
-        "cartItemId": "9df88726-8829-4455-919e-a1e9c1e3efb8",
-        "productId": "p3",
-        "quantity": 1,
-        "customOptions": null
-      },
-      {
-        "cartItemId": "1b6b2d0d-ed88-449b-907d-164756458811",
-        "productId": "p1",
-        "quantity": 2,
-        "customOptions": null
-      }
-    ]
+    "items": []
   },
   {
     "userId": "a2b0806f-ad4e-4fb7-ab78-0203fe3f4bcb",
