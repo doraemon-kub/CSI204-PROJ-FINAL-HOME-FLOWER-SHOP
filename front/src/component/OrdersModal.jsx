@@ -265,7 +265,7 @@ export default function OrdersModal({ isOpen, onClose, user }) {
                                           borderRadius: '8px',
                                           border: '1px solid var(--border-color, #e2d9c9)'
                                         }}>
-                                          {order.trackingNumber}
+                                          เลขพัสดุ: {order.trackingNumber}
                                         </span>
                                       ) : (
                                         <span style={{

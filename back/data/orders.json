@@ -292,7 +292,34 @@
     "shippingFee": 100,
     "totalAmount": 5100,
     "status": "กำลังตรวจสอบการชำระเงิน",
-    "trackingNumber": null,
+    "trackingNumber": "aaa",
     "createdAt": "2026-07-18T09:12:16.700Z"
+  },
+  {
+    "orderId": "ORD-1784386031808",
+    "userId": "admin-id-001",
+    "items": "[{\"productId\":\"p1\",\"name\":\"Basic 1\",\"price\":1000,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "Shop Owner (Admin)",
+      "phone": "0000000000",
+      "email": "admin@homeflowershop.com"
+    },
+    "recipientInfo": {
+      "name": "bb",
+      "address": "bbb",
+      "phone": "bbb"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-18T21:47",
+      "slipUrl": null,
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 1100,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": "asd",
+    "createdAt": "2026-07-18T14:47:11.808Z"
   }
 ]

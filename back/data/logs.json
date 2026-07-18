@@ -1,5 +1,86 @@
 [
   {
+    "id": "LOG-1784386584658113",
+    "timestamp": "2026-07-18T14:56:24.658Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784386369338636",
+    "timestamp": "2026-07-18T14:52:49.338Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784386364459994",
+    "timestamp": "2026-07-18T14:52:44.459Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-1784386239444393",
+    "timestamp": "2026-07-18T14:50:39.444Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784386031808 to กำลังตรวจสอบการชำระเงิน"
+  },
+  {
+    "id": "LOG-178438622835453",
+    "timestamp": "2026-07-18T14:50:28.354Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784365936700 to กำลังตรวจสอบการชำระเงิน"
+  },
+  {
+    "id": "LOG-1784386179722997",
+    "timestamp": "2026-07-18T14:49:39.722Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784365936700 to กำลังตรวจสอบการชำระเงิน"
+  },
+  {
+    "id": "LOG-1784386031811841",
+    "timestamp": "2026-07-18T14:47:11.811Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784386031808"
+  },
+  {
+    "id": "LOG-1784386019524104",
+    "timestamp": "2026-07-18T14:46:59.524Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784385636150870",
+    "timestamp": "2026-07-18T14:40:36.150Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
     "id": "LOG-1784367826304264",
     "timestamp": "2026-07-18T09:43:46.304Z",
     "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
