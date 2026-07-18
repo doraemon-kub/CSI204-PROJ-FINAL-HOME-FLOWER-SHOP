@@ -28,9 +28,9 @@ export default function App() {
   const [isOrdersOpen, setIsOrdersOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
-  // Authentication State — stored as JSON object in localStorage
+  // Authentication State — stored as JSON object in sessionStorage (per-tab)
   const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('hf_user');
+    const saved = sessionStorage.getItem('hf_user');
     try {
       return saved ? JSON.parse(saved) : null;
     } catch {
@@ -44,7 +44,7 @@ export default function App() {
     try {
       const response = await axios.get(`${API_URL}/users/${uid}`);
       const updatedUser = response.data;
-      localStorage.setItem('hf_user', JSON.stringify(updatedUser));
+      sessionStorage.setItem('hf_user', JSON.stringify(updatedUser));
       setUser(updatedUser);
     } catch (err) {
       console.error('Failed to fetch user profile', err);
@@ -155,7 +155,7 @@ export default function App() {
     const handleHashChange = () => {
       const hash = window.location.hash || '#home';
       if (hash === '#admin') {
-        const savedUser = localStorage.getItem('hf_user');
+        const savedUser = sessionStorage.getItem('hf_user');
         let parsed = null;
         try { parsed = savedUser ? JSON.parse(savedUser) : null; } catch { /* ignore */ }
         if (!parsed || (parsed.role !== 'ADMIN' && parsed.role !== 'STAFF')) {
@@ -177,12 +177,12 @@ export default function App() {
     };
   }, []);
 
-  // Sync user to localStorage
+  // Sync user to sessionStorage
   useEffect(() => {
     if (user) {
-      localStorage.setItem('hf_user', JSON.stringify(user));
+      sessionStorage.setItem('hf_user', JSON.stringify(user));
     } else {
-      localStorage.removeItem('hf_user');
+      sessionStorage.removeItem('hf_user');
     }
   }, [user]);
 
@@ -371,7 +371,14 @@ export default function App() {
     setUser(userObj);
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    if (user && user.id) {
+      try {
+        await axios.post(`${API_URL}/users/logout`, { userId: user.id });
+      } catch (err) {
+        console.error('Failed to log logout action', err);
+      }
+    }
     setUser(null);
     setCart([]);
   };

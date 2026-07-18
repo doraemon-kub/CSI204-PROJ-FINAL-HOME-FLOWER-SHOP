@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const fileDb = require('../utils/fileDb');
+const logger = require('../utils/logger');
 
 const checkout = (req, res) => {
     const { userId, cartItems, buyerInfo, recipientInfo, cardMessage, paymentMethod, paymentTime, totalAmount } = req.body;
@@ -60,6 +61,9 @@ const checkout = (req, res) => {
         io.to('admin_room').emit('newOrderToAdmin', newOrder);
     }
 
+    // Log action
+    logger.logAction(userId, 'CREATE_ORDER', `Placed new order ${newOrder.orderId}`);
+
     res.status(201).json({ message: 'Order placed successfully', order: newOrder });
 };
 
@@ -116,6 +120,9 @@ module.exports = {
         if (io) {
             io.to(`user_${orders[orderIndex].userId}`).emit('orderUpdated', { orderId: orders[orderIndex].orderId, status });
         }
+
+        // Log action (req.user exists since this is an admin/staff route)
+        logger.logAction(req.user.userId || req.user.id, 'UPDATE_ORDER_STATUS', `Updated status of order ${orderId} to ${status}`);
 
         res.json({ message: 'Order updated successfully', order: orders[orderIndex] });
     }

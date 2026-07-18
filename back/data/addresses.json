@@ -24,5 +24,31 @@
     "province": "นนทบุรี",
     "zipcode": "11130",
     "isDefault": true
+  },
+  {
+    "id": "4f030fb9-fd08-45df-9b75-7d64099b4669",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "name": "เหี้ยภีม",
+    "phone": "67676767676",
+    "address": "บางารadad ต.คลองต้นไทร อ.คลองสาน จ.กรุงเทพมหานคร 10600",
+    "addressDetail": "บางารadad",
+    "subdistrict": "คลองต้นไทร",
+    "district": "คลองสาน",
+    "province": "กรุงเทพมหานคร",
+    "zipcode": "10600",
+    "isDefault": false
+  },
+  {
+    "id": "e2d6884f-8793-4132-87dd-b61cf50b83bc",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "name": "เหี้ยภีม",
+    "phone": "67676767676",
+    "address": "ไพ-ภภ/ ต.คลองท่อมเหนือ อ.คลองท่อม จ.กระบี่ 81120",
+    "addressDetail": "ไพ-ภภ/",
+    "subdistrict": "คลองท่อมเหนือ",
+    "district": "คลองท่อม",
+    "province": "กระบี่",
+    "zipcode": "81120",
+    "isDefault": true
   }
 ]

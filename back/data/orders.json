@@ -267,5 +267,32 @@
     "status": "จัดส่งแล้ว",
     "trackingNumber": "EMS123456789TH",
     "createdAt": "2026-07-16T06:55:00.512Z"
+  },
+  {
+    "orderId": "ORD-1784365936700",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "items": "[{\"productId\":\"p1\",\"name\":\"Basic 1\",\"price\":1000,\"quantity\":5}]",
+    "buyerInfo": {
+      "name": "เหี้ยภีม",
+      "phone": "67676767676",
+      "email": "herepheem@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "เหี้ยภีม",
+      "address": "บาง ต.คลองต้นไทร อ.คลองสาน จ.กรุงเทพมหานคร 10600",
+      "phone": "67676767676"
+    },
+    "cardMessage": "กดเกดเ",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-08T16:12",
+      "slipUrl": null,
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 5100,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-18T09:12:16.700Z"
   }
 ]

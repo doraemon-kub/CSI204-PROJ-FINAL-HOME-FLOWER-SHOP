@@ -61,5 +61,14 @@
     "phone": "1234567890",
     "role": "MEMBER",
     "createdAt": "2026-07-16T06:54:02.205Z"
+  },
+  {
+    "id": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
+    "name": "กาก",
+    "email": "kak@gmail.com",
+    "password": "asd456123",
+    "phone": "23523525",
+    "role": "MEMBER",
+    "createdAt": "2026-07-18T09:28:53.114Z"
   }
 ]

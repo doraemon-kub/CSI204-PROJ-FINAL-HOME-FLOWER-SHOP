@@ -7,6 +7,7 @@ const upload = multer(); // To parse form-data for testing ease
 
 router.post('/register', upload.none(), userController.register);
 router.post('/login', upload.none(), userController.login);
+router.post('/logout', upload.none(), userController.logout);
 
 router.get('/:id', userController.getUserProfile);
 router.post('/:id/addresses', upload.none(), userController.addAddress);

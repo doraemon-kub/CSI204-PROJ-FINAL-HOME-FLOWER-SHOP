@@ -1,0 +1,164 @@
+[
+  {
+    "id": "LOG-1784367826304264",
+    "timestamp": "2026-07-18T09:43:46.304Z",
+    "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
+    "userName": "กาก",
+    "userRole": "MEMBER",
+    "action": "LOGOUT",
+    "details": "User logged out"
+  },
+  {
+    "id": "LOG-1784367813084654",
+    "timestamp": "2026-07-18T09:43:33.084Z",
+    "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
+    "userName": "กาก",
+    "userRole": "MEMBER",
+    "action": "DELETE_ADDRESS",
+    "details": "Deleted an address"
+  },
+  {
+    "id": "LOG-1784367807585474",
+    "timestamp": "2026-07-18T09:43:27.585Z",
+    "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
+    "userName": "กาก",
+    "userRole": "MEMBER",
+    "action": "UPDATE_ADDRESS",
+    "details": "Updated address for กาก"
+  },
+  {
+    "id": "LOG-1784367791791196",
+    "timestamp": "2026-07-18T09:43:11.791Z",
+    "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
+    "userName": "กาก",
+    "userRole": "MEMBER",
+    "action": "ADD_ADDRESS",
+    "details": "Added new address for กาก"
+  },
+  {
+    "id": "LOG-1784367775287705",
+    "timestamp": "2026-07-18T09:42:55.287Z",
+    "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
+    "userName": "กาก",
+    "userRole": "MEMBER",
+    "action": "LOGIN",
+    "details": "User logged in: กาก (kak@gmail.com)"
+  },
+  {
+    "id": "LOG-1784367753287565",
+    "timestamp": "2026-07-18T09:42:33.287Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
+    "id": "LOG-1784366019807487",
+    "timestamp": "2026-07-18T09:13:39.807Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p2 to cart"
+  },
+  {
+    "id": "LOG-1784366009457187",
+    "timestamp": "2026-07-18T09:13:29.457Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p2 to cart"
+  },
+  {
+    "id": "LOG-1784366007198295",
+    "timestamp": "2026-07-18T09:13:27.198Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p2 to cart"
+  },
+  {
+    "id": "LOG-1784366007052149",
+    "timestamp": "2026-07-18T09:13:27.052Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p2 to cart"
+  },
+  {
+    "id": "LOG-1784365936702871",
+    "timestamp": "2026-07-18T09:12:16.702Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784365936700"
+  },
+  {
+    "id": "LOG-1784365908839576",
+    "timestamp": "2026-07-18T09:11:48.839Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784365908712614",
+    "timestamp": "2026-07-18T09:11:48.712Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784365908526224",
+    "timestamp": "2026-07-18T09:11:48.526Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784365908385291",
+    "timestamp": "2026-07-18T09:11:48.385Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784365908188668",
+    "timestamp": "2026-07-18T09:11:48.188Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784365880295812",
+    "timestamp": "2026-07-18T09:11:20.295Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ROLE",
+    "details": "Updated role of user แฮม to STAFF"
+  },
+  {
+    "id": "LOG-1784365877473819",
+    "timestamp": "2026-07-18T09:11:17.473Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ROLE",
+    "details": "Updated role of user แฮม to MEMBER"
+  }
+]

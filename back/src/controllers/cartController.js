@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const fileDb = require('../utils/fileDb');
+const logger = require('../utils/logger');
 
 const getCart = (req, res) => {
     const { userId } = req.params;
@@ -52,6 +53,8 @@ const addToCart = (req, res) => {
     const io = req.app.get('io');
     if (io) io.to(`user_${userId}`).emit('cartUpdated', userCart);
 
+    logger.logAction(userId, 'ADD_TO_CART', `Added product ${productId} to cart`);
+
     res.json({ message: 'Item added to cart', cart: userCart });
 };
 
@@ -82,6 +85,8 @@ const updateCartItemQuantity = (req, res) => {
     const io = req.app.get('io');
     if (io) io.to(`user_${userId}`).emit('cartUpdated', userCart);
 
+    logger.logAction(userId, 'UPDATE_CART', `Updated quantity of product ${item.productId} to ${quantity}`);
+
     res.json({ message: 'Cart updated', cart: userCart });
 };
 
@@ -95,12 +100,17 @@ const removeCartItem = (req, res) => {
         return res.status(404).json({ message: 'Cart not found' });
     }
 
+    const deletedItem = userCart.items.find(i => i.cartItemId === cartItemId);
     userCart.items = userCart.items.filter(i => i.cartItemId !== cartItemId);
     fileDb.writeData('carts', carts);
 
     // Emit real-time update
     const io = req.app.get('io');
     if (io) io.to(`user_${userId}`).emit('cartUpdated', userCart);
+
+    if (deletedItem) {
+        logger.logAction(userId, 'REMOVE_FROM_CART', `Removed product ${deletedItem.productId} from cart`);
+    }
 
     res.json({ message: 'Item removed from cart', cart: userCart });
 };

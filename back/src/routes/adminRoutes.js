@@ -10,5 +10,6 @@ router.get('/stats', adminOrStaffAuth, adminController.getStats);
 // User management endpoints are strictly Admin-only
 router.get('/users', adminAuth, adminController.getAllUsers);
 router.put('/users/:userId/role', adminAuth, adminController.updateUserRole);
+router.get('/logs', adminAuth, adminController.getLogs);
 
 module.exports = router;

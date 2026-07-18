@@ -1,4 +1,5 @@
 const fileDb = require('../utils/fileDb');
+const logger = require('../utils/logger');
 
 const getAllProducts = (req, res) => {
     const { category, search } = req.query;
@@ -56,6 +57,8 @@ const createProduct = (req, res) => {
     products.push(newProduct);
     fileDb.writeData('products', products);
 
+    logger.logAction(req.user.userId || req.user.id, 'CREATE_PRODUCT', `Created product ${newProduct.name}`);
+
     res.status(201).json({ message: 'Product created successfully', product: newProduct });
 };
 
@@ -84,6 +87,8 @@ const updateProduct = (req, res) => {
     products[productIndex] = updatedProduct;
     fileDb.writeData('products', products);
 
+    logger.logAction(req.user.userId || req.user.id, 'UPDATE_PRODUCT', `Updated product ${updatedProduct.name}`);
+
     res.json({ message: 'Product updated successfully', product: updatedProduct });
 };
 
@@ -96,8 +101,11 @@ const deleteProduct = (req, res) => {
         return res.status(404).json({ message: 'Product not found' });
     }
 
+    const deletedProductName = products[productIndex].name;
     products.splice(productIndex, 1);
     fileDb.writeData('products', products);
+
+    logger.logAction(req.user.userId || req.user.id, 'DELETE_PRODUCT', `Deleted product ${deletedProductName}`);
 
     res.json({ message: 'Product deleted successfully' });
 };

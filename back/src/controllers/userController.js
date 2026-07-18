@@ -1,5 +1,6 @@
 const { v4: uuidv4 } = require('uuid');
 const fileDb = require('../utils/fileDb');
+const logger = require('../utils/logger');
 
 const register = (req, res) => {
     const { name, email, password, phone } = req.body;
@@ -31,6 +32,9 @@ const register = (req, res) => {
 
     // Don't send password back
     const { password: _, ...userWithoutPassword } = newUser;
+
+    logger.logAction(newUser.id, 'REGISTER', `New user registered: ${name} (${email})`);
+
     res.status(201).json({ message: 'Registration successful', user: userWithoutPassword });
 };
 
@@ -49,6 +53,9 @@ const login = (req, res) => {
     }
 
     const { password: _, ...userWithoutPassword } = user;
+
+    logger.logAction(user.id, 'LOGIN', `User logged in: ${user.name} (${user.email})`);
+
     res.json({ message: 'Login successful', user: userWithoutPassword });
 };
 
@@ -116,6 +123,8 @@ const addAddress = (req, res) => {
     allAddresses.push(newAddress);
     fileDb.writeData('addresses', allAddresses);
 
+    logger.logAction(id, 'ADD_ADDRESS', `Added new address for ${name}`);
+
     res.status(201).json({ message: 'Address added', address: newAddress });
 };
 
@@ -165,6 +174,8 @@ const editAddress = (req, res) => {
 
     fileDb.writeData('addresses', allAddresses);
 
+    logger.logAction(id, 'UPDATE_ADDRESS', `Updated address for ${updatedAddress.name}`);
+
     res.json({ message: 'Address updated', address: updatedAddress });
 };
 
@@ -191,12 +202,23 @@ const deleteAddress = (req, res) => {
 
     fileDb.writeData('addresses', allAddresses);
 
+    logger.logAction(id, 'DELETE_ADDRESS', `Deleted an address`);
+
     res.json({ message: 'Address deleted' });
+};
+
+const logout = (req, res) => {
+    const { userId } = req.body;
+    if (userId) {
+        logger.logAction(userId, 'LOGOUT', 'User logged out');
+    }
+    res.json({ message: 'Logout successful' });
 };
 
 module.exports = {
     register,
     login,
+    logout,
     getUserProfile,
     addAddress,
     editAddress,

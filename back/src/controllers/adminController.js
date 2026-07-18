@@ -1,4 +1,15 @@
 const fileDb = require('../utils/fileDb');
+const logger = require('../utils/logger');
+
+const getLogs = (req, res) => {
+    try {
+        const logs = fileDb.readData('logs');
+        res.json(logs);
+    } catch (err) {
+        console.error('Error fetching logs:', err);
+        res.status(500).json({ message: 'Error fetching logs' });
+    }
+};
 
 const getStats = (req, res) => {
     try {
@@ -79,6 +90,10 @@ const updateUserRole = (req, res) => {
         fileDb.writeData('users', users);
 
         const { password, ...updatedUser } = users[userIndex];
+        
+        // Log the action
+        logger.logAction(req.user.userId || req.user.id, 'UPDATE_ROLE', `Updated role of user ${updatedUser.name} to ${role}`);
+
         res.json({ message: `User role updated to ${role} successfully`, user: updatedUser });
     } catch (err) {
         console.error('Error updating user role:', err);
@@ -89,5 +104,6 @@ const updateUserRole = (req, res) => {
 module.exports = {
     getStats,
     getAllUsers,
-    updateUserRole
+    updateUserRole,
+    getLogs
 };

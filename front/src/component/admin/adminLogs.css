@@ -1,0 +1,12 @@
+.log-action-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  background: var(--light-bg, #F5F5F0);
+  color: var(--primary, #846F5B);
+  border: 1px solid var(--border-color, #e2d9c9);
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

@@ -3,6 +3,7 @@ import AdminStats from './AdminStats';
 import AdminOrders from './AdminOrders';
 import AdminProducts from './AdminProducts';
 import AdminUsers from './AdminUsers';
+import AdminLogs from './AdminLogs';
 import './adminDashboard.css';
 export default function AdminDashboard({ user, onViewChange }) {
   const [activeTab, setActiveTab] = useState('stats');
@@ -27,6 +28,11 @@ export default function AdminDashboard({ user, onViewChange }) {
       case 'users':
         if (user.role === 'ADMIN') {
            return <AdminUsers user={user} />;
+        }
+        return <div className="admin-error">คุณไม่มีสิทธิ์เข้าถึงหน้านี้ (เฉพาะ Admin)</div>;
+      case 'logs':
+        if (user.role === 'ADMIN') {
+           return <AdminLogs user={user} />;
         }
         return <div className="admin-error">คุณไม่มีสิทธิ์เข้าถึงหน้านี้ (เฉพาะ Admin)</div>;
       default:
@@ -63,12 +69,20 @@ export default function AdminDashboard({ user, onViewChange }) {
             <i className="fa-solid fa-tags"></i> จัดการสินค้า
           </li>
           {user.role === 'ADMIN' && (
-            <li 
-              className={`admin-nav-item ${activeTab === 'users' ? 'active' : ''}`}
-              onClick={() => setActiveTab('users')}
-            >
-              <i className="fa-solid fa-users"></i> จัดการผู้ใช้/พนักงาน
-            </li>
+            <>
+              <li 
+                className={`admin-nav-item ${activeTab === 'users' ? 'active' : ''}`}
+                onClick={() => setActiveTab('users')}
+              >
+                <i className="fa-solid fa-users"></i> จัดการผู้ใช้/พนักงาน
+              </li>
+              <li 
+                className={`admin-nav-item ${activeTab === 'logs' ? 'active' : ''}`}
+                onClick={() => setActiveTab('logs')}
+              >
+                <i className="fa-solid fa-list-check"></i> ประวัติการทำงาน (Logs)
+              </li>
+            </>
           )}
         </ul>
       </aside>
