@@ -41,6 +41,12 @@
         "productId": "p3",
         "quantity": 1,
         "customOptions": null
+      },
+      {
+        "cartItemId": "4e7e1104-8108-42c8-95c3-4d258d447e02",
+        "productId": "prod-1784472755067",
+        "quantity": 1,
+        "customOptions": null
       }
     ]
   }
