@@ -16,7 +16,14 @@
   },
   {
     "userId": "admin-id-001",
-    "items": []
+    "items": [
+      {
+        "cartItemId": "aff898f0-620d-4245-b274-9f24f4fb9db6",
+        "productId": "prod-1784472755067",
+        "quantity": 1,
+        "customOptions": null
+      }
+    ]
   },
   {
     "userId": "a2b0806f-ad4e-4fb7-ab78-0203fe3f4bcb",
@@ -49,5 +56,9 @@
         "customOptions": null
       }
     ]
+  },
+  {
+    "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
+    "items": []
   }
 ]

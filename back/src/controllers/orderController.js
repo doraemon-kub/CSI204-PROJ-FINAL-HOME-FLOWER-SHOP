@@ -15,6 +15,28 @@ const checkout = (req, res) => {
         paymentSlipUrl = `/uploads/${req.file.filename}`;
     }
 
+    const products = fileDb.readData('products');
+    
+    // Check stock for all items
+    let parsedCartItems = typeof cartItems === 'string' ? JSON.parse(cartItems) : cartItems;
+    for (const item of parsedCartItems) {
+        const product = products.find(p => p.id === item.productId);
+        if (product) {
+            if (product.stock < item.quantity) {
+                return res.status(400).json({ message: `สินค้า ${product.name} มีสต๊อกไม่เพียงพอ (เหลือ ${product.stock} ชิ้น)` });
+            }
+        }
+    }
+
+    // Deduct stock
+    for (const item of parsedCartItems) {
+        const productIndex = products.findIndex(p => p.id === item.productId);
+        if (productIndex !== -1) {
+            products[productIndex].stock -= item.quantity;
+        }
+    }
+    fileDb.writeData('products', products);
+
     const orders = fileDb.readData('orders');
     
     // Create new order

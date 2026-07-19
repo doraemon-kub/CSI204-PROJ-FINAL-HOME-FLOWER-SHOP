@@ -30,7 +30,7 @@ const getProductById = (req, res) => {
 };
 
 const createProduct = (req, res) => {
-    const { name, category, price, tag, badge, description } = req.body;
+    const { name, category, price, tag, badge, description, stock } = req.body;
     if (!name || !price) {
         return res.status(400).json({ message: 'Name and price are required' });
     }
@@ -50,6 +50,7 @@ const createProduct = (req, res) => {
         tag: tag || '',
         badge: badge || '',
         description: description || '',
+        stock: stock ? parseInt(stock, 10) : 0,
         image: imageUrl,
         createdAt: new Date().toISOString()
     };
@@ -64,7 +65,7 @@ const createProduct = (req, res) => {
 
 const updateProduct = (req, res) => {
     const { id } = req.params;
-    const { name, category, price, tag, badge } = req.body;
+    const { name, category, price, tag, badge, stock, description } = req.body;
     const products = fileDb.readData('products');
     
     const productIndex = products.findIndex(p => p.id === id);
@@ -79,6 +80,8 @@ const updateProduct = (req, res) => {
     if (price !== undefined) updatedProduct.price = parseFloat(price);
     if (tag !== undefined) updatedProduct.tag = tag;
     if (badge !== undefined) updatedProduct.badge = badge;
+    if (stock !== undefined) updatedProduct.stock = parseInt(stock, 10);
+    if (description !== undefined) updatedProduct.description = description;
     
     if (req.file) {
         updatedProduct.image = req.file.filename;

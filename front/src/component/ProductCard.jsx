@@ -205,22 +205,33 @@ export default function ProductCard({ product, onAddToCart }) {
             </div>
           )}
 
-          <button
-            className={`product-add-btn ${isAdding ? 'adding' : ''}`}
-            onClick={handleAdd}
-          >
-            {isAdding ? (
-              <>
-                <i className="fa-solid fa-check"></i>
-                เพิ่มแล้ว!
-              </>
-            ) : (
-              <>
-                <i className="fa-solid fa-basket-shopping"></i>
-                หยิบใส่ตะกร้า
-              </>
-            )}
-          </button>
+          {(product.stock ?? 0) <= 0 ? (
+            <button
+              className="product-add-btn"
+              disabled
+              style={{ background: '#cbd5e1', cursor: 'not-allowed', color: '#64748b' }}
+            >
+              <i className="fa-solid fa-ban"></i>
+              สินค้าหมด
+            </button>
+          ) : (
+            <button
+              className={`product-add-btn ${isAdding ? 'adding' : ''}`}
+              onClick={handleAdd}
+            >
+              {isAdding ? (
+                <>
+                  <i className="fa-solid fa-check"></i>
+                  เพิ่มแล้ว!
+                </>
+              ) : (
+                <>
+                  <i className="fa-solid fa-basket-shopping"></i>
+                  หยิบใส่ตะกร้า
+                </>
+              )}
+            </button>
+          )}
         </div>
       </div>
     </>

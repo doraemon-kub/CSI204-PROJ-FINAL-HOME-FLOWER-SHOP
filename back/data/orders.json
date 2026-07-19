@@ -348,5 +348,59 @@
     "status": "กำลังตรวจสอบการชำระเงิน",
     "trackingNumber": null,
     "createdAt": "2026-07-19T13:37:48.075Z"
+  },
+  {
+    "orderId": "ORD-1784485845737",
+    "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
+    "items": "[{\"productId\":\"p1\",\"name\":\"Basic 1\",\"price\":1000,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "กาก",
+      "phone": "23523525",
+      "email": "kak@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "กาก",
+      "address": "ฟกไฟ ต.ชุมตาบง อ.ชุมตาบง จ.นครสวรรค์ 60150",
+      "phone": "23523525"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-20T01:30",
+      "slipUrl": "/uploads/slip-1784485845731-84440934.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 1100,
+    "status": "จัดส่งแล้ว",
+    "trackingNumber": "wergser3qr",
+    "createdAt": "2026-07-19T18:30:45.737Z"
+  },
+  {
+    "orderId": "ORD-1784486074910",
+    "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
+    "items": "[{\"productId\":\"p3\",\"name\":\"Teddy\",\"price\":200,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "กาก",
+      "phone": "23523525",
+      "email": "kak@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "กาก",
+      "address": "ฟกไฟ ต.ชุมตาบง อ.ชุมตาบง จ.นครสวรรค์ 60150",
+      "phone": "23523525"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-20T01:34",
+      "slipUrl": "/uploads/slip-1784486074904-506535403.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 300,
+    "status": "รอคืนเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-19T18:34:34.910Z"
   }
 ]

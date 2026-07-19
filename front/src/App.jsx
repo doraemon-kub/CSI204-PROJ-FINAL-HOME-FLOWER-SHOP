@@ -76,21 +76,22 @@ export default function App() {
   const gifts = products.filter(p => p.category === 'gift');
 
   // --- Fetch Products from API ---
+  const fetchAllProducts = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/products`);
+      const mappedProducts = response.data.map(p => ({
+        ...p,
+        img: p.image ? `http://localhost:3000/uploads/${p.image}` : '',
+      }));
+      setProducts(mappedProducts);
+    } catch (err) {
+      console.error('Failed to fetch products', err);
+    }
+  };
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(`${API_URL}/products`);
-        const mappedProducts = response.data.map(p => ({
-          ...p,
-          img: p.image ? `http://localhost:3000/uploads/${p.image}` : '',
-        }));
-        setProducts(mappedProducts);
-      } catch (err) {
-        console.error('Failed to fetch products', err);
-      }
-    };
-    fetchProducts();
-  }, []);
+    fetchAllProducts();
+  }, [view]);
 
   // --- Fetch Cart & Setup WebSocket when User changes ---
   useEffect(() => {

@@ -63,5 +63,18 @@
     "province": "กรุงเทพมหานคร",
     "zipcode": "10600",
     "isDefault": true
+  },
+  {
+    "id": "a0280ed8-cba8-4137-adf9-f81bfbf33fee",
+    "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
+    "name": "กาก",
+    "phone": "23523525",
+    "address": "ฟกไฟ ต.ชุมตาบง อ.ชุมตาบง จ.นครสวรรค์ 60150",
+    "addressDetail": "ฟกไฟ",
+    "subdistrict": "ชุมตาบง",
+    "district": "ชุมตาบง",
+    "province": "นครสวรรค์",
+    "zipcode": "60150",
+    "isDefault": true
   }
 ]

@@ -1,9 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import ProductCard from './ProductCard';
 
 export default function WireframeView({
   headerText = 'หน้าสินค้า',
-  descriptionLinkText,
   filters = [],
   products = [],
   onAddToCart
@@ -12,8 +11,11 @@ export default function WireframeView({
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredProducts = products.filter((p) => {
-    const matchesCategory = selectedFilter === 'ทั้งหมด' || p.category === selectedFilter;
-    const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const productTag = p.tag || '';
+    const matchesCategory = selectedFilter === 'ทั้งหมด' || 
+                            productTag === selectedFilter || 
+                            p.category === selectedFilter;
+    const matchesSearch = (p.name || '').toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 

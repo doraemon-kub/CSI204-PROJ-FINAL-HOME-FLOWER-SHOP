@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import AdminStats from './AdminStats';
 import AdminOrders from './AdminOrders';
 import AdminProducts from './AdminProducts';
+import AdminStock from './AdminStock';
 import AdminUsers from './AdminUsers';
 import AdminLogs from './AdminLogs';
 import './adminDashboard.css';
@@ -24,7 +25,12 @@ export default function AdminDashboard({ user, onViewChange }) {
       case 'orders':
         return <AdminOrders user={user} />;
       case 'products':
-        return <AdminProducts user={user} />;
+        if (user.role === 'ADMIN') {
+          return <AdminProducts user={user} />;
+        }
+        return <div className="admin-error">คุณไม่มีสิทธิ์เข้าถึงหน้านี้ (เฉพาะ Admin)</div>;
+      case 'stock':
+        return <AdminStock user={user} />;
       case 'users':
         if (user.role === 'ADMIN') {
            return <AdminUsers user={user} />;
@@ -63,11 +69,19 @@ export default function AdminDashboard({ user, onViewChange }) {
             <i className="fa-solid fa-box-open"></i> จัดการคำสั่งซื้อ
           </li>
           <li 
-            className={`admin-nav-item ${activeTab === 'products' ? 'active' : ''}`}
-            onClick={() => setActiveTab('products')}
+            className={`admin-nav-item ${activeTab === 'stock' ? 'active' : ''}`}
+            onClick={() => setActiveTab('stock')}
           >
-            <i className="fa-solid fa-tags"></i> จัดการสินค้า
+            <i className="fa-solid fa-boxes-stacked"></i> จัดการสต๊อก
           </li>
+          {user.role === 'ADMIN' && (
+            <li 
+              className={`admin-nav-item ${activeTab === 'products' ? 'active' : ''}`}
+              onClick={() => setActiveTab('products')}
+            >
+              <i className="fa-solid fa-tags"></i> จัดการข้อมูลสินค้า
+            </li>
+          )}
           {(user.role === 'ADMIN' || user.role === 'STAFF') && (
             <li 
               className={`admin-nav-item ${activeTab === 'users' ? 'active' : ''}`}

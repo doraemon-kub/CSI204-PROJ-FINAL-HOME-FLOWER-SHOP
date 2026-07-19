@@ -5,8 +5,10 @@
     "description": "ช่อดอกไม้สำเร็จรูป",
     "price": 1000,
     "category": "ready-made",
+    "tag": "จัดส่งฟรี",
     "image": "basic1.jpg",
-    "isCustom": false
+    "isCustom": false,
+    "stock": 9
   },
   {
     "id": "p2",
@@ -14,6 +16,7 @@
     "description": "ช่อดอกไม้จัดเองตามใจชอบ",
     "price": 690,
     "category": "custom",
+    "tag": "แนะนำ Custom",
     "image": "custom1.jpg",
     "isCustom": true,
     "customOptions": [
@@ -49,7 +52,8 @@
           "ใบยูคาลิปตัส"
         ]
       }
-    ]
+    ],
+    "stock": 10
   },
   {
     "id": "p3",
@@ -57,8 +61,10 @@
     "description": "ตุ๊กตาหมีสำหรับเป็นของขวัญ",
     "price": 200,
     "category": "gift",
+    "tag": "เทียนหอม",
     "image": "teddy.jpg",
-    "isCustom": false
+    "isCustom": false,
+    "stock": 9
   },
   {
     "id": "prod-1784472755067",
@@ -69,6 +75,7 @@
     "badge": "",
     "description": "2432424",
     "image": "product-1784472755065-598122195.png",
-    "createdAt": "2026-07-19T14:52:35.067Z"
+    "createdAt": "2026-07-19T14:52:35.067Z",
+    "stock": 10
   }
 ]
