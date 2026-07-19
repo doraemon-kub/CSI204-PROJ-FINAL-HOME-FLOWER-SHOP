@@ -13,7 +13,7 @@ export default function CheckoutModal({
 }) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false); // ควบคุมการเปิดปิด Custom Success Modal
-  const [orderId, setOrderId] = useState(''); // เก็บ Order ID ที่ได้รับกลับมาแสดงผล
+  const [_orderId, setOrderId] = useState(''); // เก็บ Order ID ที่ได้รับกลับมาแสดงผล
   const fileInputRef = useRef(null);
   
   // Checkout form states
