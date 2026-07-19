@@ -41,6 +41,7 @@ export default function OrdersModal({ isOpen, onClose, user }) {
   const [orders, setOrders] = useState([]);
   const [expandedOrderId, setExpandedOrderId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [cancellingOrderId, setCancellingOrderId] = useState(null);
 
   useEffect(() => {
     if (isOpen && user && user.id) {
@@ -82,6 +83,23 @@ export default function OrdersModal({ isOpen, onClose, user }) {
       ? `https://track.thailandpost.co.th/?trackNumber=${encodeURIComponent(trackingNumber)}`
       : 'https://track.thailandpost.co.th/';
     window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleCancelOrder = async (orderId) => {
+    if (!window.confirm(`คุณต้องการยกเลิกคำสั่งซื้อ ${orderId} ใช่หรือไม่?\n(สถานะจะเปลี่ยนเป็น "รอคืนเงิน")`)) {
+      return;
+    }
+
+    setCancellingOrderId(orderId);
+    try {
+      await axios.put(`${API_URL}/orders/user/${user.id}/orders/${orderId}/cancel`);
+      fetchOrders();
+    } catch (error) {
+      console.error('Cancel order error:', error);
+      alert(error.response?.data?.message || 'ไม่สามารถยกเลิกคำสั่งซื้อได้ในขณะนี้');
+    } finally {
+      setCancellingOrderId(null);
+    }
   };
 
   if (!isOpen) return null;
@@ -245,9 +263,32 @@ export default function OrdersModal({ isOpen, onClose, user }) {
                                 </div>
 
                                 <div className="order-detail-section order-tracking-section">
-                                  <div className="order-tracking-row">
-                                    <span>สถานะ</span>
-                                    <span style={{ fontWeight: 'bold', letterSpacing: 'normal', wordSpacing: 'normal' }}>{cleanThaiText(order.status)}</span>
+                                  <div className="order-tracking-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                    <div>
+                                      <span>สถานะ: </span>
+                                      <span style={{ fontWeight: 'bold', letterSpacing: 'normal', wordSpacing: 'normal' }}>{cleanThaiText(order.status)}</span>
+                                    </div>
+                                    {['กำลังตรวจสอบการชำระเงิน', 'ชำระเงินแล้ว', 'กำลังจัดเตรียมสินค้า'].includes(order.status) && (
+                                      <button 
+                                        className="btn-cancel-order"
+                                        style={{ 
+                                          padding: '8px 16px', 
+                                          backgroundColor: '#ff4d4f', 
+                                          color: 'white', 
+                                          border: 'none', 
+                                          borderRadius: '4px', 
+                                          cursor: 'pointer',
+                                          fontWeight: 'bold'
+                                        }}
+                                        disabled={cancellingOrderId === order.orderId}
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          handleCancelOrder(order.orderId);
+                                        }}
+                                      >
+                                        {cancellingOrderId === order.orderId ? 'กำลังยกเลิก...' : 'ขอยกเลิกคำสั่งซื้อ'}
+                                      </button>
+                                    )}
                                   </div>
                                   <div className="order-tracking-row" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
                                     <span>เลขพัสดุ (Tracking Number)</span>

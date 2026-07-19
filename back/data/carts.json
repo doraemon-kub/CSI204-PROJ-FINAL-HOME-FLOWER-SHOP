@@ -32,5 +32,16 @@
         "customOptions": null
       }
     ]
+  },
+  {
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "items": [
+      {
+        "cartItemId": "5b29393d-b9af-4e59-b160-81706b5fee99",
+        "productId": "p3",
+        "quantity": 1,
+        "customOptions": null
+      }
+    ]
   }
 ]

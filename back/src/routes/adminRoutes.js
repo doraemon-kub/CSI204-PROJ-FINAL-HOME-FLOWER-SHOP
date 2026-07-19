@@ -7,9 +7,12 @@ const adminOrStaffAuth = require('../middleware/adminOrStaffAuth');
 // Stats endpoint is accessible by both Admin and Staff
 router.get('/stats', adminOrStaffAuth, adminController.getStats);
 
-// User management endpoints are strictly Admin-only
-router.get('/users', adminAuth, adminController.getAllUsers);
+// User management endpoints
+// Staff can view and delete members, Admin can do all
+router.get('/users', adminOrStaffAuth, adminController.getAllUsers);
+router.delete('/users/:userId', adminOrStaffAuth, adminController.deleteUser);
 router.put('/users/:userId/role', adminAuth, adminController.updateUserRole);
+
 router.get('/logs', adminAuth, adminController.getLogs);
 
 module.exports = router;

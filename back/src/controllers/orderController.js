@@ -99,7 +99,6 @@ module.exports = {
         res.json(orders);
     },
 
-    // Update order status (for Admin)
     updateOrderStatus: (req, res) => {
         const { orderId } = req.params;
         const { status, trackingNumber } = req.body;
@@ -125,5 +124,38 @@ module.exports = {
         logger.logAction(req.user.userId || req.user.id, 'UPDATE_ORDER_STATUS', `Updated status of order ${orderId} to ${status}`);
 
         res.json({ message: 'Order updated successfully', order: orders[orderIndex] });
+    },
+
+    // Cancel order (for Member)
+    cancelOrder: (req, res) => {
+        const { userId, orderId } = req.params;
+        const orders = fileDb.readData('orders');
+
+        const orderIndex = orders.findIndex(o => o.orderId === orderId && o.userId === userId);
+        if (orderIndex === -1) {
+            return res.status(404).json({ message: 'Order not found or unauthorized' });
+        }
+
+        const currentStatus = orders[orderIndex].status;
+        const cancellableStatuses = ['กำลังตรวจสอบการชำระเงิน', 'ชำระเงินแล้ว', 'กำลังจัดเตรียมสินค้า'];
+
+        if (!cancellableStatuses.includes(currentStatus)) {
+            return res.status(400).json({ message: 'Order cannot be cancelled at this stage' });
+        }
+
+        orders[orderIndex].status = 'รอคืนเงิน';
+        fileDb.writeData('orders', orders);
+
+        // Emit socket events
+        const io = req.app.get('io');
+        if (io) {
+            io.to(`user_${userId}`).emit('orderUpdated', { orderId, status: 'รอคืนเงิน' });
+            io.to('admin_room').emit('orderUpdated', { orderId, status: 'รอคืนเงิน' });
+        }
+
+        // Log action
+        logger.logAction(userId, 'CANCEL_ORDER', `Requested cancellation for order ${orderId}`);
+
+        res.json({ message: 'Order cancellation requested successfully', order: orders[orderIndex] });
     }
 };

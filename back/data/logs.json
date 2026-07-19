@@ -1,5 +1,140 @@
 [
   {
+    "id": "LOG-1784468688147360",
+    "timestamp": "2026-07-19T13:44:48.147Z",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "userName": "gay lord",
+    "userRole": "MEMBER",
+    "action": "LOGOUT",
+    "details": "User logged out"
+  },
+  {
+    "id": "LOG-1784468275118944",
+    "timestamp": "2026-07-19T13:37:55.118Z",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "userName": "gay lord",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-1784468268101666",
+    "timestamp": "2026-07-19T13:37:48.101Z",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "userName": "gay lord",
+    "userRole": "MEMBER",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784468268075"
+  },
+  {
+    "id": "LOG-1784463811695330",
+    "timestamp": "2026-07-19T12:23:31.695Z",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "userName": "gay lord",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p2 to cart"
+  },
+  {
+    "id": "LOG-1784463774110638",
+    "timestamp": "2026-07-19T12:22:54.110Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784463737937 to ชำระเงินแล้ว"
+  },
+  {
+    "id": "LOG-1784463765831971",
+    "timestamp": "2026-07-19T12:22:45.831Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784463737937 to กำลังตรวจสอบการชำระเงิน"
+  },
+  {
+    "id": "LOG-1784463757490345",
+    "timestamp": "2026-07-19T12:22:37.490Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784463737937 to กำลังตรวจสอบการชำระเงิน"
+  },
+  {
+    "id": "LOG-1784463737940555",
+    "timestamp": "2026-07-19T12:22:17.940Z",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "userName": "gay lord",
+    "userRole": "MEMBER",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784463737937"
+  },
+  {
+    "id": "LOG-1784463680250652",
+    "timestamp": "2026-07-19T12:21:20.250Z",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "userName": "gay lord",
+    "userRole": "MEMBER",
+    "action": "ADD_ADDRESS",
+    "details": "Added new address for gay lord"
+  },
+  {
+    "id": "LOG-1784463619605978",
+    "timestamp": "2026-07-19T12:20:19.605Z",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "userName": "gay lord",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-1784463619439551",
+    "timestamp": "2026-07-19T12:20:19.439Z",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "userName": "gay lord",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-1784463618893642",
+    "timestamp": "2026-07-19T12:20:18.893Z",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "userName": "gay lord",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-1784463618117913",
+    "timestamp": "2026-07-19T12:20:18.117Z",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "userName": "gay lord",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-1784463598106488",
+    "timestamp": "2026-07-19T12:19:58.106Z",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "userName": "gay lord",
+    "userRole": "MEMBER",
+    "action": "REGISTER",
+    "details": "New user registered: gay lord (gaylord@gmail.com)"
+  },
+  {
+    "id": "LOG-1784462585896416",
+    "timestamp": "2026-07-19T12:03:05.896Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
     "id": "LOG-1784367826304264",
     "timestamp": "2026-07-18T09:43:46.304Z",
     "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",

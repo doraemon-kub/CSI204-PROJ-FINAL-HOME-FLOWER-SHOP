@@ -29,7 +29,7 @@ export default function CheckoutModal({
 
   // โหลดข้อมูลผู้เข้าใช้งานเข้าฟอร์มฝั่งซ้ายอัตโนมัติ
   useEffect(() => {
-    if (user) {
+    if (user && isOpen) {
       setBuyerName(user.name || '');
       setBuyerPhone(user.phone || '');
       setBuyerEmail(user.email || '');
@@ -47,7 +47,7 @@ export default function CheckoutModal({
         setRecipientAddress('');
       }
     }
-  }, [user]);
+  }, [user, isOpen]);
 
   // คำนวณราคาสินค้า
   const totalPrice = cart ? cart.reduce((sum, item) => sum + item.price * item.quantity, 0) : 0;
@@ -57,6 +57,24 @@ export default function CheckoutModal({
     e.preventDefault();
     if (!user) {
       alert('กรุณาเข้าสู่ระบบก่อนทำการสั่งซื้อ');
+      return;
+    }
+
+    if (!paymentSlip) {
+      alert('กรุณาแนบสลิปโอนเงินก่อนยืนยันคำสั่งซื้อ');
+      return;
+    }
+
+    if (paymentTime) {
+      const selectedTime = new Date(paymentTime).getTime();
+      const currentTime = new Date().getTime();
+      // Allow a 5-minute buffer for "current" time due to manual entry delays
+      if (selectedTime < currentTime - 5 * 60 * 1000) {
+        alert('เวลาโอนสลิปต้องเป็นเวลาปัจจุบันหรือในอนาคตเท่านั้น ห้ามระบุเวลาในอดีตที่ผ่านมาแล้ว');
+        return;
+      }
+    } else {
+      alert('กรุณาระบุเวลาที่โอนเงินตามสลิป');
       return;
     }
 
@@ -251,7 +269,7 @@ export default function CheckoutModal({
       <div 
         className="modal-content checkout-modal-content"
         style={{
-          maxWidth: '820px',
+          maxWidth: '1000px',
           width: '95%',
           padding: '28px',
           borderRadius: '16px',
@@ -349,7 +367,10 @@ export default function CheckoutModal({
                   <div className="form-group" style={{ marginBottom: '12px' }}>
                     <label style={labelStyle}>เลือกที่อยู่จัดส่ง</label>
                     <select
-                      style={inputStyle}
+                      style={{
+                        ...inputStyle,
+                        paddingRight: '30px'
+                      }}
                       value={selectedAddressId}
                       onChange={(e) => {
                         const val = e.target.value;
@@ -370,7 +391,7 @@ export default function CheckoutModal({
                     >
                       {user.addresses.map(a => (
                         <option key={a.id} value={a.id}>
-                          {a.name} - {a.address.substring(0, 30)}{a.address.length > 30 ? '...' : ''} {a.isDefault ? '(ค่าเริ่มต้น)' : ''}
+                          {a.name} - {a.address} {a.isDefault ? '(ค่าเริ่มต้น)' : ''}
                         </option>
                       ))}
                       <option value="new">+ ระบุที่อยู่ใหม่</option>

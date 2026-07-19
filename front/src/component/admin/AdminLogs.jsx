@@ -41,6 +41,22 @@ export default function AdminLogs({ user }) {
 
   const uniqueActions = ['ALL', ...new Set(logs.map(log => log.action))];
 
+  const getActionBadgeStyle = (action) => {
+    switch (action) {
+      case 'CREATE_ORDER': return { backgroundColor: '#d1fae5', color: '#065f46', border: '1px solid #a7f3d0' };
+      case 'UPDATE_ORDER_STATUS': return { backgroundColor: '#fef3c7', color: '#92400e', border: '1px solid #fde68a' };
+      case 'ADD_TO_CART': return { backgroundColor: '#dbeafe', color: '#1e40af', border: '1px solid #bfdbfe' };
+      case 'REGISTER': return { backgroundColor: '#e0e7ff', color: '#3730a3', border: '1px solid #c7d2fe' };
+      case 'LOGIN': return { backgroundColor: '#ccfbf1', color: '#115e59', border: '1px solid #99f6e4' };
+      case 'LOGOUT': return { backgroundColor: '#f3f4f6', color: '#374151', border: '1px solid #e5e7eb' };
+      case 'ADD_ADDRESS': return { backgroundColor: '#fae8ff', color: '#86198f', border: '1px solid #f5d0fe' };
+      case 'UPDATE_ADDRESS': return { backgroundColor: '#fce7f3', color: '#9d174d', border: '1px solid #fbcfe8' };
+      case 'DELETE_ADDRESS': return { backgroundColor: '#fee2e2', color: '#991b1b', border: '1px solid #fecaca' };
+      case 'UPDATE_ROLE': return { backgroundColor: '#fff7ed', color: '#9a3412', border: '1px solid #ffedd5' };
+      default: return { backgroundColor: '#f3f4f6', color: '#374151', border: '1px solid #e5e7eb' };
+    }
+  };
+
   return (
     <div>
       <div className="admin-header-flex">
@@ -124,7 +140,14 @@ export default function AdminLogs({ user }) {
                         {log.userRole || 'MEMBER'}
                       </span>
                     </td>
-                    <td><span className="log-action-badge">{log.action}</span></td>
+                    <td>
+                      <span 
+                        className="log-action-badge" 
+                        style={getActionBadgeStyle(log.action)}
+                      >
+                        {log.action}
+                      </span>
+                    </td>
                     <td>{log.details}</td>
                   </tr>
                 ))

@@ -21,6 +21,7 @@ const upload = multer({ storage: storage });
 router.post('/checkout', upload.single('paymentSlip'), orderController.checkout);
 router.get('/user/:userId', orderController.getUserOrders);
 router.get('/:orderId', orderController.getOrderById);
+router.put('/user/:userId/orders/:orderId/cancel', orderController.cancelOrder);
 
 // Admin/Staff routes
 router.get('/', adminOrStaffAuth, orderController.getAllOrders);

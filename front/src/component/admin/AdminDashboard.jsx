@@ -68,21 +68,21 @@ export default function AdminDashboard({ user, onViewChange }) {
           >
             <i className="fa-solid fa-tags"></i> จัดการสินค้า
           </li>
+          {(user.role === 'ADMIN' || user.role === 'STAFF') && (
+            <li 
+              className={`admin-nav-item ${activeTab === 'users' ? 'active' : ''}`}
+              onClick={() => setActiveTab('users')}
+            >
+              <i className="fa-solid fa-users"></i> จัดการผู้ใช้/พนักงาน
+            </li>
+          )}
           {user.role === 'ADMIN' && (
-            <>
-              <li 
-                className={`admin-nav-item ${activeTab === 'users' ? 'active' : ''}`}
-                onClick={() => setActiveTab('users')}
-              >
-                <i className="fa-solid fa-users"></i> จัดการผู้ใช้/พนักงาน
-              </li>
-              <li 
-                className={`admin-nav-item ${activeTab === 'logs' ? 'active' : ''}`}
-                onClick={() => setActiveTab('logs')}
-              >
-                <i className="fa-solid fa-list-check"></i> ประวัติการทำงาน (Logs)
-              </li>
-            </>
+            <li 
+              className={`admin-nav-item ${activeTab === 'logs' ? 'active' : ''}`}
+              onClick={() => setActiveTab('logs')}
+            >
+              <i className="fa-solid fa-list-check"></i> ประวัติการทำงาน (Logs)
+            </li>
           )}
         </ul>
       </aside>

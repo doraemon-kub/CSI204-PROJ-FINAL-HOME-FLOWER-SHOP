@@ -70,5 +70,14 @@
     "phone": "23523525",
     "role": "MEMBER",
     "createdAt": "2026-07-18T09:28:53.114Z"
+  },
+  {
+    "id": "74f0f364-f588-4f85-93cf-692693832609",
+    "name": "gay lord",
+    "email": "gaylord@gmail.com",
+    "password": "gaylord",
+    "phone": "124145124124",
+    "role": "MEMBER",
+    "createdAt": "2026-07-19T12:19:58.095Z"
   }
 ]

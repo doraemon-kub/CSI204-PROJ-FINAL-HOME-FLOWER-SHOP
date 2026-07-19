@@ -105,5 +105,40 @@ module.exports = {
     getStats,
     getAllUsers,
     updateUserRole,
-    getLogs
+    getLogs,
+    deleteUser: (req, res) => {
+        try {
+            const { userId } = req.params;
+            const users = fileDb.readData('users');
+            const userIndex = users.findIndex(u => u.id === userId);
+
+            if (userIndex === -1) {
+                return res.status(404).json({ message: 'User not found' });
+            }
+
+            const targetUser = users[userIndex];
+
+            // Staff can only delete MEMBERs. Admins can delete MEMBERs and STAFFs.
+            if (req.user.role === 'STAFF' && targetUser.role !== 'MEMBER') {
+                return res.status(403).json({ message: 'Staff can only delete members' });
+            }
+
+            // Cannot delete Admin
+            if (targetUser.role === 'ADMIN') {
+                return res.status(403).json({ message: 'Cannot delete ADMIN' });
+            }
+
+            users.splice(userIndex, 1);
+            fileDb.writeData('users', users);
+
+            // Note: We might also want to delete their orders, carts, addresses, but for now we just delete the user account.
+            
+            logger.logAction(req.user.userId || req.user.id, 'DELETE_USER', `Deleted user account: ${targetUser.name} (${targetUser.email})`);
+
+            res.json({ message: 'User deleted successfully' });
+        } catch (err) {
+            console.error('Error deleting user:', err);
+            res.status(500).json({ message: 'Error deleting user' });
+        }
+    }
 };

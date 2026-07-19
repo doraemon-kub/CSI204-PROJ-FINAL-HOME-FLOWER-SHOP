@@ -37,6 +37,14 @@
 .status-badge.info { background: #e9eff5; color: #496a8e; }
 .status-badge.danger { background: #faeff1; color: #a35d6a; }
 
+.status-badge.status-delivered { background: #e0ece4; color: #446652; }
+.status-badge.status-paid { background: #e9eff5; color: #496a8e; }
+.status-badge.status-preparing { background: #fdf6ed; color: #a17849; }
+.status-badge.status-checking { background: #fff5e6; color: #cc8800; }
+.status-badge.status-refund { background: #ffe6e6; color: #cc0000; font-weight: bold; }
+.status-badge.status-cancelled { background: #f0f0f0; color: #888888; }
+.status-badge.status-pending { background: #e6d8c3; color: #665342; }
+
 .edit-input, .edit-select {
   width: 100%;
   padding: 10px 14px;

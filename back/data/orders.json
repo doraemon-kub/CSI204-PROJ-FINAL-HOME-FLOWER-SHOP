@@ -294,5 +294,59 @@
     "status": "กำลังตรวจสอบการชำระเงิน",
     "trackingNumber": null,
     "createdAt": "2026-07-18T09:12:16.700Z"
+  },
+  {
+    "orderId": "ORD-1784463737937",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "items": "[{\"productId\":\"p3\",\"name\":\"Teddy\",\"price\":200,\"quantity\":4}]",
+    "buyerInfo": {
+      "name": "gay lord",
+      "phone": "124145124124",
+      "email": "gaylord@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "gay lord",
+      "address": "ถนนเกย์ ต.คลองต้นไทร อ.คลองสาน จ.กรุงเทพมหานคร 10600",
+      "phone": "124145124124"
+    },
+    "cardMessage": "รีีนสีรนย",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-09T19:22",
+      "slipUrl": "/uploads/slip-1784463737927-878966310.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 900,
+    "status": "ชำระเงินแล้ว",
+    "trackingNumber": "ECAIWOPMNI)EJM",
+    "createdAt": "2026-07-19T12:22:17.937Z"
+  },
+  {
+    "orderId": "ORD-1784468268075",
+    "userId": "74f0f364-f588-4f85-93cf-692693832609",
+    "items": "[{\"productId\":\"p2\",\"name\":\"Custom 1\",\"price\":690,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "gay lord",
+      "phone": "124145124124",
+      "email": "gaylord@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "gay lord",
+      "address": "ถนนเกย์ ต.คลองต้นไทร อ.คลองสาน จ.กรุงเทพมหานคร 10600",
+      "phone": "124145124124"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-19T20:37",
+      "slipUrl": "/uploads/slip-1784468268056-819855982.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 790,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-19T13:37:48.075Z"
   }
 ]

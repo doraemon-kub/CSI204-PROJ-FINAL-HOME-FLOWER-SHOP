@@ -8,6 +8,7 @@ const STATUS_OPTIONS = [
   'ชำระเงินแล้ว',
   'กำลังจัดเตรียมสินค้า',
   'จัดส่งแล้ว',
+  'รอคืนเงิน',
   'ยกเลิกคำสั่งซื้อ'
 ];
 
@@ -139,8 +140,16 @@ export default function AdminOrders({ user }) {
                         </>
                       ) : (
                         <>
-                          <span className={`status-badge ${badgeClass}`}>
-                            {order.status || 'ไม่มีสถานะ'}
+                          <span className={`status-badge ${
+                            order.status === 'จัดส่งแล้ว' ? 'status-delivered' :
+                            order.status === 'ชำระเงินแล้ว' ? 'status-paid' :
+                            order.status === 'กำลังจัดเตรียมสินค้า' ? 'status-preparing' :
+                            order.status === 'กำลังตรวจสอบการชำระเงิน' ? 'status-checking' :
+                            order.status === 'รอคืนเงิน' ? 'status-refund' :
+                            order.status === 'ยกเลิกคำสั่งซื้อ' ? 'status-cancelled' :
+                            'status-pending'
+                          }`}>
+                            {order.status || 'รอดำเนินการ'}
                           </span>
                           {order.trackingNumber && (
                             <div style={{ marginTop: '8px', fontSize: '0.85rem', fontWeight: 'bold' }}>
