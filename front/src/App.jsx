@@ -502,6 +502,7 @@ export default function App() {
         user={user}
         onCartUpdated={refetchCart}
         refetchUser={fetchUserProfile}
+        onCheckOrder={() => { setIsCheckoutOpen(false); setIsOrdersOpen(true); }}
       />
     </>
     </ErrorBoundary>

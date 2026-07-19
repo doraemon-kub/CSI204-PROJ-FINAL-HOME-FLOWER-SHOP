@@ -8,7 +8,8 @@ export default function CheckoutModal({
   onClose,
   cart = [], // ป้องกันเว็บพังหากตะกร้าสินค้าว่างเปล่า
   user,
-  onCartUpdated
+  onCartUpdated,
+  onCheckOrder
 }) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false); // ควบคุมการเปิดปิด Custom Success Modal
@@ -188,72 +189,51 @@ export default function CheckoutModal({
         <div 
           className="modal-content"
           style={{
-            maxWidth: '440px',
+            maxWidth: '600px',
             width: '90%',
-            padding: '40px 32px',
-            borderRadius: '16px',
+            padding: '50px 32px',
+            borderRadius: '8px',
             background: '#ffffff',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
-            border: '1px solid #e2e8f0',
+            border: '1px solid #d4c8b8',
             textAlign: 'center',
             boxSizing: 'border-box'
           }}
         >
-          {/* แอนิเมชันวงกลมติ๊กถูก */}
-          <div style={{
-            width: '80px',
-            height: '80px',
-            background: '#f0fdf4',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 24px auto',
-            border: '2px solid #bbf7d0'
-          }}>
-            <i className="fa-solid fa-check" style={{ fontSize: '2.8rem', color: '#22c55e' }}></i>
-          </div>
+          <h2 style={{ fontSize: '1.6rem', fontWeight: 'bold', color: '#746250', marginBottom: '30px' }}>
+            🌼 ขอบคุณสำหรับคำสั่งซื้อค่ะ 🌼
+          </h2>
           
-          <h3 style={{ fontSize: '1.45rem', fontWeight: '700', color: '#0f172a', marginBottom: '10px' }}>
-            สั่งซื้อสินค้าสำเร็จแล้ว!
-          </h3>
-          <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '28px', lineHeight: '1.6' }}>
-            เราได้รับข้อมูลการโอนเงินและรายการของเรียบร้อยแล้ว <br />
-            หมายเลขการสั่งซื้อของคุณคือ: <br />
-            <span style={{ 
-              display: 'inline-block',
-              marginTop: '10px',
-              padding: '6px 16px',
-              background: '#f1f5f9',
-              borderRadius: '20px',
-              fontSize: '1rem', 
-              fontWeight: '700', 
-              color: 'var(--primary)',
-              letterSpacing: '0.5px' 
-            }}>
-              #{orderId}
-            </span>
+          <p style={{ fontSize: '1rem', color: '#665342', marginBottom: '20px', lineHeight: '1.6' }}>
+            ทางร้านได้รับข้อมูลการสั่งซื้อของคุณเรียบร้อยแล้ว<br/>
+            กรุณารอทางร้านตรวจสอบรายการและยืนยันออเดอร์ ภายใน 24 ชั่วโมง
+          </p>
+          <p style={{ fontSize: '1rem', color: '#665342', marginBottom: '40px', lineHeight: '1.6' }}>
+            เมื่อการตรวจสอบเสร็จสิ้น<br/>
+            ทางร้านจะแจ้งยืนยันออเดอร์และดำเนินการเตรียมจัดส่งสินค้าให้โดยเร็วที่สุด<br/>
+            ขอบคุณที่ไว้วางใจเลือกดอกไม้แห้งจากร้านของเรานะคะ 🤍
           </p>
 
           <button 
-            onClick={handleCloseSuccess}
+            onClick={() => {
+              handleCloseSuccess();
+              if (onCheckOrder) onCheckOrder();
+            }}
             style={{
-              width: '100%',
-              height: '46px',
-              background: 'var(--primary)',
+              padding: '12px 30px',
+              minWidth: '220px',
+              background: '#8a7765',
               color: '#ffffff',
               border: 'none',
-              borderRadius: '8px',
-              fontWeight: '600',
-              fontSize: '0.95rem',
+              borderRadius: '4px',
+              fontWeight: '500',
+              fontSize: '1rem',
               cursor: 'pointer',
-              boxShadow: '0 4px 12px rgba(220,38,38,0.25)', // เสริมเงาปุ่มสีแบรนด์
-              transition: 'all 0.2s'
+              transition: 'background 0.2s'
             }}
-            onMouseEnter={(e) => e.currentTarget.style.background = 'var(--primary-dark)'}
-            onMouseLeave={(e) => e.currentTarget.style.background = 'var(--primary)'}
+            onMouseEnter={(e) => e.currentTarget.style.background = '#736253'}
+            onMouseLeave={(e) => e.currentTarget.style.background = '#8a7765'}
           >
-            ตกลง
+            ตรวจสอบคำสั่งซื้อ
           </button>
         </div>
       </div>

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import ProductCard from './ProductCard';
 
 export default function WireframeView({
   headerText = 'หน้าสินค้า',
+  descriptionLinkText,
   filters = [],
   products = [],
   onAddToCart
@@ -27,7 +29,7 @@ export default function WireframeView({
 
         .wf-header {
           text-align: center;
-          padding: 70px 20px 40px;
+          padding: 30px 20px 30px;
           position: relative;
         }
 
@@ -80,11 +82,7 @@ export default function WireframeView({
         }
 
         .wf-sidebar-card {
-          background: #fff;
-          border-radius: 20px;
-          padding: 24px 20px;
-          box-shadow: 0 2px 12px rgba(102, 83, 66, 0.07);
-          border: 1px solid #f0ebe4;
+          padding: 0;
         }
 
         .wf-sidebar-title {
@@ -448,58 +446,13 @@ export default function WireframeView({
 
           {/* Products */}
           <section className="wf-products">
-            <div className="wf-result-count">
-              แสดง {filteredProducts.length} รายการ
-            </div>
 
             {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => {
-                const hasImage = product.img || product.image;
-                const imgSrc = product.img || (product.image ? `http://localhost:3000/uploads/${product.image}` : '');
-                const categoryLabel = product.category === 'ready-made' ? 'ดอกไม้แห้ง' 
-                                    : product.category === 'custom' ? 'ดอกไม้ประดิษฐ์' 
-                                    : product.category === 'gift' ? 'ของขวัญ' 
-                                    : 'สินค้า';
-                const reviews = product.id === 'p1' ? 24 : product.id === 'p2' ? 18 : 35;
-                const isHot = product.id === 'p1' || product.id === 'p2';
-
-                return (
-                  <div key={product.id} className="wf-product-card">
-                    <div className="wf-product-img">
-                      {isHot && <div className="wf-badge-hot">ขายดี</div>}
-                      {hasImage ? (
-                        <img src={imgSrc} alt={product.name} loading="lazy" />
-                      ) : (
-                        <div className="wf-product-img-placeholder">
-                          <i className="fa-regular fa-image"></i>
-                          <span className="wf-placeholder-label">รูป{product.name} (280X280)</span>
-                          <span className="wf-placeholder-hint">(คลิกแก้ไขโค้ดเพื่อใส่รูปภาพของคุณ)</span>
-                        </div>
-                      )}
-                    </div>
-                    <div className="wf-product-body">
-                      <div className="wf-product-category">{categoryLabel}</div>
-                      <h4 className="wf-product-name">{product.name}</h4>
-                      <div className="wf-product-rating">
-                        <div className="wf-stars">
-                          {[1,2,3,4,5].map(s => <i key={s} className="fa-solid fa-star"></i>)}
-                        </div>
-                        <span className="wf-reviews-count">({reviews} รีวิว)</span>
-                      </div>
-                      <div className="wf-product-footer">
-                        <p className="wf-product-price">฿{product.price.toLocaleString()}</p>
-                        <button
-                          className="wf-add-btn"
-                          onClick={() => onAddToCart(product)}
-                          aria-label="หยิบใส่ตะกร้า"
-                        >
-                          <i className="fa-solid fa-cart-shopping"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })
+              filteredProducts.map((product) => (
+                <div key={product.id} style={{ flex: '0 1 calc(33.333% - 16px)', minWidth: '220px', display: 'flex', flexDirection: 'column' }}>
+                  <ProductCard product={product} onAddToCart={onAddToCart} />
+                </div>
+              ))
             ) : (
               <div className="wf-empty">
                 <i className="fa-regular fa-face-sad-tear"></i>
