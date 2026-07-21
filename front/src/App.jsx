@@ -12,6 +12,7 @@ import AuthModal from './component/AuthModal';
 import OrdersModal from './component/OrdersModal';
 import CheckoutModal from './component/CheckoutModal';
 import OrderTermsView from './component/OrderTermsView';
+import HowToOrderView from './component/HowToOrderView';
 import ProfileView from './component/ProfileView';
 import ErrorBoundary from './component/ErrorBoundary';
 import AdminDashboard from './component/admin/AdminDashboard';
@@ -195,7 +196,8 @@ export default function App() {
       '#gifts', 
       '#order-terms',
       '#refund',
-      '#faq'
+      '#faq',
+      '#how-to-order'
     ].includes(view);
     if (isWireframe) {
       document.body.classList.add('wf-mode');
@@ -203,7 +205,7 @@ export default function App() {
       document.body.classList.remove('wf-mode');
     }
     
-    if (view === '#best-sellers' || view === '#how-to-buy') {
+    if (view === '#best-sellers') {
       const targetId = view.substring(1);
       setTimeout(() => {
         const el = document.getElementById(targetId);
@@ -410,7 +412,7 @@ export default function App() {
       {view === '#home' && <HeroBanner />}
 
       <main>
-        {(view === '#home' || view === '#best-sellers' || view === '#how-to-buy') && (
+        {(view === '#home' || view === '#best-sellers') && (
           <HomeView 
             onViewChange={handleViewChange} 
             bestSellers={bestSellers} 
@@ -450,6 +452,10 @@ export default function App() {
 
         {(view === '#order-terms' || view === '#refund' || view === '#faq') && (
           <OrderTermsView onViewChange={handleViewChange} />
+        )}
+
+        {view === '#how-to-order' && (
+          <HowToOrderView />
         )}
 
         {view === '#profile' && (

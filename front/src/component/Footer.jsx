@@ -34,7 +34,7 @@ export default function Footer({ onViewChange }) {
         <div className="footer-links">
           <h3>ช่วยเหลือ & ข้อมูล</h3>
           <ul>
-            <li><a href="#how-to-buy" onClick={(e) => handleNavClick('#how-to-buy', e)}>วิธีการสั่งซื้อ</a></li>
+            <li><a href="#how-to-order" onClick={(e) => handleNavClick('#how-to-order', e)}>วิธีการสั่งซื้อ</a></li>
             <li><a href="#refund" onClick={(e) => handleNavClick('#refund', e)}>นโยบายการคืนสินค้า</a></li>
             <li><a href="#faq" onClick={(e) => handleNavClick('#faq', e)}>คำถามที่พบบ่อย (FAQs)</a></li>
           </ul>

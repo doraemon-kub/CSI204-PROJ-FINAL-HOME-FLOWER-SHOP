@@ -29,28 +29,40 @@ export default function HomeView({ onViewChange, bestSellers, onAddToCart }) {
         </div>
       </section>
 
-      {/* INFO SECTION (วิธีการสั่งซื้อ) */}
-      <section className="section info-section" id="how-to-buy">
+      {/* HIGHLIGHTS SECTION (จุดเด่นของเรา) */}
+      <section className="section highlights-section" id="highlights">
         <div className="container">
           <div className="section-header">
-            <h2 className="section-title">วิธีการสั่งซื้อง่ายๆ ใน 3 ขั้นตอน</h2>
-            <p className="section-subtitle">การซื้อดอกไม้ตกแต่งบ้านหรือของขวัญพิเศษไม่เคยง่ายเท่านี้มาก่อน</p>
+            <h2 className="section-title" style={{ color: '#fff' }}>จุดเด่นของเรา</h2>
           </div>
-          <div className="steps-container">
-            <div className="step-card">
-              <div className="step-icon"><i className="fa-solid fa-basket-shopping"></i></div>
-              <h3>1. เลือกสินค้าใส่ตะกร้า</h3>
-              <p>เลือกสรรช่อดอกไม้แห้งหรือดอกไม้ประดิษฐ์ที่คุณประทับใจ แล้วกดเพิ่มลงในตะกร้าสินค้า</p>
+          <div className="highlights-grid">
+            <div className="highlight-item">
+              <div className="highlight-icon">
+                <i className="fa-solid fa-seedling"></i>
+              </div>
+              <h4>ดอกไม้คุณภาพ</h4>
+              <p>คัดสรรอย่างดีเยี่ยม<br/>เราเลือกใช้ดอกไม้คุณภาพดี</p>
             </div>
-            <div className="step-card">
-              <div className="step-icon"><i className="fa-regular fa-credit-card"></i></div>
-              <h3>2. ชำระเงินสะดวก</h3>
-              <p>ทำการตรวจสอบรายการสินค้า กรอกข้อมูลการจัดส่ง และเลือกช่องทางชำระเงินที่ต้องการ</p>
+            <div className="highlight-item">
+              <div className="highlight-icon">
+                <i className="fa-solid fa-palette"></i>
+              </div>
+              <h4>ดีไซน์สวย เหมาะกับทุกโอกาส</h4>
+              <p>มีดอกไม้หลากหลายสไตล์</p>
             </div>
-            <div className="step-card">
-              <div className="step-icon"><i className="fa-solid fa-truck-fast"></i></div>
-              <h3>3. รอรับดอกไม้ที่บ้าน</h3>
-              <p>จัดส่งห่ออย่างแน่นหนา เพื่อส่งมอบถึงมือคุณในสภาพที่สมบูรณ์ที่สุดอย่างรวดเร็ว</p>
+            <div className="highlight-item">
+              <div className="highlight-icon">
+                <i className="fa-solid fa-truck-fast"></i>
+              </div>
+              <h4>ส่งซื้อง่าย พร้อมจัดส่งทั่วประเทศ</h4>
+              <p>ค่าจัดส่งเหมาจ่ายเพียง 100฿</p>
+            </div>
+            <div className="highlight-item">
+              <div className="highlight-icon">
+                <i className="fa-solid fa-heart"></i>
+              </div>
+              <h4>ใส่ใจทุกออเดอร์และบริการด้วย<br/>ความจริงใจ</h4>
+              <p>ตรวจสอบคุณภาพสินค้า<br/>และแพ็กสินค้าอย่างดี</p>
             </div>
           </div>
         </div>
