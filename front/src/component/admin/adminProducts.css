@@ -106,3 +106,146 @@
   font-size: 0.95rem;
   vertical-align: middle;
 }
+
+/* Custom Options Styling */
+.custom-options-container {
+  background: #faf8f5;
+  border: 1px solid #e2d9c9;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.btn-add-option {
+  background: #fff;
+  color: var(--primary, #846F5B);
+  border: 1px solid var(--primary, #846F5B);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-add-option:hover {
+  background: var(--primary, #846F5B);
+  color: #fff;
+}
+
+.custom-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.custom-option-card {
+  background: #fff;
+  border: 1px solid #e2d9c9;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(102, 83, 66, 0.05);
+}
+
+.custom-option-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #e2d9c9;
+}
+
+.option-name-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #e2d9c9;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.option-name-input:focus {
+  outline: none;
+  border-color: var(--primary, #846F5B);
+}
+
+.btn-remove-option {
+  background: #fee2e2;
+  color: #ef4444;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-remove-option:hover {
+  background: #fca5a5;
+  color: #b91c1c;
+}
+
+.custom-choices-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 8px;
+}
+
+.custom-choice-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.choice-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #e2d9c9;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.choice-input:focus {
+  outline: none;
+  border-color: var(--primary, #846F5B);
+}
+
+.btn-remove-choice {
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.btn-remove-choice:hover:not(:disabled) {
+  color: #ef4444;
+}
+
+.btn-remove-choice:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.btn-add-choice {
+  background: transparent;
+  color: #8a7a68;
+  border: 1px dashed #c3b6a6;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  transition: all 0.2s;
+}
+
+.btn-add-choice:hover {
+  background: #f8f6f3;
+  color: var(--primary, #846F5B);
+  border-color: var(--primary, #846F5B);
+}

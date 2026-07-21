@@ -644,9 +644,10 @@ CSI204-PROJ-FINAL-HOME-FLOWER-SHOP/
 |--------|----------|-------------|------|
 | `GET` | `/api/products` | ดูสินค้าทั้งหมด (supports `?category=` `?search=`) | ❌ |
 | `GET` | `/api/products/:id` | ดูสินค้าตาม ID | ❌ |
-| `POST` | `/api/products` | เพิ่มสินค้าใหม่ (multipart) | 🔒 Admin/Staff |
-| `PUT` | `/api/products/:id` | แก้ไขสินค้า (multipart) | 🔒 Admin/Staff |
-| `DELETE` | `/api/products/:id` | ลบสินค้า | 🔒 Admin/Staff |
+| `POST` | `/api/products` | เพิ่มสินค้าใหม่ (multipart) | 🔒 Admin |
+| `PUT` | `/api/products/:id` | แก้ไขข้อมูลสินค้า (multipart) | 🔒 Admin |
+| `PUT` | `/api/products/:id` | จัดการสต๊อกสินค้า (ส่งเฉพาะ `stock`) | 🔒 Admin/Staff |
+| `DELETE` | `/api/products/:id` | ลบสินค้า | 🔒 Admin |
 
 ### 🛒 Cart API — `/api/cart`
 

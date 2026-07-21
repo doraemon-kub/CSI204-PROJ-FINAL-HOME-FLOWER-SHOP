@@ -12,7 +12,14 @@
   },
   {
     "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
-    "items": []
+    "items": [
+      {
+        "cartItemId": "20e1ce23-51b9-4273-85ff-1020d24ad693",
+        "productId": "p1",
+        "quantity": 1,
+        "customOptions": null
+      }
+    ]
   },
   {
     "userId": "admin-id-001",
@@ -20,6 +27,12 @@
       {
         "cartItemId": "aff898f0-620d-4245-b274-9f24f4fb9db6",
         "productId": "prod-1784472755067",
+        "quantity": 1,
+        "customOptions": null
+      },
+      {
+        "cartItemId": "bbd191cb-5502-4e64-8e18-73b8315ab88a",
+        "productId": "p1",
         "quantity": 1,
         "customOptions": null
       }

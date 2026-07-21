@@ -17,20 +17,27 @@ export default function AdminProducts({ user }) {
     tag: '',
     newTag: '',
     description: '',
-    existingImage: ''
+    existingImage: '',
+    isCustom: false,
+    customOptions: []
   });
   const [imageFile, setImageFile] = useState(null);
 
   const handleAddNew = () => {
     setEditingId(null);
     setIsAdding(true);
-    setFormData({ name: '', price: '', category: 'ready-made', tag: '', newTag: '', description: '', existingImage: '' });
+    setFormData({ name: '', price: '', category: 'ready-made', tag: '', newTag: '', description: '', existingImage: '', isCustom: false, customOptions: [] });
     setImageFile(null);
   };
 
   const handleEdit = (p) => {
     setIsAdding(false);
     setEditingId(p.id);
+    const mappedOptions = (p.customOptions || []).map(opt => ({
+      name: opt.name,
+      choices: opt.choices.map(c => typeof c === 'string' ? { name: c, image: '' } : c)
+    }));
+
     setFormData({
       name: p.name || '',
       price: p.price || '',
@@ -38,7 +45,9 @@ export default function AdminProducts({ user }) {
       tag: p.tag || '',
       newTag: '',
       description: p.description || '',
-      existingImage: p.image || ''
+      existingImage: p.image || '',
+      isCustom: !!p.isCustom,
+      customOptions: mappedOptions
     });
     setImageFile(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -82,6 +91,66 @@ export default function AdminProducts({ user }) {
     }
   };
 
+  // Custom Options Handlers
+  const handleToggleCustom = (e) => {
+    setFormData(prev => ({ ...prev, isCustom: e.target.checked }));
+  };
+
+  const addOption = () => {
+    setFormData(prev => ({
+      ...prev,
+      customOptions: [...prev.customOptions, { name: '', choices: [{ name: '', image: '' }] }]
+    }));
+  };
+
+  const removeOption = (index) => {
+    setFormData(prev => {
+      const newOpts = [...prev.customOptions];
+      newOpts.splice(index, 1);
+      return { ...prev, customOptions: newOpts };
+    });
+  };
+
+  const updateOptionName = (index, value) => {
+    setFormData(prev => {
+      const newOpts = [...prev.customOptions];
+      newOpts[index].name = value;
+      return { ...prev, customOptions: newOpts };
+    });
+  };
+
+  const addChoice = (optIndex) => {
+    setFormData(prev => {
+      const newOpts = [...prev.customOptions];
+      newOpts[optIndex].choices.push({ name: '', image: '' });
+      return { ...prev, customOptions: newOpts };
+    });
+  };
+
+  const removeChoice = (optIndex, choiceIndex) => {
+    setFormData(prev => {
+      const newOpts = [...prev.customOptions];
+      newOpts[optIndex].choices.splice(choiceIndex, 1);
+      return { ...prev, customOptions: newOpts };
+    });
+  };
+
+  const updateChoice = (optIndex, choiceIndex, field, value) => {
+    setFormData(prev => {
+      const newOpts = [...prev.customOptions];
+      newOpts[optIndex].choices[choiceIndex][field] = value;
+      return { ...prev, customOptions: newOpts };
+    });
+  };
+
+  const updateChoiceFile = (optIndex, choiceIndex, file) => {
+    setFormData(prev => {
+      const newOpts = [...prev.customOptions];
+      newOpts[optIndex].choices[choiceIndex].file = file;
+      return { ...prev, customOptions: newOpts };
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -94,6 +163,21 @@ export default function AdminProducts({ user }) {
       data.append('tag', finalTag);
       
       data.append('description', formData.description);
+      data.append('isCustom', formData.isCustom);
+      if (formData.isCustom) {
+        const optionsToSave = formData.customOptions.map((opt, optIndex) => ({
+          ...opt,
+          choices: opt.choices.map((choice, choiceIndex) => {
+            if (choice.file) {
+               data.append(`choiceImg_${optIndex}_${choiceIndex}`, choice.file);
+            }
+            const { file, ...rest } = choice;
+            return rest;
+          })
+        }));
+        data.append('customOptions', JSON.stringify(optionsToSave));
+      }
+      
       if (imageFile) {
         data.append('image', imageFile);
       }
@@ -117,7 +201,7 @@ export default function AdminProducts({ user }) {
       }
       setIsAdding(false);
       setEditingId(null);
-      setFormData({ name: '', price: '', category: 'ready-made', tag: '', newTag: '', description: '', existingImage: '' });
+      setFormData({ name: '', price: '', category: 'ready-made', tag: '', newTag: '', description: '', existingImage: '', isCustom: false, customOptions: [] });
       setImageFile(null);
       fetchProducts();
     } catch (err) {
@@ -220,6 +304,104 @@ export default function AdminProducts({ user }) {
                 />
               </div>
             </div>
+            <div className="form-group-admin" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <input 
+                type="checkbox" 
+                id="isCustom" 
+                checked={formData.isCustom} 
+                onChange={handleToggleCustom} 
+                style={{ width: 'auto', cursor: 'pointer', transform: 'scale(1.2)' }}
+              />
+              <label htmlFor="isCustom" style={{ marginBottom: 0, cursor: 'pointer' }}>สินค้านี้มีตัวเลือก (Custom) เช่น ขนาด, สีดอกไม้</label>
+            </div>
+
+            {formData.isCustom && (
+              <div className="custom-options-container">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                  <h3 style={{ margin: 0, fontSize: '1rem', color: '#1e293b' }}>จัดการตัวเลือกสินค้า</h3>
+                  <button type="button" onClick={addOption} className="btn-add-option">
+                    <i className="fa-solid fa-plus"></i> เพิ่มตัวเลือกหลัก
+                  </button>
+                </div>
+
+                {formData.customOptions.length === 0 ? (
+                  <p style={{ color: '#8a7a68', fontStyle: 'italic', fontSize: '0.9rem' }}>ยังไม่มีตัวเลือก กด "เพิ่มตัวเลือกหลัก" เพื่อเริ่มต้น</p>
+                ) : (
+                  <div className="custom-options-list">
+                    {formData.customOptions.map((opt, optIndex) => (
+                      <div key={optIndex} className="custom-option-card">
+                        <div className="custom-option-header">
+                          <input 
+                            type="text" 
+                            placeholder="ชื่อตัวเลือก เช่น 'ขนาด', 'รูปแบบดอก'" 
+                            value={opt.name} 
+                            onChange={(e) => updateOptionName(optIndex, e.target.value)} 
+                            required
+                            className="option-name-input"
+                          />
+                          <button type="button" onClick={() => removeOption(optIndex)} className="btn-remove-option" title="ลบตัวเลือกนี้">
+                            <i className="fa-solid fa-trash"></i>
+                          </button>
+                        </div>
+                        <div className="custom-choices-list">
+                          {opt.choices.map((choice, choiceIndex) => (
+                            <div key={choiceIndex} className="custom-choice-item" style={{ flexDirection: 'column', alignItems: 'flex-start', background: '#f8f9fa', padding: '10px', borderRadius: '8px', border: '1px solid #e2d9c9', position: 'relative' }}>
+                              <button 
+                                type="button" 
+                                onClick={() => removeChoice(optIndex, choiceIndex)} 
+                                className="btn-remove-choice"
+                                disabled={opt.choices.length <= 1}
+                                title={opt.choices.length <= 1 ? "ต้องมีอย่างน้อย 1 รายการ" : "ลบรายการนี้"}
+                                style={{ position: 'absolute', top: '8px', right: '8px' }}
+                              >
+                                <i className="fa-solid fa-xmark"></i>
+                              </button>
+                              
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: '100%', marginBottom: '8px', paddingRight: '24px' }}>
+                                <i className="fa-solid fa-caret-right" style={{ color: '#8a7a68', fontSize: '0.8rem' }}></i>
+                                <input 
+                                  type="text" 
+                                  placeholder={`ชื่อรายการที่ ${choiceIndex + 1} (เช่น S, กุหลาบแดง)`} 
+                                  value={choice.name || ''} 
+                                  onChange={(e) => updateChoice(optIndex, choiceIndex, 'name', e.target.value)} 
+                                  required
+                                  className="choice-input"
+                                />
+                              </div>
+                              
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', width: '100%' }}>
+                                <i className="fa-solid fa-image" style={{ color: '#8a7a68', fontSize: '0.8rem', marginLeft: '4px' }}></i>
+                                <input 
+                                  type="file" 
+                                  accept="image/*"
+                                  onChange={(e) => {
+                                    if (e.target.files && e.target.files[0]) {
+                                      updateChoiceFile(optIndex, choiceIndex, e.target.files[0]);
+                                    }
+                                  }} 
+                                  className="choice-input"
+                                  style={{ flex: 1, fontSize: '0.8rem' }}
+                                />
+                                {choice.file && (
+                                  <img src={URL.createObjectURL(choice.file)} alt="preview" style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #ccc' }} />
+                                )}
+                                {!choice.file && choice.image && typeof choice.image === 'string' && (
+                                  <img src={choice.image.startsWith('http') ? choice.image : `http://localhost:3000/uploads/${choice.image}`} alt="preview" style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #ccc' }} onError={(e) => { e.target.style.display = 'none' }} onLoad={(e) => { e.target.style.display = 'block' }} />
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                          <button type="button" onClick={() => addChoice(optIndex)} className="btn-add-choice">
+                            <i className="fa-solid fa-plus"></i> เพิ่มรายการ
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
             <div className="form-group-admin">
               <label>รายละเอียด</label>
               <textarea name="description" rows="3" value={formData.description} onChange={handleInputChange}></textarea>
