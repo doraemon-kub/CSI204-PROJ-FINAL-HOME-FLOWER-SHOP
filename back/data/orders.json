@@ -402,5 +402,59 @@
     "status": "รอคืนเงิน",
     "trackingNumber": null,
     "createdAt": "2026-07-19T18:34:34.910Z"
+  },
+  {
+    "orderId": "ORD-1784649518471",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "items": "[{\"productId\":\"p1\",\"name\":\"Basic 1\",\"price\":1000,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "แฮม",
+      "phone": "1234567890",
+      "email": "ham@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "แฮม",
+      "address": "ไำฟำดกหฟำ ต.บางกรวย อ.บางกรวย จ.นนทบุรี 11130",
+      "phone": "1234567890"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-21T22:58",
+      "slipUrl": "/uploads/slip-1784649518465-191847521.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 1100,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-21T15:58:38.471Z"
+  },
+  {
+    "orderId": "ORD-1784649562883",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "items": "[{\"productId\":\"p2\",\"name\":\"Custom 1\",\"price\":690,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "แฮม",
+      "phone": "1234567890",
+      "email": "ham@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "แฮม",
+      "address": "ไำฟำดกหฟำ ต.บางกรวย อ.บางกรวย จ.นนทบุรี 11130",
+      "phone": "1234567890"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-21T22:59",
+      "slipUrl": "/uploads/slip-1784649562878-670482428.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 790,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-21T15:59:22.883Z"
   }
 ]

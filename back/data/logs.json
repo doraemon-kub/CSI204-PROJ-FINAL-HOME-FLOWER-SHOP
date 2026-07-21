@@ -1,5 +1,95 @@
 [
   {
+    "id": "LOG-1784650287802667",
+    "timestamp": "2026-07-21T16:11:27.802Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784649769715341",
+    "timestamp": "2026-07-21T16:02:49.715Z",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "userName": "แฮม",
+    "userRole": "STAFF",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784649562885150",
+    "timestamp": "2026-07-21T15:59:22.885Z",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "userName": "แฮม",
+    "userRole": "STAFF",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784649562883"
+  },
+  {
+    "id": "LOG-1784649551601471",
+    "timestamp": "2026-07-21T15:59:11.601Z",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "userName": "แฮม",
+    "userRole": "STAFF",
+    "action": "ADD_TO_CART",
+    "details": "Added product p2 to cart"
+  },
+  {
+    "id": "LOG-1784649540036112",
+    "timestamp": "2026-07-21T15:59:00.036Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
+    "id": "LOG-1784649518474716",
+    "timestamp": "2026-07-21T15:58:38.474Z",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "userName": "แฮม",
+    "userRole": "STAFF",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784649518471"
+  },
+  {
+    "id": "LOG-1784649504741806",
+    "timestamp": "2026-07-21T15:58:24.741Z",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "userName": "แฮม",
+    "userRole": "STAFF",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784649493351619",
+    "timestamp": "2026-07-21T15:58:13.351Z",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "userName": "แฮม",
+    "userRole": "STAFF",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Basic 1"
+  },
+  {
+    "id": "LOG-1784649351305656",
+    "timestamp": "2026-07-21T15:55:51.305Z",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "userName": "แฮม",
+    "userRole": "STAFF",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Custom 1"
+  },
+  {
+    "id": "LOG-1784649277790837",
+    "timestamp": "2026-07-21T15:54:37.790Z",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "userName": "แฮม",
+    "userRole": "STAFF",
+    "action": "LOGIN",
+    "details": "User logged in: แฮม (ham@gmail.com)"
+  },
+  {
     "id": "LOG-1784486108773162",
     "timestamp": "2026-07-19T18:35:08.773Z",
     "userId": "89d0a52b-7657-43cd-8637-eeb5d9aca445",

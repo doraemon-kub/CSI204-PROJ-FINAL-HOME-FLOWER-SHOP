@@ -200,7 +200,51 @@ export default function CartDrawer({
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
                         <h4 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 'normal' }}>{item.name}</h4>
                         
-                        {shouldShowDropdowns ? (
+                        {item.customOptions && item.customOptions.length > 0 ? (
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '4px' }}>
+                            {item.customOptions.map((opt, optIndex) => {
+                              const selectKey = `${itemId}-opt-${optIndex}`;
+                              const selectedChoiceName = customSelections[selectKey] || '';
+                              
+                              const selectedChoiceObj = opt.choices.find(c => {
+                                if (typeof c === 'string') return c === selectedChoiceName;
+                                return c.name === selectedChoiceName;
+                              });
+                              const selectedImage = selectedChoiceObj && typeof selectedChoiceObj === 'object' ? selectedChoiceObj.image : null;
+
+                              return (
+                                <div key={optIndex} style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                                  <div className="beauty-select-wrap">
+                                    <select 
+                                      value={selectedChoiceName}
+                                      className="beauty-select"
+                                      onChange={(e) => {
+                                        setCustomSelections(prev => ({
+                                          ...prev,
+                                          [selectKey]: e.target.value
+                                        }));
+                                      }}
+                                    >
+                                      <option value="">{opt.name}</option>
+                                      {opt.choices.map((choice, cIdx) => {
+                                        const choiceName = typeof choice === 'string' ? choice : choice.name;
+                                        return (
+                                          <option key={cIdx} value={choiceName}>{choiceName}</option>
+                                        );
+                                      })}
+                                    </select>
+                                  </div>
+                                  {selectedImage && (
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', paddingLeft: '8px', marginTop: '2px' }}>
+                                      <i className="fa-solid fa-arrow-turn-up fa-rotate-90" style={{ color: '#cbd5e1', fontSize: '0.8rem' }}></i>
+                                      <img src={selectedImage.startsWith('http') ? selectedImage : `http://localhost:3000/uploads/${selectedImage}`} alt={selectedChoiceName} style={{ width: '36px', height: '36px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2d9c9' }} />
+                                    </div>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ) : shouldShowDropdowns ? (
                           <>
                             <span style={{ fontSize: '0.85rem', color: '#666', marginBottom: '4px' }}>
                               Size s <span style={{ color: '#ef4444' }}>โปรดระบุตัวเลือก *</span>

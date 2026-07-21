@@ -5,6 +5,8 @@ const path = require('path');
 const productController = require('../controllers/productController');
 const adminOrStaffAuth = require('../middleware/adminOrStaffAuth');
 
+const adminAuth = require('../middleware/adminAuth');
+
 // Configure multer for file uploads
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -20,9 +22,11 @@ const upload = multer({ storage: storage });
 router.get('/', productController.getAllProducts);
 router.get('/:id', productController.getProductById);
 
-// Admin/Staff routes (Protected by auth middleware)
-router.post('/', adminOrStaffAuth, upload.single('image'), productController.createProduct);
-router.put('/:id', adminOrStaffAuth, upload.single('image'), productController.updateProduct);
-router.delete('/:id', adminOrStaffAuth, productController.deleteProduct);
+// Admin only routes
+router.post('/', adminAuth, upload.any(), productController.createProduct);
+router.delete('/:id', adminAuth, productController.deleteProduct);
+
+// Admin/Staff route (Staff can only update stock, Admin can update everything)
+router.put('/:id', adminOrStaffAuth, upload.any(), productController.updateProduct);
 
 module.exports = router;
