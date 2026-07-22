@@ -10,7 +10,7 @@
     "district": "ปากเกร็ด",
     "province": "นนทบุรี",
     "zipcode": "11120",
-    "isDefault": false
+    "isDefault": true
   },
   {
     "id": "3ecedc6a-4125-4c85-849d-92d37ed06a61",
@@ -23,7 +23,7 @@
     "district": "บางกรวย",
     "province": "นนทบุรี",
     "zipcode": "11130",
-    "isDefault": true
+    "isDefault": false
   },
   {
     "id": "4f030fb9-fd08-45df-9b75-7d64099b4669",
@@ -76,5 +76,18 @@
     "province": "นครสวรรค์",
     "zipcode": "60150",
     "isDefault": true
+  },
+  {
+    "id": "e180243a-2474-48d2-b429-c98ff1c47693",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "name": "แฮม",
+    "phone": "1234567890",
+    "address": "92182389+28912892 ต.คุ้งสำเภา อ.มโนรมย์ จ.ชัยนาท 17110",
+    "addressDetail": "92182389+28912892",
+    "subdistrict": "คุ้งสำเภา",
+    "district": "มโนรมย์",
+    "province": "ชัยนาท",
+    "zipcode": "17110",
+    "isDefault": false
   }
 ]

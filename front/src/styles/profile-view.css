@@ -201,12 +201,13 @@
 }
 
 .badge-default {
-    background-color: var(--primary);
-    color: var(--white);
+    background-color: #1e293b;
+    color: #ffffff;
     font-size: 0.75rem;
-    padding: 2px 8px;
+    padding: 4px 10px;
     border-radius: 12px;
     font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .address-text {

@@ -12,14 +12,7 @@
   },
   {
     "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
-    "items": [
-      {
-        "cartItemId": "20e1ce23-51b9-4273-85ff-1020d24ad693",
-        "productId": "p1",
-        "quantity": 1,
-        "customOptions": null
-      }
-    ]
+    "items": []
   },
   {
     "userId": "admin-id-001",
@@ -33,7 +26,7 @@
       {
         "cartItemId": "bbd191cb-5502-4e64-8e18-73b8315ab88a",
         "productId": "p1",
-        "quantity": 2,
+        "quantity": 3,
         "customOptions": null
       }
     ]
