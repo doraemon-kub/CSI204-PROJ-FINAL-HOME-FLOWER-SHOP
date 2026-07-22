@@ -150,7 +150,7 @@ export default function AdminProducts({ user }) {
     const updateOptionName = (index, value) => {
         setFormData(prev => {
             const newOpts = [...prev.customOptions];
-            newOpts[index].name = value;
+            newOpts[index] = { ...newOpts[index], name: value };
             return { ...prev, customOptions: newOpts };
         });
     };
@@ -158,7 +158,10 @@ export default function AdminProducts({ user }) {
     const addChoice = (optIndex) => {
         setFormData(prev => {
             const newOpts = [...prev.customOptions];
-            newOpts[optIndex].choices.push({ name: '', image: '' });
+            newOpts[optIndex] = {
+                ...newOpts[optIndex],
+                choices: [...newOpts[optIndex].choices, { name: '', image: '' }]
+            };
             return { ...prev, customOptions: newOpts };
         });
     };
@@ -166,7 +169,9 @@ export default function AdminProducts({ user }) {
     const removeChoice = (optIndex, choiceIndex) => {
         setFormData(prev => {
             const newOpts = [...prev.customOptions];
-            newOpts[optIndex].choices.splice(choiceIndex, 1);
+            const newChoices = [...newOpts[optIndex].choices];
+            newChoices.splice(choiceIndex, 1);
+            newOpts[optIndex] = { ...newOpts[optIndex], choices: newChoices };
             return { ...prev, customOptions: newOpts };
         });
     };
@@ -174,7 +179,9 @@ export default function AdminProducts({ user }) {
     const updateChoice = (optIndex, choiceIndex, field, value) => {
         setFormData(prev => {
             const newOpts = [...prev.customOptions];
-            newOpts[optIndex].choices[choiceIndex][field] = value;
+            const newChoices = [...newOpts[optIndex].choices];
+            newChoices[choiceIndex] = { ...newChoices[choiceIndex], [field]: value };
+            newOpts[optIndex] = { ...newOpts[optIndex], choices: newChoices };
             return { ...prev, customOptions: newOpts };
         });
     };
@@ -182,7 +189,9 @@ export default function AdminProducts({ user }) {
     const updateChoiceFile = (optIndex, choiceIndex, file) => {
         setFormData(prev => {
             const newOpts = [...prev.customOptions];
-            newOpts[optIndex].choices[choiceIndex].file = file;
+            const newChoices = [...newOpts[optIndex].choices];
+            newChoices[choiceIndex] = { ...newChoices[choiceIndex], file };
+            newOpts[optIndex] = { ...newOpts[optIndex], choices: newChoices };
             return { ...prev, customOptions: newOpts };
         });
     };
@@ -346,11 +355,18 @@ export default function AdminProducts({ user }) {
     const handleOptionTemplateSelect = (optIndex, selectedName) => {
         setFormData(prev => {
             const newOpts = [...prev.customOptions];
-            newOpts[optIndex].name = selectedName;
+            let newChoices = newOpts[optIndex].choices;
             
             if (selectedName && existingOptionTemplates[selectedName]) {
-                 newOpts[optIndex].choices = existingOptionTemplates[selectedName].map(c => ({ name: c.name, image: '' }));
+                 newChoices = existingOptionTemplates[selectedName].map(c => ({ name: c.name, image: '' }));
             }
+            
+            newOpts[optIndex] = {
+                ...newOpts[optIndex],
+                name: selectedName,
+                choices: newChoices
+            };
+            
             return { ...prev, customOptions: newOpts };
         });
     };
