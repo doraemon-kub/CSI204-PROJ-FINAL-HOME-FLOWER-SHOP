@@ -1,5 +1,23 @@
 [
   {
+    "id": "LOG-178470670087780",
+    "timestamp": "2026-07-22T07:51:40.877Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Size M"
+  },
+  {
+    "id": "LOG-1784706687845277",
+    "timestamp": "2026-07-22T07:51:27.845Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
     "id": "LOG-1784706449606652",
     "timestamp": "2026-07-22T07:47:29.606Z",
     "userId": "admin-id-001",
