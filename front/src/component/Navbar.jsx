@@ -24,14 +24,10 @@ export default function Navbar({
     setIsOrderDropdownOpen(false);
   };
 
-  // เมื่อกด "วิธีการสั่งซื้อสินค้า" -> ไปหน้าแรกแล้วเลื่อนไปยัง section #how-to-buy
+  // เมื่อกด "วิธีการสั่งซื้อสินค้า" -> ไปหน้าวิธีการสั่งซื้อ
   const handleHowToBuyClick = (e) => {
     e.preventDefault();
-    onViewChange('#home');
-    setTimeout(() => {
-      const el = document.getElementById('how-to-buy');
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-    }, 50);
+    onViewChange('#how-to-order');
     setIsMobileMenuOpen(false);
     setIsOrderDropdownOpen(false);
   };
@@ -133,7 +129,7 @@ export default function Navbar({
         /* Sections */
         .section { padding: 70px 0; }
         .section.categories-section { background: #fff; }
-        .info-section { background: linear-gradient(135deg, var(--tan) 0%, #d9c7a8 50%, var(--tan) 100%) !important; }
+        .highlights-section { background: linear-gradient(135deg, #c4b5a4 0%, #b5a48e 50%, #c4b5a4 100%) !important; }
         .section-header { text-align: center; margin-bottom: 48px; }
         .section-title { font-size: 1.9rem; font-weight: 700; color: var(--text-dark); margin: 0 0 12px; position: relative; display: inline-block; padding-bottom: 16px; }
         .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 50px; height: 2px; background: var(--primary); border-radius: 2px; }

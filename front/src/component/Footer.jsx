@@ -13,7 +13,7 @@ export default function Footer({ onViewChange }) {
           <a href="#home" className="logo" id="footLogo" onClick={(e) => handleNavClick('#home', e)}>
             <i className="fa-solid fa-seedling"></i> Home<span>Flowers</span>
           </a>
-          <p>เราคัดสรรดอกไม้แห้งและดอกไม้ประดิษฐ์คุณภาพดีเยี่ยม เพื่อสร้างบรรยากาศอบอุ่นและมีชีวิตชีวาให้บ้านและงานสำคัญของคุณ</p>
+          <p>เราคัดสรรดอกไม้แห้งและดอกไม้ประดิษฐ์คุณภาพเยี่ยม เพื่อโอกาสแสนพิเศษของคุณ</p>
           <div className="social-links">
             <a href="#" aria-label="Facebook"><i className="fa-brands fa-facebook"></i></a>
             <a href="#" aria-label="Instagram"><i className="fa-brands fa-instagram"></i></a>
@@ -34,7 +34,7 @@ export default function Footer({ onViewChange }) {
         <div className="footer-links">
           <h3>ช่วยเหลือ & ข้อมูล</h3>
           <ul>
-            <li><a href="#how-to-buy" onClick={(e) => handleNavClick('#how-to-buy', e)}>วิธีการสั่งซื้อ</a></li>
+            <li><a href="#how-to-order" onClick={(e) => handleNavClick('#how-to-order', e)}>วิธีการสั่งซื้อ</a></li>
             <li><a href="#refund" onClick={(e) => handleNavClick('#refund', e)}>นโยบายการคืนสินค้า</a></li>
             <li><a href="#faq" onClick={(e) => handleNavClick('#faq', e)}>คำถามที่พบบ่อย (FAQs)</a></li>
           </ul>

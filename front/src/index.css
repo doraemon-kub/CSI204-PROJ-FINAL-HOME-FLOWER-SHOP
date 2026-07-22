@@ -22,7 +22,7 @@
 /* 6. Products Grid (Best Sellers): .products-grid, .product-card */
 @import './styles/products-grid.css';
 
-/* 7. Info Section (How to Buy): .info-section, .step-card */
+/* 7. Highlights Section (จุดเด่นของเรา): .highlights-section, .highlight-item */
 @import './styles/info-section.css';
 
 /* 8. Footer: .footer, .footer-content, .social-links */

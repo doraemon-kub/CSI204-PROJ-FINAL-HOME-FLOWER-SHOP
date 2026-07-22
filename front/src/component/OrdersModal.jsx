@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { io } from 'socket.io-client';
 
 const API_URL = '/api';
 
@@ -7,106 +8,126 @@ const API_URL = '/api';
 // กลับมาเป็น JSON string แทนที่จะเป็น object/array ที่ parse แล้ว
 // ฟังก์ชันนี้ช่วยแปลงให้ปลอดภัย ป้องกันหน้าเว็บพังเป็นจอขาว
 function safeParse(value, fallback) {
-  if (value === null || value === undefined) return fallback;
-  if (typeof value === 'string') {
-    try {
-      const parsed = JSON.parse(value);
-      return parsed ?? fallback;
-    } catch {
-      return fallback;
+    if (value === null || value === undefined) return fallback;
+    if (typeof value === 'string') {
+        try {
+            const parsed = JSON.parse(value);
+            return parsed ?? fallback;
+        } catch {
+            return fallback;
+        }
     }
-  }
-  return value;
+    return value;
 }
 
 function normalizeOrder(order) {
-  if (!order || typeof order !== 'object') return order;
-  return {
-    ...order,
-    items: Array.isArray(order.items) ? order.items : safeParse(order.items, []),
-    buyerInfo: safeParse(order.buyerInfo, {}),
-    recipientInfo: safeParse(order.recipientInfo, {}),
-    payment: safeParse(order.payment, {}),
-  };
+    if (!order || typeof order !== 'object') return order;
+    return {
+        ...order,
+        items: Array.isArray(order.items) ? order.items : safeParse(order.items, []),
+        buyerInfo: safeParse(order.buyerInfo, {}),
+        recipientInfo: safeParse(order.recipientInfo, {}),
+        payment: safeParse(order.payment, {}),
+    };
 }
 
 // สถานะบางค่ามีช่องว่างแปลกปนมากับข้อมูลจริง (ไม่ใช่ปัญหา CSS) เช่น
 // "กำ ลังตรวจสอบการชำ ระเงิน" -> ต้องตัดช่องว่างส่วนเกินออกก่อนแสดงผล
 function cleanThaiText(text) {
-  if (typeof text !== 'string') return text;
-  return text.replace(/\s+/g, '');
+    if (typeof text !== 'string') return text;
+    return text.replace(/\s+/g, '');
 }
 
 export default function OrdersModal({ isOpen, onClose, user }) {
-  const [orders, setOrders] = useState([]);
-  const [expandedOrderId, setExpandedOrderId] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [cancellingOrderId, setCancellingOrderId] = useState(null);
+    const [orders, setOrders] = useState([]);
+    const [expandedOrderId, setExpandedOrderId] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [cancellingOrderId, setCancellingOrderId] = useState(null);
 
-  useEffect(() => {
-    if (isOpen && user && user.id) {
-      fetchOrders();
-    }
-  }, [isOpen, user]);
+    useEffect(() => {
+        if (isOpen && user && user.id) {
+            fetchOrders();
 
-  const fetchOrders = async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(`${API_URL}/orders/user/${user.id}`);
-      // รองรับทั้งกรณี backend ส่ง array ตรงๆ หรือห่อไว้ใน { orders: [...] }
-      const raw = Array.isArray(response.data)
-        ? response.data
-        : (Array.isArray(response.data?.orders) ? response.data.orders : []);
-      setOrders(raw.map(normalizeOrder));
-    } catch (err) {
-      console.error('Failed to fetch orders', err);
-      setOrders([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+            const socket = io('http://localhost:3000');
+            socket.emit('joinUserRoom', user.id);
 
-  const handleOrderClick = (order, idx) => {
-    const rowKey = order.orderId || idx;
-    setExpandedOrderId((prev) => (prev === rowKey ? null : rowKey));
-  };
+            socket.on('orderUpdated', (data) => {
+                // อัปเดตข้อมูลเมื่อมีการเปลี่ยนแปลงสถานะจากฝั่งแอดมินหรือจากการยกเลิก
+                fetchOrders();
+            });
 
-  const handleClose = () => {
-    setExpandedOrderId(null);
-    onClose();
-  };
+            return () => {
+                socket.disconnect();
+            };
+        }
+    }, [isOpen, user]);
 
-  const handleTrackPackage = (order, e) => {
-    e.stopPropagation();
-    const trackingNumber = order?.trackingNumber;
-    const url = trackingNumber
-      ? `https://track.thailandpost.co.th/?trackNumber=${encodeURIComponent(trackingNumber)}`
-      : 'https://track.thailandpost.co.th/';
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
+    const fetchOrders = async () => {
+        setIsLoading(true);
+        try {
+            const response = await axios.get(`${API_URL}/orders/user/${user.id}`);
+            // รองรับทั้งกรณี backend ส่ง array ตรงๆ หรือห่อไว้ใน { orders: [...] }
+            const raw = Array.isArray(response.data)
+                ? response.data
+                : (Array.isArray(response.data?.orders) ? response.data.orders : []);
 
-  const handleCancelOrder = async (orderId) => {
-    if (!window.confirm(`คุณต้องการยกเลิกคำสั่งซื้อ ${orderId} ใช่หรือไม่?\n(สถานะจะเปลี่ยนเป็น "รอคืนเงิน")`)) {
-      return;
-    }
+            // เรียงจากล่าสุดไปเก่าสุด (อิงจาก orderId ซึ่งมี Timestamp)
+            const sorted = [...raw].sort((a, b) => {
+                const idA = a.orderId || '';
+                const idB = b.orderId || '';
+                return idB.localeCompare(idA);
+            });
 
-    setCancellingOrderId(orderId);
-    try {
-      await axios.put(`${API_URL}/orders/user/${user.id}/orders/${orderId}/cancel`);
-      fetchOrders();
-    } catch (error) {
-      console.error('Cancel order error:', error);
-      alert(error.response?.data?.message || 'ไม่สามารถยกเลิกคำสั่งซื้อได้ในขณะนี้');
-    } finally {
-      setCancellingOrderId(null);
-    }
-  };
+            setOrders(sorted.map(normalizeOrder));
+        } catch (err) {
+            console.error('Failed to fetch orders', err);
+            setOrders([]);
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
-  if (!isOpen) return null;
+    const handleOrderClick = (order, idx) => {
+        const rowKey = order.orderId || idx;
+        setExpandedOrderId((prev) => (prev === rowKey ? null : rowKey));
+    };
 
-  return (
-    <div className="modal open" id="ordersModal" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
-      <style>{`
+    const handleClose = () => {
+        setExpandedOrderId(null);
+        onClose();
+    };
+
+    const handleTrackPackage = (order, e) => {
+        e.stopPropagation();
+        const trackingNumber = order?.trackingNumber;
+        const url = trackingNumber
+            ? `https://track.thailandpost.co.th/?trackNumber=${encodeURIComponent(trackingNumber)}`
+            : 'https://track.thailandpost.co.th/';
+        window.open(url, '_blank', 'noopener,noreferrer');
+    };
+
+    const handleCancelOrder = async (orderId) => {
+        if (!window.confirm(`คุณต้องการยกเลิกคำสั่งซื้อ ${orderId} ใช่หรือไม่?\n(สถานะจะเปลี่ยนเป็น "รอคืนเงิน")`)) {
+            return;
+        }
+
+        setCancellingOrderId(orderId);
+        try {
+            await axios.put(`${API_URL}/orders/user/${user.id}/orders/${orderId}/cancel`);
+            fetchOrders();
+        } catch (error) {
+            console.error('Cancel order error:', error);
+            alert(error.response?.data?.message || 'ไม่สามารถยกเลิกคำสั่งซื้อได้ในขณะนี้');
+        } finally {
+            setCancellingOrderId(null);
+        }
+    };
+
+    if (!isOpen) return null;
+
+    return (
+        <div className="modal open" id="ordersModal" style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center' }}>
+            <style>{`
         @keyframes ordersPopupSlideDown {
           from { opacity: 0; transform: translateY(-40px); }
           to { opacity: 1; transform: translateY(0); }
@@ -166,177 +187,177 @@ export default function OrdersModal({ isOpen, onClose, user }) {
           padding: 20px 24px 28px;
         }
       `}</style>
-      <div className="modal-overlay" id="ordersModalOverlay" onClick={handleClose}></div>
-      <div className="modal-content orders-modal-content orders-popup-content">
-        <button className="modal-close" id="ordersCloseBtn" onClick={handleClose} aria-label="Close Orders">
-          <i className="fa-solid fa-xmark"></i>
-        </button>
+            <div className="modal-overlay" id="ordersModalOverlay" onClick={handleClose}></div>
+            <div className="modal-content orders-modal-content orders-popup-content">
+                <button className="modal-close" id="ordersCloseBtn" onClick={handleClose} aria-label="Close Orders">
+                    <i className="fa-solid fa-xmark"></i>
+                </button>
 
-        <div id="ordersListView">
-          <h2 className="orders-modal-title">คำสั่งซื้อ</h2>
-          {isLoading ? (
-            <p style={{ textAlign: 'center', padding: '40px 0', color: '#888' }}>กำลังโหลด...</p>
-          ) : orders.length === 0 ? (
-            <p style={{ textAlign: 'center', padding: '40px 0', color: '#888' }}>ไม่มีประวัติคำสั่งซื้อ</p>
-          ) : (
-            <div className="orders-table-wrapper">
-              <table className="orders-table">
-                <thead>
-                  <tr>
-                    <th>Order ID</th>
-                    <th>รายละเอียด</th>
-                    <th>สถานะ</th>
-                    <th style={{ width: '32px' }}></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orders.map((order, orderIdx) => {
-                    const rowKey = order.orderId || orderIdx;
-                    const isOpen = expandedOrderId === rowKey;
-                    const items = Array.isArray(order.items) ? order.items : [];
-                    const shippingFee = Number(order.shippingFee) || 100;
+                <div id="ordersListView">
+                    <h2 className="orders-modal-title">คำสั่งซื้อ</h2>
+                    {isLoading ? (
+                        <p style={{ textAlign: 'center', padding: '40px 0', color: '#888' }}>กำลังโหลด...</p>
+                    ) : orders.length === 0 ? (
+                        <p style={{ textAlign: 'center', padding: '40px 0', color: '#888' }}>ไม่มีประวัติคำสั่งซื้อ</p>
+                    ) : (
+                        <div className="orders-table-wrapper">
+                            <table className="orders-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>รายละเอียด</th>
+                                        <th>สถานะ</th>
+                                        <th style={{ width: '32px' }}></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {orders.map((order, orderIdx) => {
+                                        const rowKey = order.orderId || orderIdx;
+                                        const isOpen = expandedOrderId === rowKey;
+                                        const items = Array.isArray(order.items) ? order.items : [];
+                                        const shippingFee = Number(order.shippingFee) || 100;
 
-                    return (
-                      <React.Fragment key={rowKey}>
-                        <tr
-                          className="order-row"
-                          onClick={() => handleOrderClick(order, orderIdx)}
-                          aria-expanded={isOpen}
-                        >
-                          <td style={{ letterSpacing: 'normal', wordSpacing: 'normal' }}>{order.orderId}</td>
-                          <td style={{ letterSpacing: 'normal', wordSpacing: 'normal' }}>
-                            {items.map((item, idx) => (
-                              <div key={idx}>{item?.name || 'สินค้า'} x{Number(item?.quantity) || 0}</div>
-                            ))}
-                          </td>
-                          <td style={{ letterSpacing: 'normal', wordSpacing: 'normal' }}>{cleanThaiText(order.status)}</td>
-                          <td style={{ textAlign: 'center' }}>
-                            <i className={`fa-solid fa-chevron-down order-row-chevron ${isOpen ? 'open' : ''}`}></i>
-                          </td>
-                        </tr>
-
-                        <tr className="order-detail-row">
-                          <td colSpan={4}>
-                            <div className={`order-detail-collapse ${isOpen ? 'open' : ''}`}>
-                              <div className="order-detail-inner">
-                                <div className="order-detail-section">
-                                  <h3 className="order-detail-heading">Order details — {order.orderId}</h3>
-                                  <table className="order-detail-table">
-                                    <tbody>
-                                      <tr>
-                                        <td>รายละเอียดสินค้า</td>
-                                        <td className="text-right">ยอดรวม</td>
-                                      </tr>
-                                      {items.map((item, idx) => {
-                                        const qty = Number(item?.quantity) || 0;
-                                        const price = Number(item?.price) || 0;
                                         return (
-                                          <tr key={idx}>
-                                            <td>{item?.name || 'สินค้า'} x{qty}</td>
-                                            <td className="text-right">{(price * qty).toLocaleString()} ฿</td>
-                                          </tr>
+                                            <React.Fragment key={rowKey}>
+                                                <tr
+                                                    className="order-row"
+                                                    onClick={() => handleOrderClick(order, orderIdx)}
+                                                    aria-expanded={isOpen}
+                                                >
+                                                    <td style={{ letterSpacing: 'normal', wordSpacing: 'normal' }}>{order.orderId}</td>
+                                                    <td style={{ letterSpacing: 'normal', wordSpacing: 'normal' }}>
+                                                        {items.map((item, idx) => (
+                                                            <div key={idx}>{item?.name || 'สินค้า'} x{Number(item?.quantity) || 0}</div>
+                                                        ))}
+                                                    </td>
+                                                    <td style={{ letterSpacing: 'normal', wordSpacing: 'normal' }}>{cleanThaiText(order.status)}</td>
+                                                    <td style={{ textAlign: 'center' }}>
+                                                        <i className={`fa-solid fa-chevron-down order-row-chevron ${isOpen ? 'open' : ''}`}></i>
+                                                    </td>
+                                                </tr>
+
+                                                <tr className="order-detail-row">
+                                                    <td colSpan={4}>
+                                                        <div className={`order-detail-collapse ${isOpen ? 'open' : ''}`}>
+                                                            <div className="order-detail-inner">
+                                                                <div className="order-detail-section">
+                                                                    <h3 className="order-detail-heading">Order details — {order.orderId}</h3>
+                                                                    <table className="order-detail-table">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td>รายละเอียดสินค้า</td>
+                                                                                <td className="text-right">ยอดรวม</td>
+                                                                            </tr>
+                                                                            {items.map((item, idx) => {
+                                                                                const qty = Number(item?.quantity) || 0;
+                                                                                const price = Number(item?.price) || 0;
+                                                                                return (
+                                                                                    <tr key={idx}>
+                                                                                        <td>{item?.name || 'สินค้า'} x{qty}</td>
+                                                                                        <td className="text-right">{(price * qty).toLocaleString()} ฿</td>
+                                                                                    </tr>
+                                                                                );
+                                                                            })}
+                                                                            <tr>
+                                                                                <td>ค่าจัดส่ง (EMS)</td>
+                                                                                <td className="text-right">{shippingFee} ฿</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Payment method</td>
+                                                                                <td className="text-right">{order.payment?.method || 'N/A'}</td>
+                                                                            </tr>
+                                                                            <tr className="order-total-row">
+                                                                                <td><strong>Total:</strong></td>
+                                                                                <td className="text-right"><strong>{(Number(order.totalAmount) || 0).toLocaleString()} ฿</strong></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+
+                                                                <div className="order-detail-section">
+                                                                    <h3 className="order-detail-heading">Customer details</h3>
+                                                                    <p>ชื่อผู้สั่งซื้อ: {order.buyerInfo?.name || '-'}</p>
+                                                                    <p>เบอร์โทร: {order.buyerInfo?.phone || '-'}</p>
+                                                                    <p>ชื่อผู้รับ: {order.recipientInfo?.name || '-'}</p>
+                                                                    <p>ที่อยู่จัดส่ง: {order.recipientInfo?.address || '-'}</p>
+                                                                    {order.cardMessage && <p>ข้อความการ์ด: {order.cardMessage}</p>}
+                                                                </div>
+
+                                                                <div className="order-detail-section order-tracking-section">
+                                                                    <div className="order-tracking-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                                        <div>
+                                                                            <span>สถานะ: </span>
+                                                                            <span style={{ fontWeight: 'bold', letterSpacing: 'normal', wordSpacing: 'normal' }}>{cleanThaiText(order.status)}</span>
+                                                                        </div>
+                                                                        {['กำลังตรวจสอบการชำระเงิน', 'ชำระเงินแล้ว', 'กำลังจัดเตรียมสินค้า'].includes(order.status) && (
+                                                                            <button
+                                                                                className="btn-cancel-order"
+                                                                                style={{
+                                                                                    padding: '8px 16px',
+                                                                                    backgroundColor: '#ff4d4f',
+                                                                                    color: 'white',
+                                                                                    border: 'none',
+                                                                                    borderRadius: '4px',
+                                                                                    cursor: 'pointer',
+                                                                                    fontWeight: 'bold'
+                                                                                }}
+                                                                                disabled={cancellingOrderId === order.orderId}
+                                                                                onClick={(e) => {
+                                                                                    e.stopPropagation();
+                                                                                    handleCancelOrder(order.orderId);
+                                                                                }}
+                                                                            >
+                                                                                {cancellingOrderId === order.orderId ? 'กำลังยกเลิก...' : 'ขอยกเลิกคำสั่งซื้อ'}
+                                                                            </button>
+                                                                        )}
+                                                                    </div>
+                                                                    <div className="order-tracking-row" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                                                                        <span>เลขพัสดุ (Tracking Number)</span>
+                                                                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '100%', justifyContent: 'space-between' }}>
+                                                                            {order.trackingNumber ? (
+                                                                                <span style={{
+                                                                                    fontWeight: 'bold',
+                                                                                    fontSize: '0.95rem',
+                                                                                    color: 'var(--text-dark, #665342)',
+                                                                                    letterSpacing: '0.5px',
+                                                                                    userSelect: 'all',
+                                                                                    cursor: 'text',
+                                                                                    background: 'var(--light-bg, #f9f5f5)',
+                                                                                    padding: '6px 14px',
+                                                                                    borderRadius: '8px',
+                                                                                    border: '1px solid var(--border-color, #e2d9c9)'
+                                                                                }}>
+                                                                                    เลขพัสดุ: {order.trackingNumber}
+                                                                                </span>
+                                                                            ) : (
+                                                                                <span style={{
+                                                                                    fontSize: '0.88rem',
+                                                                                    color: '#a89a89',
+                                                                                    fontStyle: 'italic'
+                                                                                }}>
+                                                                                    รอเลขพัสดุ
+                                                                                </span>
+                                                                            )}
+                                                                            <button className="track-package-btn" onClick={(e) => handleTrackPackage(order, e)}>
+                                                                                <i className="fa-solid fa-truck-fast" style={{ marginRight: '6px' }}></i>
+                                                                                ติดตามพัสดุ
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </React.Fragment>
                                         );
-                                      })}
-                                      <tr>
-                                        <td>ค่าจัดส่ง (EMS)</td>
-                                        <td className="text-right">{shippingFee} ฿</td>
-                                      </tr>
-                                      <tr>
-                                        <td>Payment method</td>
-                                        <td className="text-right">{order.payment?.method || 'N/A'}</td>
-                                      </tr>
-                                      <tr className="order-total-row">
-                                        <td><strong>Total:</strong></td>
-                                        <td className="text-right"><strong>{(Number(order.totalAmount) || 0).toLocaleString()} ฿</strong></td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                </div>
-
-                                <div className="order-detail-section">
-                                  <h3 className="order-detail-heading">Customer details</h3>
-                                  <p>ชื่อผู้สั่งซื้อ: {order.buyerInfo?.name || '-'}</p>
-                                  <p>เบอร์โทร: {order.buyerInfo?.phone || '-'}</p>
-                                  <p>ชื่อผู้รับ: {order.recipientInfo?.name || '-'}</p>
-                                  <p>ที่อยู่จัดส่ง: {order.recipientInfo?.address || '-'}</p>
-                                  {order.cardMessage && <p>ข้อความการ์ด: {order.cardMessage}</p>}
-                                </div>
-
-                                <div className="order-detail-section order-tracking-section">
-                                  <div className="order-tracking-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                                    <div>
-                                      <span>สถานะ: </span>
-                                      <span style={{ fontWeight: 'bold', letterSpacing: 'normal', wordSpacing: 'normal' }}>{cleanThaiText(order.status)}</span>
-                                    </div>
-                                    {['กำลังตรวจสอบการชำระเงิน', 'ชำระเงินแล้ว', 'กำลังจัดเตรียมสินค้า'].includes(order.status) && (
-                                      <button 
-                                        className="btn-cancel-order"
-                                        style={{ 
-                                          padding: '8px 16px', 
-                                          backgroundColor: '#ff4d4f', 
-                                          color: 'white', 
-                                          border: 'none', 
-                                          borderRadius: '4px', 
-                                          cursor: 'pointer',
-                                          fontWeight: 'bold'
-                                        }}
-                                        disabled={cancellingOrderId === order.orderId}
-                                        onClick={(e) => {
-                                          e.stopPropagation();
-                                          handleCancelOrder(order.orderId);
-                                        }}
-                                      >
-                                        {cancellingOrderId === order.orderId ? 'กำลังยกเลิก...' : 'ขอยกเลิกคำสั่งซื้อ'}
-                                      </button>
-                                    )}
-                                  </div>
-                                  <div className="order-tracking-row" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
-                                    <span>เลขพัสดุ (Tracking Number)</span>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', width: '100%', justifyContent: 'space-between' }}>
-                                      {order.trackingNumber ? (
-                                        <span style={{
-                                          fontWeight: 'bold',
-                                          fontSize: '0.95rem',
-                                          color: 'var(--text-dark, #665342)',
-                                          letterSpacing: '0.5px',
-                                          userSelect: 'all',
-                                          cursor: 'text',
-                                          background: 'var(--light-bg, #f9f5f5)',
-                                          padding: '6px 14px',
-                                          borderRadius: '8px',
-                                          border: '1px solid var(--border-color, #e2d9c9)'
-                                        }}>
-                                          เลขพัสดุ: {order.trackingNumber}
-                                        </span>
-                                      ) : (
-                                        <span style={{
-                                          fontSize: '0.88rem',
-                                          color: '#a89a89',
-                                          fontStyle: 'italic'
-                                        }}>
-                                          รอเลขพัสดุ
-                                        </span>
-                                      )}
-                                      <button className="track-package-btn" onClick={(e) => handleTrackPackage(order, e)}>
-                                        <i className="fa-solid fa-truck-fast" style={{ marginRight: '6px' }}></i>
-                                        ติดตามพัสดุ
-                                      </button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </React.Fragment>
-                    );
-                  })}
-                </tbody>
-              </table>
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </div>
             </div>
-          )}
         </div>
-      </div>
-    </div>
-  );
+    );
 }

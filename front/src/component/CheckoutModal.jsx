@@ -309,7 +309,10 @@ export default function CheckoutModal({
                     <input 
                       type="tel" 
                       value={buyerPhone} 
-                      onChange={e => setBuyerPhone(e.target.value)} 
+                      onChange={e => setBuyerPhone(e.target.value.replace(/\D/g, '').slice(0, 10))} 
+                      maxLength="10"
+                      pattern="[0-9]{10}"
+                      title="กรุณากรอกเบอร์โทรศัพท์ 10 หลัก"
                       required 
                       style={inputStyle}
                     />
@@ -395,7 +398,10 @@ export default function CheckoutModal({
                     <input 
                       type="tel" 
                       value={recipientPhone} 
-                      onChange={e => setRecipientPhone(e.target.value)} 
+                      onChange={e => setRecipientPhone(e.target.value.replace(/\D/g, '').slice(0, 10))} 
+                      maxLength="10"
+                      pattern="[0-9]{10}"
+                      title="กรุณากรอกเบอร์โทรศัพท์ 10 หลัก"
                       required 
                       style={inputStyle}
                     />

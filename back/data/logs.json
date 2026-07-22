@@ -1,5 +1,257 @@
 [
   {
+    "id": "LOG-1784706449606652",
+    "timestamp": "2026-07-22T07:47:29.606Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Size M"
+  },
+  {
+    "id": "LOG-1784706387148612",
+    "timestamp": "2026-07-22T07:46:27.148Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Size M"
+  },
+  {
+    "id": "LOG-1784705157055348",
+    "timestamp": "2026-07-22T07:25:57.055Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Roses Box"
+  },
+  {
+    "id": "LOG-1784704932765342",
+    "timestamp": "2026-07-22T07:22:12.765Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Size M"
+  },
+  {
+    "id": "LOG-1784704616373450",
+    "timestamp": "2026-07-22T07:16:56.373Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Size M"
+  },
+  {
+    "id": "LOG-1784704006807616",
+    "timestamp": "2026-07-22T07:06:46.807Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
+    "id": "LOG-178470300276758",
+    "timestamp": "2026-07-22T06:50:02.767Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_PRODUCT",
+    "details": "Deleted product erwr"
+  },
+  {
+    "id": "LOG-1784702982859990",
+    "timestamp": "2026-07-22T06:49:42.859Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_PRODUCT",
+    "details": "Created product erwr"
+  },
+  {
+    "id": "LOG-1784702919801738",
+    "timestamp": "2026-07-22T06:48:39.801Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Roses Box"
+  },
+  {
+    "id": "LOG-1784702846997364",
+    "timestamp": "2026-07-22T06:47:26.997Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Pastel Flowers"
+  },
+  {
+    "id": "LOG-1784702705077203",
+    "timestamp": "2026-07-22T06:45:05.077Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Pastel Flowers"
+  },
+  {
+    "id": "LOG-1784702675328837",
+    "timestamp": "2026-07-22T06:44:35.328Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p1 to cart"
+  },
+  {
+    "id": "LOG-1784702658565820",
+    "timestamp": "2026-07-22T06:44:18.565Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Pastel Flowers"
+  },
+  {
+    "id": "LOG-178470257954369",
+    "timestamp": "2026-07-22T06:42:59.543Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Teddy Doll"
+  },
+  {
+    "id": "LOG-1784702501459915",
+    "timestamp": "2026-07-22T06:41:41.459Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Floral"
+  },
+  {
+    "id": "LOG-1784702065997398",
+    "timestamp": "2026-07-22T06:34:25.997Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Floral"
+  },
+  {
+    "id": "LOG-1784702040102124",
+    "timestamp": "2026-07-22T06:34:00.102Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Size M"
+  },
+  {
+    "id": "LOG-1784701998941782",
+    "timestamp": "2026-07-22T06:33:18.941Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Size M"
+  },
+  {
+    "id": "LOG-1784701925111360",
+    "timestamp": "2026-07-22T06:32:05.111Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Floral"
+  },
+  {
+    "id": "LOG-1784701909405263",
+    "timestamp": "2026-07-22T06:31:49.405Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product prod-1784472755067 to 3"
+  },
+  {
+    "id": "LOG-1784701908459221",
+    "timestamp": "2026-07-22T06:31:48.459Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product prod-1784472755067 to 2"
+  },
+  {
+    "id": "LOG-1784701907812977",
+    "timestamp": "2026-07-22T06:31:47.812Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product prod-1784472755067 to 3"
+  },
+  {
+    "id": "LOG-1784701878305442",
+    "timestamp": "2026-07-22T06:31:18.305Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Floral"
+  },
+  {
+    "id": "LOG-1784701674880887",
+    "timestamp": "2026-07-22T06:27:54.880Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Floral"
+  },
+  {
+    "id": "LOG-1784701558080833",
+    "timestamp": "2026-07-22T06:25:58.080Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product prod-1784472755067 to cart"
+  },
+  {
+    "id": "LOG-1784701555152394",
+    "timestamp": "2026-07-22T06:25:55.152Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
+    "id": "LOG-1784701536369808",
+    "timestamp": "2026-07-22T06:25:36.369Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Floral"
+  },
+  {
+    "id": "LOG-1784701245791520",
+    "timestamp": "2026-07-22T06:20:45.791Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
     "id": "LOG-1784650287802667",
     "timestamp": "2026-07-21T16:11:27.802Z",
     "userId": "admin-id-001",

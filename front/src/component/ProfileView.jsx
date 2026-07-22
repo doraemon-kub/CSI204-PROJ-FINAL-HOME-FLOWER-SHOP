@@ -248,8 +248,11 @@ export default function ProfileView({ user, onLogout, onViewChange, refetchUser 
                   <input 
                     type="tel" 
                     value={phone} 
-                    onChange={e => setPhone(e.target.value)} 
+                    onChange={e => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))} 
                     placeholder="เบอร์โทรศัพท์"
+                    maxLength="10"
+                    pattern="[0-9]{10}"
+                    title="กรุณากรอกเบอร์โทรศัพท์ 10 หลัก"
                     required 
                   />
                 </div>

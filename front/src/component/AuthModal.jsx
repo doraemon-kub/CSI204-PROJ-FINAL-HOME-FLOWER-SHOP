@@ -189,7 +189,10 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
               placeholder="ระบุเบอร์โทรศัพท์" 
               required 
               value={regPhone}
-              onChange={(e) => setRegPhone(e.target.value)}
+              onChange={(e) => setRegPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+              maxLength="10"
+              pattern="[0-9]{10}"
+              title="กรุณากรอกเบอร์โทรศัพท์ 10 หลัก"
               autoComplete="tel"
             />
           </div>

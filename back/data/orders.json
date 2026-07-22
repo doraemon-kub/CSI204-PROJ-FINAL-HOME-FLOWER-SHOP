@@ -454,7 +454,34 @@
     "shippingFee": 100,
     "totalAmount": 790,
     "status": "กำลังตรวจสอบการชำระเงิน",
-    "trackingNumber": null,
+    "trackingNumber": "4444",
     "createdAt": "2026-07-21T15:59:22.883Z"
+  },
+  {
+    "orderId": "ORD-1784711607639",
+    "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
+    "items": "[{\"productId\":\"p1\",\"name\":\"Static Size M\",\"price\":1000,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "แฮม",
+      "phone": "1234567890",
+      "email": "ham@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "แฮม",
+      "address": "ไำฟำดกหฟำ ต.บางกรวย อ.บางกรวย จ.นนทบุรี 11130",
+      "phone": "1234567890"
+    },
+    "cardMessage": "aaaa",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-22T16:13",
+      "slipUrl": "/uploads/slip-1784711607627-669735483.gif",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 1100,
+    "status": "จัดส่งแล้ว",
+    "trackingNumber": "4592596485545",
+    "createdAt": "2026-07-22T09:13:27.639Z"
   }
 ]

@@ -27,7 +27,13 @@
       {
         "cartItemId": "aff898f0-620d-4245-b274-9f24f4fb9db6",
         "productId": "prod-1784472755067",
-        "quantity": 1,
+        "quantity": 3,
+        "customOptions": null
+      },
+      {
+        "cartItemId": "bbd191cb-5502-4e64-8e18-73b8315ab88a",
+        "productId": "p1",
+        "quantity": 3,
         "customOptions": null
       },
       {

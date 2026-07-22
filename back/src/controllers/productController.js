@@ -29,6 +29,41 @@ const getProductById = (req, res) => {
     res.json(product);
 };
 
+const getAllTags = (req, res) => {
+    const customTags = fileDb.readData('tags') || {};
+    // ensure it's an object
+    res.json(Array.isArray(customTags) ? {} : customTags);
+};
+
+const addCustomTag = (req, res) => {
+    const { category, tag } = req.body;
+    if (!category || !tag) return res.status(400).json({ message: 'Category and tag required' });
+    
+    let customTags = fileDb.readData('tags');
+    if (Array.isArray(customTags)) customTags = {}; // initialize if it was an empty array by default
+    
+    if (!customTags[category]) customTags[category] = [];
+    if (!customTags[category].includes(tag)) {
+        customTags[category].push(tag);
+        fileDb.writeData('tags', customTags);
+    }
+    res.json({ message: 'Tag added successfully', tags: customTags });
+};
+
+const deleteCustomTag = (req, res) => {
+    const { tag } = req.params;
+    const { category } = req.query; // pass category in query string
+    
+    let customTags = fileDb.readData('tags');
+    if (Array.isArray(customTags)) customTags = {};
+    
+    if (category && customTags[category]) {
+        customTags[category] = customTags[category].filter(t => t !== tag);
+        fileDb.writeData('tags', customTags);
+    }
+    res.json({ message: 'Tag deleted successfully', tags: customTags });
+};
+
 const createProduct = (req, res) => {
     const { name, category, price, tag, badge, description, stock, isCustom, customOptions } = req.body;
     if (!name || !price) {
@@ -37,6 +72,17 @@ const createProduct = (req, res) => {
 
     const products = fileDb.readData('products');
     
+    // Automatically save new tag to tags.json if it exists
+    if (tag && tag.trim() !== '') {
+        let customTags = fileDb.readData('tags');
+        if (Array.isArray(customTags)) customTags = {};
+        if (!customTags[category]) customTags[category] = [];
+        if (!customTags[category].includes(tag.trim())) {
+            customTags[category].push(tag.trim());
+            fileDb.writeData('tags', customTags);
+        }
+    }
+
     let imageUrl = '';
     if (req.files) {
         const mainImage = req.files.find(f => f.fieldname === 'image');
@@ -102,6 +148,17 @@ const updateProduct = (req, res) => {
     const productIndex = products.findIndex(p => p.id === id);
     if (productIndex === -1) {
         return res.status(404).json({ message: 'Product not found' });
+    }
+
+    // Automatically save new tag to tags.json if it exists
+    if (tag && tag.trim() !== '') {
+        let customTags = fileDb.readData('tags');
+        if (Array.isArray(customTags)) customTags = {};
+        if (!customTags[category]) customTags[category] = [];
+        if (!customTags[category].includes(tag.trim())) {
+            customTags[category].push(tag.trim());
+            fileDb.writeData('tags', customTags);
+        }
     }
 
     const updatedProduct = { ...products[productIndex] };
@@ -192,5 +249,8 @@ module.exports = {
     getProductById,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getAllTags,
+    addCustomTag,
+    deleteCustomTag
 };
