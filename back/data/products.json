@@ -1,81 +1,125 @@
 [
   {
     "id": "p1",
-    "name": "Basic 1",
-    "description": "ช่อดอกไม้สำเร็จรูป",
+    "name": "Static Size M",
+    "description": "ช่อดอก Static สำเร็จรูป Size M",
     "price": 1000,
     "category": "ready-made",
-    "tag": "จัดส่งฟรี",
-    "image": "basic1.jpg",
+    "tag": "ช่อสำเร็จรูป",
+    "image": "product-1784701998935-898152291.jpg",
     "isCustom": false,
     "stock": 8
   },
   {
     "id": "p2",
-    "name": "Custom 1",
-    "description": "ช่อดอกไม้จัดเองตามใจชอบ",
-    "price": 690,
+    "name": "Roses Box",
+    "description": "กล่องดอกกุหลาบประดิษฐ์",
+    "price": 1390,
     "category": "custom",
-    "tag": "แนะนำ Custom",
-    "image": "custom1.jpg",
-    "isCustom": true,
-    "customOptions": [
-      {
-        "name": "Size",
-        "choices": [
-          "S",
-          "M",
-          "L"
-        ]
-      },
-      {
-        "name": "รูปแบบดอกที่ 1",
-        "choices": [
-          "กุหลาบแดง",
-          "กุหลาบขาว",
-          "ทานตะวัน"
-        ]
-      },
-      {
-        "name": "รูปแบบดอกที่ 2",
-        "choices": [
-          "คาร์เนชั่น",
-          "ลิลลี่",
-          "ยิปโซ"
-        ]
-      },
-      {
-        "name": "รูปแบบดอกที่ 3",
-        "choices": [
-          "ไม่ระบุ",
-          "ใบเฟิร์น",
-          "ใบยูคาลิปตัส"
-        ]
-      }
-    ],
+    "tag": "ช่อสำเร็จรูป",
+    "image": "product-1784702846972-449955160.png",
+    "isCustom": false,
     "stock": 9
   },
   {
     "id": "p3",
-    "name": "Teddy",
-    "description": "ตุ๊กตาหมีสำหรับเป็นของขวัญ",
-    "price": 200,
+    "name": "Teddy Doll",
+    "description": "ตุ๊กตาหมี Size M",
+    "price": 390,
     "category": "gift",
-    "tag": "เทียนหอม",
-    "image": "teddy.jpg",
+    "tag": "ตุ๊กตาหมี",
+    "image": "product-1784702579539-727877179.jpg",
     "isCustom": false,
     "stock": 9
   },
   {
     "id": "prod-1784472755067",
-    "name": "sa",
-    "category": "gift",
-    "price": 23333,
-    "tag": "",
+    "name": "Static Floral",
+    "category": "ready-made",
+    "price": 690,
+    "tag": "แนะนำ Custom",
     "badge": "",
-    "description": "2432424",
-    "image": "product-1784472755065-598122195.png",
+    "description": "ช่อ Custom สแตติส Size S",
+    "image": "product-1784701925105-984334537.jpg",
     "createdAt": "2026-07-19T14:52:35.067Z",
-    "stock": 10
+    "stock": 10,
+    "isCustom": true,
+    "customOptions": [
+      {
+        "name": "สีดอกที่ 1",
+        "choices": [
+          {
+            "name": "สแตติสสีขาว",
+            "image": ""
+          },
+          {
+            "name": "สแตติสสีม่วง",
+            "image": ""
+          },
+          {
+            "name": "สแตติสเหลือง",
+            "image": ""
+          },
+          {
+            "name": "สแตติสชมพู",
+            "image": ""
+          },
+          {
+            "name": "สแตติสแดง",
+            "image": ""
+          }
+        ]
+      },
+      {
+        "name": "สีดอกที่ 2",
+        "choices": [
+          {
+            "name": "สแตติสสีขาว",
+            "image": ""
+          },
+          {
+            "name": "สแตติสสีม่วง",
+            "image": ""
+          },
+          {
+            "name": "สแตติสเหลือง",
+            "image": ""
+          },
+          {
+            "name": "สแตติสชมพู",
+            "image": ""
+          },
+          {
+            "name": "สแตติสแดง",
+            "image": ""
+          }
+        ]
+      },
+      {
+        "name": "สีดอกที่ 3",
+        "choices": [
+          {
+            "name": "สแตติสสีขาว",
+            "image": ""
+          },
+          {
+            "name": "สแตติสสีม่วง",
+            "image": ""
+          },
+          {
+            "name": "สแตติสเหลือง",
+            "image": ""
+          },
+          {
+            "name": "สแตติสชมพู",
+            "image": ""
+          },
+          {
+            "name": "สแตติสแดง",
+            "image": ""
+          }
+        ]
+      }
+    ]
   }
 ]
