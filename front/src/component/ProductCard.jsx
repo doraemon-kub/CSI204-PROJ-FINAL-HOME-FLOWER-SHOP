@@ -83,6 +83,9 @@ export default function ProductCard({ product, onAddToCart }) {
           font-weight: 500;
           color: var(--text-dark, #665342);
           line-height: 1.4;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         .product-card-price {
           margin: 0 0 12px;
@@ -104,6 +107,12 @@ export default function ProductCard({ product, onAddToCart }) {
           color: #8a7a68;
           line-height: 1.6;
           text-align: left;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          min-height: calc(1.6em * 2 + 12px);
         }
         .product-add-btn {
           margin-top: auto;
