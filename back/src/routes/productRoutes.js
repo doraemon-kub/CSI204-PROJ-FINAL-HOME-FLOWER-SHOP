@@ -20,6 +20,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get('/', productController.getAllProducts);
+router.get('/tags/all', productController.getAllTags);
+router.post('/tags', adminAuth, productController.addCustomTag);
+router.delete('/tags/:tag', adminAuth, productController.deleteCustomTag);
+
 router.get('/:id', productController.getProductById);
 
 // Admin only routes

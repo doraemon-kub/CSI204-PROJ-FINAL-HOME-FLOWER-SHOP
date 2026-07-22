@@ -6,6 +6,7 @@ const API_URL = '/api';
 
 export default function AdminProducts({ user }) {
     const [products, setProducts] = useState([]);
+    const [customTags, setCustomTags] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
     // Form states
@@ -67,8 +68,18 @@ export default function AdminProducts({ user }) {
         }
     };
 
+    const fetchTags = async () => {
+        try {
+            const response = await axios.get(`${API_URL}/products/tags/all`);
+            setCustomTags(response.data);
+        } catch (err) {
+            console.error('Failed to fetch tags', err);
+        }
+    };
+
     useEffect(() => {
         fetchProducts();
+        fetchTags();
     }, []);
 
     const handleInputChange = (e) => {
@@ -232,6 +243,7 @@ export default function AdminProducts({ user }) {
             setFormData({ name: '', price: '', category: 'ready-made', tag: '', newTag: '', description: '', existingImage: '', isCustom: false, customOptions: [] });
             setImageFile(null);
             fetchProducts();
+            fetchTags();
         } catch (err) {
             console.error('Failed to add product', err);
             alert(`เกิดข้อผิดพลาดในการ${editingId ? 'แก้ไข' : 'เพิ่ม'}สินค้า`);
@@ -252,6 +264,58 @@ export default function AdminProducts({ user }) {
         }
     };
 
+    const handleDeleteTag = async () => {
+        if (!formData.tag) return alert('กรุณาเลือกแท็กที่ต้องการลบ');
+        const tagToDelete = formData.tag;
+        
+        const isPredefined = predefinedTags[formData.category]?.includes(tagToDelete);
+        let confirmMsg = `คุณแน่ใจหรือไม่ว่าต้องการลบแท็ก "${tagToDelete}" ออกจากสินค้าทุกชิ้นในหมวดหมู่นี้ รวมออกจากระบบด้วย?`;
+        if (isPredefined) {
+            confirmMsg = `แท็ก "${tagToDelete}" เป็นแท็กเริ่มต้น การลบนี้จะเป็นการเคลียร์แท็กออกจากสินค้าทุกชิ้นที่ใช้อยู่ แต่ตัวเลือกอาจจะยังคงอยู่เนื่องจากเป็นค่าเริ่มต้นของระบบ ยืนยันการลบ?`;
+        }
+
+        if (!window.confirm(confirmMsg)) return;
+
+        try {
+            const productsWithTag = products.filter(p => p.category === formData.category && p.tag === tagToDelete);
+            
+            for (const p of productsWithTag) {
+                const data = new FormData();
+                data.append('name', p.name);
+                data.append('price', p.price);
+                data.append('category', p.category);
+                data.append('tag', ''); 
+                data.append('description', p.description || '');
+                data.append('isCustom', !!p.isCustom);
+                if (p.isCustom && p.customOptions) {
+                    data.append('customOptions', JSON.stringify(p.customOptions));
+                }
+                
+                await axios.put(`${API_URL}/products/${p.id}`, data, {
+                    headers: {
+                        'x-user-id': user.id,
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+            }
+            
+            // Delete from tags.json in backend
+            if (!isPredefined) {
+                await axios.delete(`${API_URL}/products/tags/${encodeURIComponent(tagToDelete)}?category=${formData.category}`, {
+                    headers: { 'x-user-id': user.id }
+                });
+            }
+            
+            alert(`ลบแท็ก "${tagToDelete}" เรียบร้อยแล้ว`);
+            setFormData(prev => ({ ...prev, tag: '' }));
+            fetchProducts();
+            fetchTags();
+        } catch (err) {
+            console.error('Failed to delete tag', err);
+            alert('เกิดข้อผิดพลาดในการลบแท็ก');
+        }
+    };
+
     const predefinedTags = {
         'ready-made': ['จัดส่งฟรี', 'แนะนำ Custom'],
         'custom': ['จัดส่งฟรี', 'แนะนำ Custom'],
@@ -260,6 +324,7 @@ export default function AdminProducts({ user }) {
 
     const existingTags = [...new Set([
         ...(predefinedTags[formData.category] || []),
+        ...(customTags[formData.category] || []),
         ...products
             .filter(p => p.category === formData.category)
             .map(p => p.tag)
@@ -344,12 +409,24 @@ export default function AdminProducts({ user }) {
                             </div>
                             <div className="form-group-admin">
                                 <label>เลือกแท็ก / หมวดย่อยที่มีอยู่แล้ว</label>
-                                <select name="tag" value={formData.tag} onChange={handleInputChange}>
-                                    <option value="">-- ไม่ระบุ / สร้างใหม่ด้านล่าง --</option>
-                                    {existingTags.map(t => (
-                                        <option key={t} value={t}>{t}</option>
-                                    ))}
-                                </select>
+                                <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                                    <select name="tag" value={formData.tag} onChange={handleInputChange} style={{ flex: 1, marginBottom: 0 }}>
+                                        <option value="">-- ไม่ระบุ / สร้างใหม่ด้านล่าง --</option>
+                                        {existingTags.map(t => (
+                                            <option key={t} value={t}>{t}</option>
+                                        ))}
+                                    </select>
+                                    {formData.tag && (
+                                        <button 
+                                            type="button" 
+                                            onClick={handleDeleteTag}
+                                            style={{ padding: '8px 12px', backgroundColor: '#ef4444', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '0.9rem' }}
+                                            title="ลบแท็กนี้ออกจากสินค้าทั้งหมดในหมวดหมู่นี้"
+                                        >
+                                            <i className="fa-solid fa-trash"></i> ลบ
+                                        </button>
+                                    )}
+                                </div>
                             </div>
                             <div className="form-group-admin">
                                 <label>หรือสร้างแท็กใหม่</label>
