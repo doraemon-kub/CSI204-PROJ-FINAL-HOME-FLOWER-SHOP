@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 export default function ProductCard({ product, onAddToCart }) {
-  const [isOpen, setIsOpen] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
 
   const handleAdd = () => {
@@ -99,43 +98,12 @@ export default function ProductCard({ product, onAddToCart }) {
           font-size: 0.85rem;
           font-weight: 500;
         }
-        .product-detail-toggle {
-          width: 100%;
-          padding: 8px 12px;
-          background: var(--light-bg, #F5F5F0);
-          border: none;
-          border-radius: 10px;
-          cursor: pointer;
-          font-family: inherit;
-          font-size: 0.82rem;
-          font-weight: 500;
-          color: var(--text-dark, #665342);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 6px;
-          transition: all 0.2s ease;
-          margin-bottom: 12px;
-        }
-        .product-detail-toggle:hover {
-          background: var(--tan, #E6D8C3);
-          color: var(--primary-dark, #6b5a49);
-        }
-        .product-detail-toggle i {
-          font-size: 0.7rem;
-          transition: transform 0.25s ease;
-        }
         .product-detail-content {
           padding: 0 2px 12px;
           font-size: 0.85rem;
           color: #8a7a68;
           line-height: 1.6;
-          animation: detailSlide 0.25s ease;
           text-align: left;
-        }
-        @keyframes detailSlide {
-          from { opacity: 0; transform: translateY(-8px); }
-          to { opacity: 1; transform: translateY(0); }
         }
         .product-add-btn {
           margin-top: auto;
@@ -191,19 +159,9 @@ export default function ProductCard({ product, onAddToCart }) {
           </p>
 
           {/* ส่วนรายละเอียด */}
-          <button
-            className="product-detail-toggle"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            <span>{isOpen ? 'ซ่อนรายละเอียด' : 'ดูรายละเอียดสินค้า'}</span>
-            <i className="fa-solid fa-chevron-down" style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0)' }}></i>
-          </button>
-
-          {isOpen && (
-            <div className="product-detail-content">
-              {product.description || 'ดอกไม้คุณภาพดี จัดแต่งอย่างพิถีพิถัน เหมาะสำหรับตกแต่งบ้านหรือเป็นของขวัญในโอกาสพิเศษ'}
-            </div>
-          )}
+          <div className="product-detail-content">
+            {product.description || 'ดอกไม้คุณภาพดี จัดแต่งอย่างพิถีพิถัน เหมาะสำหรับตกแต่งบ้านหรือเป็นของขวัญในโอกาสพิเศษ'}
+          </div>
 
           {(product.stock ?? 0) <= 0 ? (
             <button

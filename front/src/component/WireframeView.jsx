@@ -10,6 +10,11 @@ export default function WireframeView({
   const [selectedFilter, setSelectedFilter] = useState('ทั้งหมด');
   const [searchQuery, setSearchQuery] = useState('');
 
+  const dynamicFilters = Array.from(new Set([
+    ...filters,
+    ...products.map(p => p.tag).filter(Boolean)
+  ]));
+
   const filteredProducts = products.filter((p) => {
     const productTag = p.tag || '';
     const matchesCategory = selectedFilter === 'ทั้งหมด' || 
@@ -432,7 +437,7 @@ export default function WireframeView({
                 หมวดหมู่
               </h3>
               <div className="wf-filter-list">
-                {['ทั้งหมด', ...filters].map((f) => (
+                {['ทั้งหมด', ...dynamicFilters].map((f) => (
                   <button
                     key={f}
                     className={`wf-filter-btn ${selectedFilter === f ? 'active' : ''}`}

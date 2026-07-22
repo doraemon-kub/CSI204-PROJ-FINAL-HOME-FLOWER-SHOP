@@ -5,10 +5,21 @@
     "description": "ช่อดอก Static สำเร็จรูป Size M",
     "price": 1000,
     "category": "ready-made",
-    "tag": "ช่อสำเร็จรูป",
-    "image": "product-1784701998935-898152291.jpg",
-    "isCustom": false,
-    "stock": 8
+    "tag": "มนุษย์",
+    "image": "product-1784706387140-722101843.jpeg",
+    "isCustom": true,
+    "stock": 8,
+    "customOptions": [
+      {
+        "name": "ฟดหฟเหำเ",
+        "choices": [
+          {
+            "name": "ฟหกฟก",
+            "image": ""
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "p2",
@@ -18,8 +29,27 @@
     "category": "custom",
     "tag": "ช่อสำเร็จรูป",
     "image": "product-1784702846972-449955160.png",
-    "isCustom": false,
-    "stock": 9
+    "isCustom": true,
+    "stock": 9,
+    "customOptions": [
+      {
+        "name": "หยรนืเยนรหกืินยกรพื้ยนพื้",
+        "choices": [
+          {
+            "name": "หยนเ้กหื้ยรนพกืเรนย",
+            "image": ""
+          },
+          {
+            "name": "หำเดห้เพหกเก้ห",
+            "image": ""
+          },
+          {
+            "name": "ดเหเหพเหพเเ",
+            "image": ""
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "p3",

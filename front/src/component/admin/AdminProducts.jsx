@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './adminProducts.css';
+import ImageCropperModal from './ImageCropperModal';
 const API_URL = '/api';
 
 export default function AdminProducts({ user }) {
@@ -22,6 +23,8 @@ export default function AdminProducts({ user }) {
         customOptions: []
     });
     const [imageFile, setImageFile] = useState(null);
+    const [cropImageSrc, setCropImageSrc] = useState(null);
+    const [activeCropTarget, setActiveCropTarget] = useState(null); // 'main' or { optIndex, choiceIndex }
 
     const handleAddNew = () => {
         setEditingId(null);
@@ -87,8 +90,30 @@ export default function AdminProducts({ user }) {
 
     const handleFileChange = (e) => {
         if (e.target.files && e.target.files[0]) {
-            setImageFile(e.target.files[0]);
+            const file = e.target.files[0];
+            const reader = new FileReader();
+            reader.addEventListener('load', () => {
+                setCropImageSrc(reader.result);
+                setActiveCropTarget('main');
+            });
+            reader.readAsDataURL(file);
+            e.target.value = null;
         }
+    };
+
+    const handleCropComplete = (croppedFile) => {
+        if (activeCropTarget === 'main') {
+            setImageFile(croppedFile);
+        } else if (activeCropTarget && activeCropTarget.optIndex !== undefined) {
+            updateChoiceFile(activeCropTarget.optIndex, activeCropTarget.choiceIndex, croppedFile);
+        }
+        setCropImageSrc(null);
+        setActiveCropTarget(null);
+    };
+
+    const handleCropCancel = () => {
+        setCropImageSrc(null);
+        setActiveCropTarget(null);
     };
 
     // Custom Options Handlers
@@ -241,6 +266,30 @@ export default function AdminProducts({ user }) {
             .filter(tag => tag && tag.trim() !== '')
     ])];
 
+    const existingOptionTemplates = {};
+    products.forEach(p => {
+        if (p.isCustom && p.customOptions) {
+            p.customOptions.forEach(opt => {
+                if (opt.name && !existingOptionTemplates[opt.name]) {
+                    existingOptionTemplates[opt.name] = opt.choices.map(c => ({ name: c.name || (typeof c === 'string' ? c : ''), image: '' }));
+                }
+            });
+        }
+    });
+    const existingOptionNames = Object.keys(existingOptionTemplates);
+
+    const handleOptionTemplateSelect = (optIndex, selectedName) => {
+        setFormData(prev => {
+            const newOpts = [...prev.customOptions];
+            newOpts[optIndex].name = selectedName;
+            
+            if (selectedName && existingOptionTemplates[selectedName]) {
+                 newOpts[optIndex].choices = existingOptionTemplates[selectedName].map(c => ({ name: c.name, image: '' }));
+            }
+            return { ...prev, customOptions: newOpts };
+        });
+    };
+
     if (isLoading) return <div>กำลังโหลดสินค้า...</div>;
 
     return (
@@ -283,6 +332,12 @@ export default function AdminProducts({ user }) {
                                     <div style={{ marginBottom: '10px' }}>
                                         <img src={`http://localhost:3000/uploads/${formData.existingImage}`} alt="Current" style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e2d9c9' }} />
                                         <div style={{ fontSize: '0.8rem', color: '#8a7a68', marginTop: '4px' }}>รูปภาพปัจจุบัน (หากไม่ต้องการเปลี่ยน ให้เว้นว่างไว้)</div>
+                                    </div>
+                                )}
+                                {imageFile && (
+                                    <div style={{ marginBottom: '10px' }}>
+                                        <img src={URL.createObjectURL(imageFile)} alt="Cropped preview" style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e2d9c9' }} />
+                                        <div style={{ fontSize: '0.8rem', color: '#8a7a68', marginTop: '4px' }}>รูปภาพใหม่ที่จะใช้</div>
                                     </div>
                                 )}
                                 <input type="file" accept="image/*" onChange={handleFileChange} />
@@ -333,15 +388,27 @@ export default function AdminProducts({ user }) {
                                     <div className="custom-options-list">
                                         {formData.customOptions.map((opt, optIndex) => (
                                             <div key={optIndex} className="custom-option-card">
-                                                <div className="custom-option-header">
-                                                    <input
-                                                        type="text"
-                                                        placeholder="ชื่อตัวเลือก เช่น 'ขนาด', 'รูปแบบดอก'"
-                                                        value={opt.name}
-                                                        onChange={(e) => updateOptionName(optIndex, e.target.value)}
-                                                        required
-                                                        className="option-name-input"
-                                                    />
+                                                <div className="custom-option-header" style={{ alignItems: 'flex-start' }}>
+                                                    <div style={{ flex: 1 }}>
+                                                        <select
+                                                            value={existingOptionNames.includes(opt.name) ? opt.name : ''}
+                                                            onChange={(e) => handleOptionTemplateSelect(optIndex, e.target.value)}
+                                                            style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid #e2d9c9', marginBottom: '8px', fontFamily: 'inherit', color: '#665342' }}
+                                                        >
+                                                            <option value="">-- เลือกตัวเลือกที่มีอยู่แล้ว --</option>
+                                                            {existingOptionNames.map(name => (
+                                                                <option key={name} value={name}>{name}</option>
+                                                            ))}
+                                                        </select>
+                                                        <input
+                                                            type="text"
+                                                            placeholder="หรือสร้างชื่อตัวเลือกใหม่ เช่น 'ขนาด', 'รูปแบบดอก'"
+                                                            value={opt.name}
+                                                            onChange={(e) => updateOptionName(optIndex, e.target.value)}
+                                                            required
+                                                            className="option-name-input"
+                                                        />
+                                                    </div>
                                                     <button type="button" onClick={() => removeOption(optIndex)} className="btn-remove-option" title="ลบตัวเลือกนี้">
                                                         <i className="fa-solid fa-trash"></i>
                                                     </button>
@@ -379,7 +446,14 @@ export default function AdminProducts({ user }) {
                                                                     accept="image/*"
                                                                     onChange={(e) => {
                                                                         if (e.target.files && e.target.files[0]) {
-                                                                            updateChoiceFile(optIndex, choiceIndex, e.target.files[0]);
+                                                                            const file = e.target.files[0];
+                                                                            const reader = new FileReader();
+                                                                            reader.addEventListener('load', () => {
+                                                                                setCropImageSrc(reader.result);
+                                                                                setActiveCropTarget({ optIndex, choiceIndex });
+                                                                            });
+                                                                            reader.readAsDataURL(file);
+                                                                            e.target.value = null;
                                                                         }
                                                                     }}
                                                                     className="choice-input"
@@ -406,8 +480,8 @@ export default function AdminProducts({ user }) {
                         )}
 
                         <div className="form-group-admin">
-                            <label>รายละเอียด</label>
-                            <textarea name="description" rows="3" value={formData.description} onChange={handleInputChange}></textarea>
+                            <label>รายละเอียด (ไม่เกิน 40 ตัวอักษร)</label>
+                            <textarea name="description" rows="3" value={formData.description} onChange={handleInputChange} maxLength="40"></textarea>
                         </div>
                         <div style={{ display: 'flex', gap: '16px', justifyContent: 'flex-end', marginTop: '10px' }}>
                             <button type="button" className="btn-cancel" style={{ padding: '12px 24px', borderRadius: '30px', border: '1px solid #e2d9c9', background: '#fff', color: '#8a7a68', cursor: 'pointer', fontWeight: '600' }} onClick={() => { setIsAdding(false); setEditingId(null); }}>ยกเลิก</button>
@@ -458,6 +532,14 @@ export default function AdminProducts({ user }) {
                     </table>
                 </div>
             </div>
+            {cropImageSrc && (
+                <ImageCropperModal
+                    imageSrc={cropImageSrc}
+                    onCropComplete={handleCropComplete}
+                    onCancel={handleCropCancel}
+                    aspect={1}
+                />
+            )}
         </div>
     );
 }

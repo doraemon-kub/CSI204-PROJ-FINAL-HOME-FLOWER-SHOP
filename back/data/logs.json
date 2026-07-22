@@ -1,5 +1,59 @@
 [
   {
+    "id": "LOG-1784706449606652",
+    "timestamp": "2026-07-22T07:47:29.606Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Size M"
+  },
+  {
+    "id": "LOG-1784706387148612",
+    "timestamp": "2026-07-22T07:46:27.148Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Size M"
+  },
+  {
+    "id": "LOG-1784705157055348",
+    "timestamp": "2026-07-22T07:25:57.055Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Roses Box"
+  },
+  {
+    "id": "LOG-1784704932765342",
+    "timestamp": "2026-07-22T07:22:12.765Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Size M"
+  },
+  {
+    "id": "LOG-1784704616373450",
+    "timestamp": "2026-07-22T07:16:56.373Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Static Size M"
+  },
+  {
+    "id": "LOG-1784704006807616",
+    "timestamp": "2026-07-22T07:06:46.807Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
     "id": "LOG-178470300276758",
     "timestamp": "2026-07-22T06:50:02.767Z",
     "userId": "admin-id-001",
