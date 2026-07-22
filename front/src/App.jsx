@@ -28,6 +28,7 @@ export default function App() {
     const [isAuthOpen, setIsAuthOpen] = useState(false);
     const [isOrdersOpen, setIsOrdersOpen] = useState(false);
     const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+    const [cartCustomSelections, setCartCustomSelections] = useState({});
 
     // Authentication State — stored as JSON object in sessionStorage (per-tab)
     const [user, setUser] = useState(() => {
@@ -82,7 +83,7 @@ export default function App() {
             const response = await axios.get(`${API_URL}/products`);
             const mappedProducts = response.data.map(p => ({
                 ...p,
-                img: p.image ? `http://localhost:3000/uploads/${p.image}` : '',
+                img: p.image ? `/uploads/${p.image}` : '',
             }));
             setProducts(mappedProducts);
         } catch (err) {
@@ -115,7 +116,7 @@ export default function App() {
                                 id: prod.id,
                                 name: prod.name,
                                 price: prod.price,
-                                img: prod.image ? `http://localhost:3000/uploads/${prod.image}` : '',
+                                img: prod.image ? `/uploads/${prod.image}` : '',
                                 quantity: item.quantity,
                                 cartItemId: item.cartItemId,
                                 isCustom: prod.isCustom,
@@ -142,7 +143,7 @@ export default function App() {
         fetchCart();
 
         // Setup Socket.IO for real-time updates
-        const socket = io('http://localhost:3000');
+        const socket = io();
         socket.emit('joinUserRoom', user.id);
 
         socket.on('cartUpdated', () => {
@@ -267,7 +268,7 @@ export default function App() {
                             id: prod.id,
                             name: prod.name,
                             price: prod.price,
-                            img: prod.image ? `http://localhost:3000/uploads/${prod.image}` : '',
+                            img: prod.image ? `/uploads/${prod.image}` : '',
                             quantity: item.quantity,
                             cartItemId: item.cartItemId,
                             isCustom: prod.isCustom,
@@ -309,7 +310,7 @@ export default function App() {
                             id: prod.id,
                             name: prod.name,
                             price: prod.price,
-                            img: prod.image ? `http://localhost:3000/uploads/${prod.image}` : '',
+                            img: prod.image ? `/uploads/${prod.image}` : '',
                             quantity: item.quantity,
                             cartItemId: item.cartItemId,
                             isCustom: prod.isCustom,
@@ -492,7 +493,10 @@ export default function App() {
                     onIncreaseQty={handleIncreaseQty}
                     onDecreaseQty={handleDecreaseQty}
                     onRemoveItem={handleRemoveItem}
-                    onOpenCheckout={() => setIsCheckoutOpen(true)}
+                    onOpenCheckout={(selections) => {
+                        setCartCustomSelections(selections || {});
+                        setIsCheckoutOpen(true);
+                    }}
                 />
 
                 {/* Modals */}
@@ -513,6 +517,7 @@ export default function App() {
                     onClose={() => setIsCheckoutOpen(false)}
                     cart={cart}
                     user={user}
+                    cartCustomSelections={cartCustomSelections}
                     onCartUpdated={refetchCart}
                     refetchUser={fetchUserProfile}
                     onCheckOrder={() => { setIsCheckoutOpen(false); setIsOrdersOpen(true); }}

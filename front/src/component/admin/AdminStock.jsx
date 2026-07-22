@@ -82,7 +82,7 @@ export default function AdminStock({ user }) {
                                     <tr key={p.id}>
                                         <td>
                                             {p.image ? (
-                                                <img src={`http://localhost:3000/uploads/${p.image}`} alt={p.name} className="product-img-preview" />
+                                                <img src={`/uploads/${p.image}`} alt={p.name} className="product-img-preview" />
                                             ) : (
                                                 <div className="product-img-preview" style={{ background: '#e2e8f0' }}></div>
                                             )}

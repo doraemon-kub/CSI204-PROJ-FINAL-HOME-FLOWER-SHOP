@@ -10,7 +10,8 @@ export default function ProductCard({ product, onAddToCart }) {
   };
 
   const hasImage = product.img || product.image;
-  const imgSrc = product.img || (product.image ? `http://localhost:3000/uploads/${product.image}` : '');
+  // Construct image source properly, accommodating old and new formats
+  const imgSrc = product.img || (product.image ? `/uploads/${product.image}` : '');
 
   return (
     <>

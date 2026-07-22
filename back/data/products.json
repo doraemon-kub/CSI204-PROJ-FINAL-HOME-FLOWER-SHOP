@@ -8,7 +8,7 @@
     "tag": "มนุษย์",
     "image": "product-1784706700868-986034870.jpeg",
     "isCustom": true,
-    "stock": 7,
+    "stock": 6,
     "customOptions": [
       {
         "name": "ฟดหฟเหำเ",
@@ -30,7 +30,7 @@
     "tag": "ช่อสำเร็จรูป",
     "image": "product-1784702846972-449955160.png",
     "isCustom": true,
-    "stock": 9,
+    "stock": 8,
     "customOptions": [
       {
         "name": "หยรนืเยนรหกืินยกรพื้ยนพื้",
@@ -60,7 +60,7 @@
     "tag": "ตุ๊กตาหมี",
     "image": "product-1784702579539-727877179.jpg",
     "isCustom": false,
-    "stock": 9
+    "stock": 6
   },
   {
     "id": "prod-1784472755067",
@@ -72,7 +72,7 @@
     "description": "ช่อ Custom สแตติส Size S",
     "image": "product-1784701925105-984334537.jpg",
     "createdAt": "2026-07-19T14:52:35.067Z",
-    "stock": 10,
+    "stock": 7,
     "isCustom": true,
     "customOptions": [
       {

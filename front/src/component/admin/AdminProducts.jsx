@@ -219,7 +219,8 @@ export default function AdminProducts({ user }) {
                         if (choice.file) {
                             data.append(`choiceImg_${optIndex}_${choiceIndex}`, choice.file);
                         }
-                        const { file, ...rest } = choice;
+                        const rest = { ...choice };
+                        delete rest.file;
                         return rest;
                     })
                 }));
@@ -411,7 +412,7 @@ export default function AdminProducts({ user }) {
                                 <label>รูปภาพสินค้า</label>
                                 {editingId && formData.existingImage && !imageFile && (
                                     <div style={{ marginBottom: '10px' }}>
-                                        <img src={`http://localhost:3000/uploads/${formData.existingImage}`} alt="Current" style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e2d9c9' }} />
+                                        <img src={`/uploads/${formData.existingImage}`} alt="Current" style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '8px', border: '1px solid #e2d9c9' }} />
                                         <div style={{ fontSize: '0.8rem', color: '#8a7a68', marginTop: '4px' }}>รูปภาพปัจจุบัน (หากไม่ต้องการเปลี่ยน ให้เว้นว่างไว้)</div>
                                     </div>
                                 )}
@@ -556,7 +557,7 @@ export default function AdminProducts({ user }) {
                                                                     <img src={URL.createObjectURL(choice.file)} alt="preview" style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #ccc' }} />
                                                                 )}
                                                                 {!choice.file && choice.image && typeof choice.image === 'string' && (
-                                                                    <img src={choice.image.startsWith('http') ? choice.image : `http://localhost:3000/uploads/${choice.image}`} alt="preview" style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #ccc' }} onError={(e) => { e.target.style.display = 'none' }} onLoad={(e) => { e.target.style.display = 'block' }} />
+                                                                    <img src={choice.image.startsWith('http') ? choice.image : `/uploads/${choice.image}`} alt="preview" style={{ width: '30px', height: '30px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #ccc' }} onError={(e) => { e.target.style.display = 'none' }} onLoad={(e) => { e.target.style.display = 'block' }} />
                                                                 )}
                                                             </div>
                                                         </div>
@@ -601,7 +602,7 @@ export default function AdminProducts({ user }) {
                                 <tr key={p.id}>
                                     <td>
                                         {p.image ? (
-                                            <img src={`http://localhost:3000/uploads/${p.image}`} alt={p.name} className="product-img-preview" />
+                                            <img src={`/uploads/${p.image}`} alt={p.name} className="product-img-preview" />
                                         ) : (
                                             <div className="product-img-preview" style={{ background: '#e2e8f0' }}></div>
                                         )}

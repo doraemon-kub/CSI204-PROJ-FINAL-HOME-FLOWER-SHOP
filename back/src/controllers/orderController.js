@@ -131,6 +131,25 @@ module.exports = {
             return res.status(404).json({ message: 'Order not found' });
         }
 
+        const currentStatus = orders[orderIndex].status;
+
+        // If status changes to a cancelled state, return stock
+        if (status && (status === 'ยกเลิก' || status === 'รอคืนเงิน' || status === 'คืนเงินสำเร็จ') && 
+            currentStatus !== 'ยกเลิก' && currentStatus !== 'รอคืนเงิน' && currentStatus !== 'คืนเงินสำเร็จ') {
+            
+            const products = fileDb.readData('products');
+            const orderItems = typeof orders[orderIndex].items === 'string' 
+                ? JSON.parse(orders[orderIndex].items) 
+                : orders[orderIndex].items;
+            for (const item of orderItems) {
+                const productIndex = products.findIndex(p => p.id === item.productId);
+                if (productIndex !== -1) {
+                    products[productIndex].stock += item.quantity;
+                }
+            }
+            fileDb.writeData('products', products);
+        }
+
         if (status) orders[orderIndex].status = status;
         if (trackingNumber !== undefined) orders[orderIndex].trackingNumber = trackingNumber;
 
@@ -164,6 +183,19 @@ module.exports = {
         if (!cancellableStatuses.includes(currentStatus)) {
             return res.status(400).json({ message: 'Order cannot be cancelled at this stage' });
         }
+
+        // Return stock back to products
+        const products = fileDb.readData('products');
+        const orderItems = typeof orders[orderIndex].items === 'string' 
+            ? JSON.parse(orders[orderIndex].items) 
+            : orders[orderIndex].items;
+        for (const item of orderItems) {
+            const productIndex = products.findIndex(p => p.id === item.productId);
+            if (productIndex !== -1) {
+                products[productIndex].stock += item.quantity;
+            }
+        }
+        fileDb.writeData('products', products);
 
         orders[orderIndex].status = 'รอคืนเงิน';
         fileDb.writeData('orders', orders);

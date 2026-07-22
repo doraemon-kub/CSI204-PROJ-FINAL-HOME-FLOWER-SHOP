@@ -96,12 +96,7 @@ export default function AdminOrders({ user }) {
               ) : orders.map(order => {
                 const isEditing = editingOrderId === order.orderId;
                 
-                // Determine badge color
-                let badgeClass = '';
-                if (order.status?.includes('ชำระเงินแล้ว') || order.status?.includes('จัดส่งแล้ว')) badgeClass = 'success';
-                else if (order.status?.includes('ยกเลิก')) badgeClass = 'danger';
-                else if (order.status?.includes('กำลังจัดเตรียม')) badgeClass = 'info';
-                else badgeClass = 'warning';
+
 
                 const safeBuyer = typeof order.buyerInfo === 'string' ? JSON.parse(order.buyerInfo) : order.buyerInfo;
 
@@ -116,6 +111,21 @@ export default function AdminOrders({ user }) {
                     <td>
                       {safeBuyer?.name || 'ไม่ระบุ'}<br/>
                       <span style={{ fontSize: '0.8rem', color: '#64748b' }}>โทร: {safeBuyer?.phone || '-'}</span>
+                      {(() => {
+                        const safeItems = typeof order.items === 'string' ? JSON.parse(order.items) : (order.items || []);
+                        return safeItems.length > 0 && (
+                          <div style={{ marginTop: '6px', fontSize: '0.8rem', color: '#475569' }}>
+                            {safeItems.map((item, idx) => (
+                              <div key={idx}>
+                                • {item.name} x{item.quantity}
+                                {item.selectedOptions && Object.keys(item.selectedOptions).length > 0 && (
+                                  <span style={{ color: '#888' }}> ({Object.values(item.selectedOptions).join(', ')})</span>
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      })()}
                     </td>
                     <td>฿{(order.totalAmount || 0).toLocaleString()}</td>
                     <td>
@@ -161,7 +171,7 @@ export default function AdminOrders({ user }) {
                     </td>
                     <td>
                       {order.payment?.slipUrl ? (
-                        <a href={`http://localhost:3000${order.payment.slipUrl}`} target="_blank" rel="noreferrer" className="slip-link">
+                        <a href={`${order.payment.slipUrl}`} target="_blank" rel="noreferrer" className="slip-link">
                           <i className="fa-regular fa-image"></i> ดูสลิป
                         </a>
                       ) : (

@@ -58,7 +58,7 @@ export default function CartDrawer({
         }
         onClose();
         if (onOpenCheckout) {
-            onOpenCheckout();
+            onOpenCheckout(customSelections);
         }
     };
 
@@ -234,7 +234,7 @@ export default function CartDrawer({
                                                                     {selectedImage && (
                                                                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', paddingLeft: '8px', marginTop: '2px' }}>
                                                                             <i className="fa-solid fa-arrow-turn-up fa-rotate-90" style={{ color: '#cbd5e1', fontSize: '0.8rem' }}></i>
-                                                                            <img src={selectedImage.startsWith('http') ? selectedImage : `http://localhost:3000/uploads/${selectedImage}`} alt={selectedChoiceName} style={{ width: '36px', height: '36px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2d9c9' }} />
+                                                                            <img src={selectedImage.startsWith('http') ? selectedImage : `/uploads/${selectedImage}`} alt={selectedChoiceName} style={{ width: '36px', height: '36px', objectFit: 'cover', borderRadius: '4px', border: '1px solid #e2d9c9' }} />
                                                                         </div>
                                                                     )}
                                                                 </div>

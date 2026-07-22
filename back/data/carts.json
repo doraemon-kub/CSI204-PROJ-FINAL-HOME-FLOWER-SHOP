@@ -1,14 +1,7 @@
 [
   {
     "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
-    "items": [
-      {
-        "cartItemId": "ff6ac462-a85b-4322-aee3-2124e2772cce",
-        "productId": "p2",
-        "quantity": 4,
-        "customOptions": null
-      }
-    ]
+    "items": []
   },
   {
     "userId": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",

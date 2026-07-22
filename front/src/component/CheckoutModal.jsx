@@ -9,7 +9,8 @@ export default function CheckoutModal({
   cart = [], // ป้องกันเว็บพังหากตะกร้าสินค้าว่างเปล่า
   user,
   onCartUpdated,
-  onCheckOrder
+  onCheckOrder,
+  cartCustomSelections = {}
 }) {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false); // ควบคุมการเปิดปิด Custom Success Modal
@@ -83,12 +84,33 @@ export default function CheckoutModal({
     try {
       const formData = new FormData();
       formData.append('userId', user.id);
-      formData.append('cartItems', JSON.stringify(cart.map(item => ({
-        productId: item.id,
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-      }))));
+      formData.append('cartItems', JSON.stringify(cart.map(item => {
+        const itemId = item.cartItemId || item.id;
+        // Collect custom selections for this item
+        const selectedOptions = {};
+        if (item.customOptions && item.customOptions.length > 0) {
+          item.customOptions.forEach((opt, optIndex) => {
+            const selectKey = `${itemId}-opt-${optIndex}`;
+            if (cartCustomSelections[selectKey]) {
+              selectedOptions[opt.name] = cartCustomSelections[selectKey];
+            }
+          });
+        }
+        // Also check hardcoded keys (fallback for old products)
+        ['1', '2', '3'].forEach(k => {
+          const key = `${itemId}-${k}`;
+          if (cartCustomSelections[key]) {
+            selectedOptions[`ตัวเลือกที่ ${k}`] = cartCustomSelections[key];
+          }
+        });
+        return {
+          productId: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          selectedOptions: Object.keys(selectedOptions).length > 0 ? selectedOptions : undefined
+        };
+      })));
       formData.append('buyerInfo', JSON.stringify({ 
         name: buyerName, 
         phone: buyerPhone, 

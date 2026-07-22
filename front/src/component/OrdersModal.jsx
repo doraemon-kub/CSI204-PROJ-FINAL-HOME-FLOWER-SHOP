@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { io } from 'socket.io-client';
 
@@ -43,26 +43,7 @@ export default function OrdersModal({ isOpen, onClose, user }) {
     const [expandedOrderId, setExpandedOrderId] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [cancellingOrderId, setCancellingOrderId] = useState(null);
-
-    useEffect(() => {
-        if (isOpen && user && user.id) {
-            fetchOrders();
-
-            const socket = io('http://localhost:3000');
-            socket.emit('joinUserRoom', user.id);
-
-            socket.on('orderUpdated', (data) => {
-                // อัปเดตข้อมูลเมื่อมีการเปลี่ยนแปลงสถานะจากฝั่งแอดมินหรือจากการยกเลิก
-                fetchOrders();
-            });
-
-            return () => {
-                socket.disconnect();
-            };
-        }
-    }, [isOpen, user]);
-
-    const fetchOrders = async () => {
+    const fetchOrders = useCallback(async () => {
         setIsLoading(true);
         try {
             const response = await axios.get(`${API_URL}/orders/user/${user.id}`);
@@ -85,7 +66,25 @@ export default function OrdersModal({ isOpen, onClose, user }) {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [user]);
+
+    useEffect(() => {
+        if (isOpen && user && user.id) {
+            fetchOrders();
+
+            const socket = io();
+            socket.emit('joinUserRoom', user.id);
+
+            socket.on('orderUpdated', () => {
+                // อัปเดตข้อมูลเมื่อมีการเปลี่ยนแปลงสถานะจากฝั่งแอดมินหรือจากการยกเลิก
+                fetchOrders();
+            });
+
+            return () => {
+                socket.disconnect();
+            };
+        }
+    }, [isOpen, user, fetchOrders]);
 
     const handleOrderClick = (order, idx) => {
         const rowKey = order.orderId || idx;
@@ -227,7 +226,14 @@ export default function OrdersModal({ isOpen, onClose, user }) {
                                                     <td style={{ letterSpacing: 'normal', wordSpacing: 'normal' }}>{order.orderId}</td>
                                                     <td style={{ letterSpacing: 'normal', wordSpacing: 'normal' }}>
                                                         {items.map((item, idx) => (
-                                                            <div key={idx}>{item?.name || 'สินค้า'} x{Number(item?.quantity) || 0}</div>
+                                                            <div key={idx}>
+                                                                {item?.name || 'สินค้า'} x{Number(item?.quantity) || 0}
+                                                                {item?.selectedOptions && Object.keys(item.selectedOptions).length > 0 && (
+                                                                    <span style={{ fontSize: '0.8rem', color: '#888', marginLeft: '6px' }}>
+                                                                        ({Object.values(item.selectedOptions).join(', ')})
+                                                                    </span>
+                                                                )}
+                                                            </div>
                                                         ))}
                                                     </td>
                                                     <td style={{ letterSpacing: 'normal', wordSpacing: 'normal' }}>{cleanThaiText(order.status)}</td>
@@ -253,7 +259,16 @@ export default function OrdersModal({ isOpen, onClose, user }) {
                                                                                 const price = Number(item?.price) || 0;
                                                                                 return (
                                                                                     <tr key={idx}>
-                                                                                        <td>{item?.name || 'สินค้า'} x{qty}</td>
+                                                                                        <td>
+                                                                                            {item?.name || 'สินค้า'} x{qty}
+                                                                                            {item?.selectedOptions && Object.keys(item.selectedOptions).length > 0 && (
+                                                                                                <div style={{ fontSize: '0.8rem', color: '#888', marginTop: '2px' }}>
+                                                                                                    {Object.entries(item.selectedOptions).map(([key, val], i) => (
+                                                                                                        <span key={i}>{key}: {val}{i < Object.entries(item.selectedOptions).length - 1 ? ', ' : ''}</span>
+                                                                                                    ))}
+                                                                                                </div>
+                                                                                            )}
+                                                                                        </td>
                                                                                         <td className="text-right">{(price * qty).toLocaleString()} ฿</td>
                                                                                     </tr>
                                                                                 );
