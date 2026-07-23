@@ -453,7 +453,7 @@
     },
     "shippingFee": 100,
     "totalAmount": 790,
-    "status": "กำลังตรวจสอบการชำระเงิน",
+    "status": "ชำระเงินแล้ว",
     "trackingNumber": "4444",
     "createdAt": "2026-07-21T15:59:22.883Z"
   },
@@ -561,7 +561,7 @@
     },
     "shippingFee": 100,
     "totalAmount": 1490,
-    "status": "รอคืนเงิน",
+    "status": "คืนเงินสำเร็จ",
     "trackingNumber": null,
     "createdAt": "2026-07-22T15:14:25.708Z"
   },
@@ -615,7 +615,7 @@
     },
     "shippingFee": 100,
     "totalAmount": 790,
-    "status": "กำลังตรวจสอบการชำระเงิน",
+    "status": "กำลังจัดเตรียมสินค้า",
     "trackingNumber": null,
     "createdAt": "2026-07-22T15:25:34.011Z"
   },
@@ -642,7 +642,7 @@
     },
     "shippingFee": 100,
     "totalAmount": 3570,
-    "status": "กำลังตรวจสอบการชำระเงิน",
+    "status": "ยกเลิกคำสั่งซื้อ",
     "trackingNumber": null,
     "createdAt": "2026-07-22T15:26:42.664Z"
   },
@@ -699,5 +699,59 @@
     "status": "ยกเลิกคำสั่งซื้อ",
     "trackingNumber": null,
     "createdAt": "2026-07-23T06:59:40.014Z"
+  },
+  {
+    "orderId": "ORD-1784799969850",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "items": "[{\"productId\":\"p2\",\"name\":\"Roses Box\",\"price\":1390,\"quantity\":1,\"selectedOptions\":{\"หยรนืเยนรหกืินยกรพื้ยนพื้\":\"หยนเ้กหื้ยรนพกืเรนย\"}}]",
+    "buyerInfo": {
+      "name": "jekpek",
+      "phone": "0875186146",
+      "email": "herepek@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "jekpek",
+      "address": "ฟกฟก ต.คลองต้นไทร อ.คลองสาน จ.กรุงเทพมหานคร 10600",
+      "phone": "0875186146"
+    },
+    "cardMessage": "ฟ",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-23T16:46",
+      "slipUrl": "/uploads/slip-1784799969835-374643453.gif",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 1490,
+    "status": "คืนเงินสำเร็จ",
+    "trackingNumber": null,
+    "createdAt": "2026-07-23T09:46:09.850Z"
+  },
+  {
+    "orderId": "ORD-1784800897552",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "items": "[{\"productId\":\"prod-1784789371154\",\"name\":\"ham\",\"price\":10,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "jekpek",
+      "phone": "0875186146",
+      "email": "herepek@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "jekpek",
+      "address": "ฟกฟก ต.คลองต้นไทร อ.คลองสาน จ.กรุงเทพมหานคร 10600",
+      "phone": "0875186146"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-23T17:01",
+      "slipUrl": "/uploads/slip-1784800897544-747671134.gif",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 110,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-23T10:01:37.552Z"
   }
 ]

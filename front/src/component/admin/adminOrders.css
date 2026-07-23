@@ -42,6 +42,7 @@
 .status-badge.status-preparing { background: #fdf6ed; color: #a17849; }
 .status-badge.status-checking { background: #fff5e6; color: #cc8800; }
 .status-badge.status-refund { background: #ffe6e6; color: #cc0000; font-weight: bold; }
+.status-badge.status-refund-success { background: #dcfce7; color: #166534; font-weight: bold; }
 .status-badge.status-cancelled { background: #f0f0f0; color: #888888; }
 .status-badge.status-pending { background: #e6d8c3; color: #665342; }
 

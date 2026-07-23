@@ -1,5 +1,293 @@
 [
   {
+    "id": "LOG-1784801354555393",
+    "timestamp": "2026-07-23T10:09:14.555Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ROLE",
+    "details": "Updated role of user ham to MEMBER"
+  },
+  {
+    "id": "LOG-1784801336344854",
+    "timestamp": "2026-07-23T10:08:56.344Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ROLE",
+    "details": "Updated role of user jekpek to STAFF"
+  },
+  {
+    "id": "LOG-1784801333157593",
+    "timestamp": "2026-07-23T10:08:53.157Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ROLE",
+    "details": "Updated role of user ham to STAFF"
+  },
+  {
+    "id": "LOG-1784801056612498",
+    "timestamp": "2026-07-23T10:04:16.612Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ROLE",
+    "details": "Updated role of user ham to MEMBER"
+  },
+  {
+    "id": "LOG-1784801047931311",
+    "timestamp": "2026-07-23T10:04:07.931Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ROLE",
+    "details": "Updated role of user ham to STAFF"
+  },
+  {
+    "id": "LOG-1784801041710149",
+    "timestamp": "2026-07-23T10:04:01.710Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ROLE",
+    "details": "Updated role of user ham to STAFF"
+  },
+  {
+    "id": "LOG-1784801024165134",
+    "timestamp": "2026-07-23T10:03:44.165Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
+    "id": "LOG-1784800957414828",
+    "timestamp": "2026-07-23T10:02:37.414Z",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "userName": "jekpek",
+    "userRole": "MEMBER",
+    "action": "LOGOUT",
+    "details": "User logged out"
+  },
+  {
+    "id": "LOG-1784800907233829",
+    "timestamp": "2026-07-23T10:01:47.233Z",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "userName": "jekpek",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product prod-1784789371154 to cart"
+  },
+  {
+    "id": "LOG-1784800897560409",
+    "timestamp": "2026-07-23T10:01:37.560Z",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "userName": "jekpek",
+    "userRole": "MEMBER",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784800897552"
+  },
+  {
+    "id": "LOG-1784800888131676",
+    "timestamp": "2026-07-23T10:01:28.131Z",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "userName": "jekpek",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product prod-1784789371154 to cart"
+  },
+  {
+    "id": "LOG-1784800442374407",
+    "timestamp": "2026-07-23T09:54:02.374Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "REMOVE_FROM_CART",
+    "details": "Removed product prod-1784789371154 from cart"
+  },
+  {
+    "id": "LOG-1784800415307278",
+    "timestamp": "2026-07-23T09:53:35.307Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_PRODUCT",
+    "details": "Created product ฟหกฟดฟได"
+  },
+  {
+    "id": "LOG-1784800184103978",
+    "timestamp": "2026-07-23T09:49:44.103Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_PRODUCT",
+    "details": "Created product ฟกพหดำ"
+  },
+  {
+    "id": "LOG-1784800138614188",
+    "timestamp": "2026-07-23T09:48:58.614Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product ham"
+  },
+  {
+    "id": "LOG-1784800046964787",
+    "timestamp": "2026-07-23T09:47:26.964Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784799969850 to คืนเงินสำเร็จ"
+  },
+  {
+    "id": "LOG-1784800034317225",
+    "timestamp": "2026-07-23T09:47:14.317Z",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "userName": "jekpek",
+    "userRole": "MEMBER",
+    "action": "CANCEL_ORDER",
+    "details": "Requested cancellation for order ORD-1784799969850"
+  },
+  {
+    "id": "LOG-1784800010812864",
+    "timestamp": "2026-07-23T09:46:50.812Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784799969850 to กำลังจัดเตรียมสินค้า"
+  },
+  {
+    "id": "LOG-1784800006011553",
+    "timestamp": "2026-07-23T09:46:46.011Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784799969850 to ชำระเงินแล้ว"
+  },
+  {
+    "id": "LOG-1784799969856735",
+    "timestamp": "2026-07-23T09:46:09.856Z",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "userName": "jekpek",
+    "userRole": "MEMBER",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784799969850"
+  },
+  {
+    "id": "LOG-1784799951079172",
+    "timestamp": "2026-07-23T09:45:51.079Z",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "userName": "jekpek",
+    "userRole": "MEMBER",
+    "action": "ADD_ADDRESS",
+    "details": "Added new address for jekpek"
+  },
+  {
+    "id": "LOG-1784799934282498",
+    "timestamp": "2026-07-23T09:45:34.282Z",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "userName": "jekpek",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p2 to cart"
+  },
+  {
+    "id": "LOG-1784799922680946",
+    "timestamp": "2026-07-23T09:45:22.680Z",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "userName": "jekpek",
+    "userRole": "MEMBER",
+    "action": "REGISTER",
+    "details": "New user registered: jekpek (herepek@gmail.com)"
+  },
+  {
+    "id": "LOG-1784799828261623",
+    "timestamp": "2026-07-23T09:43:48.261Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product prod-1784789371154 to cart"
+  },
+  {
+    "id": "LOG-1784799798669127",
+    "timestamp": "2026-07-23T09:43:18.669Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784649562883 to ชำระเงินแล้ว"
+  },
+  {
+    "id": "LOG-1784799568664875",
+    "timestamp": "2026-07-23T09:39:28.664Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784733265708 to คืนเงินสำเร็จ"
+  },
+  {
+    "id": "LOG-1784799560410670",
+    "timestamp": "2026-07-23T09:39:20.410Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784733934011 to กำลังจัดเตรียมสินค้า"
+  },
+  {
+    "id": "LOG-178479922413386",
+    "timestamp": "2026-07-23T09:33:44.133Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784733934011 to กำลังจัดเตรียมสินค้า"
+  },
+  {
+    "id": "LOG-1784799214390207",
+    "timestamp": "2026-07-23T09:33:34.390Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784733934011 to ชำระเงินแล้ว"
+  },
+  {
+    "id": "LOG-178479920455542",
+    "timestamp": "2026-07-23T09:33:24.555Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784734002664 to ยกเลิกคำสั่งซื้อ"
+  },
+  {
+    "id": "LOG-1784798700692508",
+    "timestamp": "2026-07-23T09:25:00.692Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
+    "id": "LOG-1784798671080932",
+    "timestamp": "2026-07-23T09:24:31.080Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "Unknown User",
+    "userRole": "SYSTEM",
+    "action": "LOGOUT",
+    "details": "User logged out"
+  },
+  {
     "id": "LOG-1784791113051902",
     "timestamp": "2026-07-23T07:18:33.051Z",
     "userId": "admin-id-001",

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import './adminProducts.css';
 import ImageCropperModal from './ImageCropperModal';
 const API_URL = '/api';
@@ -238,7 +239,7 @@ export default function AdminProducts({ user }) {
                         'Content-Type': 'multipart/form-data'
                     }
                 });
-                alert('แก้ไขสินค้าเรียบร้อยแล้ว');
+                Swal.fire({ title: 'สำเร็จ', text: 'แก้ไขสินค้าเรียบร้อยแล้ว', icon: 'success', confirmButtonColor: '#846F5B' });
             } else {
                 await axios.post(`${API_URL}/products`, data, {
                     headers: {
@@ -246,7 +247,7 @@ export default function AdminProducts({ user }) {
                         'Content-Type': 'multipart/form-data'
                     }
                 });
-                alert('เพิ่มสินค้าเรียบร้อยแล้ว');
+                Swal.fire({ title: 'สำเร็จ', text: 'เพิ่มสินค้าเรียบร้อยแล้ว', icon: 'success', confirmButtonColor: '#846F5B' });
             }
             setIsAdding(false);
             setEditingId(null);
@@ -256,7 +257,7 @@ export default function AdminProducts({ user }) {
             fetchTags();
         } catch (err) {
             console.error('Failed to add product', err);
-            alert(`เกิดข้อผิดพลาดในการ${editingId ? 'แก้ไข' : 'เพิ่ม'}สินค้า`);
+            Swal.fire({ title: 'เกิดข้อผิดพลาด', text: `เกิดข้อผิดพลาดในการ${editingId ? 'แก้ไข' : 'เพิ่ม'}สินค้า`, icon: 'error', confirmButtonColor: '#a35d6a' });
         }
     };
 
@@ -266,16 +267,16 @@ export default function AdminProducts({ user }) {
             await axios.delete(`${API_URL}/products/${id}`, {
                 headers: { 'x-user-id': user.id }
             });
-            alert('ลบสินค้าสำเร็จ');
+            Swal.fire({ title: 'สำเร็จ', text: 'ลบสินค้าสำเร็จ', icon: 'success', confirmButtonColor: '#846F5B' });
             fetchProducts();
         } catch (err) {
             console.error('Failed to delete product', err);
-            alert('เกิดข้อผิดพลาดในการลบสินค้า');
+            Swal.fire({ title: 'ผิดพลาด', text: 'เกิดข้อผิดพลาดในการลบสินค้า', icon: 'error', confirmButtonColor: '#a35d6a' });
         }
     };
 
     const handleDeleteTag = async () => {
-        if (!formData.tag) return alert('กรุณาเลือกแท็กที่ต้องการลบ');
+        if (!formData.tag) return Swal.fire({ title: 'ข้อผิดพลาด', text: 'กรุณาเลือกแท็กที่ต้องการลบ', icon: 'warning', confirmButtonColor: '#846F5B' });
         const tagToDelete = formData.tag;
         
         const isPredefined = predefinedTags[formData.category]?.includes(tagToDelete);
@@ -316,13 +317,13 @@ export default function AdminProducts({ user }) {
                 });
             }
             
-            alert(`ลบแท็ก "${tagToDelete}" เรียบร้อยแล้ว`);
+            Swal.fire({ title: 'สำเร็จ', text: `ลบแท็ก "${tagToDelete}" เรียบร้อยแล้ว`, icon: 'success', confirmButtonColor: '#846F5B' });
             setFormData(prev => ({ ...prev, tag: '' }));
             fetchProducts();
             fetchTags();
         } catch (err) {
             console.error('Failed to delete tag', err);
-            alert('เกิดข้อผิดพลาดในการลบแท็ก');
+            Swal.fire({ title: 'ผิดพลาด', text: 'เกิดข้อผิดพลาดในการลบแท็ก', icon: 'error', confirmButtonColor: '#a35d6a' });
         }
     };
 

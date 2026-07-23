@@ -25,5 +25,14 @@
     "phone": "1111111112",
     "role": "STAFF",
     "createdAt": "2026-07-23T07:00:50.930Z"
+  },
+  {
+    "id": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "name": "jekpek",
+    "email": "herepek@gmail.com",
+    "password": "asd456123",
+    "phone": "0875186146",
+    "role": "STAFF",
+    "createdAt": "2026-07-23T09:45:22.664Z"
   }
 ]

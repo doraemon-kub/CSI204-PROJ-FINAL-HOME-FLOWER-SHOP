@@ -89,5 +89,18 @@
     "province": "ตราด",
     "zipcode": "23110",
     "isDefault": true
+  },
+  {
+    "id": "4e7396aa-5dec-4a01-a9bc-c6f9d0a65914",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "name": "jekpek",
+    "phone": "0875186146",
+    "address": "ฟกฟก ต.คลองต้นไทร อ.คลองสาน จ.กรุงเทพมหานคร 10600",
+    "addressDetail": "ฟกฟก",
+    "subdistrict": "คลองต้นไทร",
+    "district": "คลองสาน",
+    "province": "กรุงเทพมหานคร",
+    "zipcode": "10600",
+    "isDefault": true
   }
 ]

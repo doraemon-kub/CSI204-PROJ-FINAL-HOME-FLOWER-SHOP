@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const API_URL = '/api';
 
@@ -27,12 +28,12 @@ export default function AdminStock({ user }) {
     const handleUpdateStock = async (id) => {
         let finalStock = parseInt(editStockValue, 10);
         if (isNaN(finalStock) || finalStock < 0) {
-            alert('ห้ามใส่ตัวเลขติดลบไอสัส');
+            Swal.fire({ title: 'ข้อผิดพลาด', text: 'ห้ามใส่ตัวเลขติดลบ', icon: 'warning', confirmButtonColor: '#846F5B' });
             finalStock = 0;
         }
 
         else if (finalStock > 99) {
-            alert('ไม่สามารถใส่จำนวนเกิน 99 ชิ้นได้');
+            Swal.fire({ title: 'ข้อผิดพลาด', text: 'ไม่สามารถใส่จำนวนเกิน 99 ชิ้นได้', icon: 'warning', confirmButtonColor: '#846F5B' });
             finalStock = 99;
         }
 
@@ -46,12 +47,12 @@ export default function AdminStock({ user }) {
                         'Content-Type': 'multipart/form-data'
                     }
                 });
-                alert('อัปเดตสต๊อกเรียบร้อยแล้ว');
+                Swal.fire({ title: 'สำเร็จ', text: 'อัปเดตสต๊อกเรียบร้อยแล้ว', icon: 'success', confirmButtonColor: '#846F5B' });
                 setEditingStockId(null);
                 fetchProducts();
             } catch (err) {
                 console.error('Failed to update stock', err);
-                alert('เกิดข้อผิดพลาดในการอัปเดตสต๊อก');
+                Swal.fire({ title: 'ผิดพลาด', text: 'เกิดข้อผิดพลาดในการอัปเดตสต๊อก', icon: 'error', confirmButtonColor: '#a35d6a' });
             }
         };
     }

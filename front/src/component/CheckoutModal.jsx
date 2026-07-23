@@ -58,12 +58,12 @@ export default function CheckoutModal({
   const handleCheckoutSubmit = async (e) => {
     e.preventDefault();
     if (!user) {
-      alert('กรุณาเข้าสู่ระบบก่อนทำการสั่งซื้อ');
+      Swal.fire({ title: 'แจ้งเตือน', text: 'กรุณาเข้าสู่ระบบก่อนทำการสั่งซื้อ', icon: 'info', confirmButtonColor: '#846F5B' });
       return;
     }
 
     if (!paymentSlip) {
-      alert('กรุณาแนบสลิปโอนเงินก่อนยืนยันคำสั่งซื้อ');
+      Swal.fire({ title: 'แจ้งเตือน', text: 'กรุณาแนบสลิปโอนเงินก่อนยืนยันคำสั่งซื้อ', icon: 'info', confirmButtonColor: '#846F5B' });
       return;
     }
 
@@ -72,11 +72,11 @@ export default function CheckoutModal({
       const currentTime = new Date().getTime();
       // Allow a 5-minute buffer for "current" time due to manual entry delays
       if (selectedTime < currentTime - 5 * 60 * 1000) {
-        alert('เวลาโอนสลิปต้องเป็นเวลาปัจจุบันหรือในอนาคตเท่านั้น ห้ามระบุเวลาในอดีตที่ผ่านมาแล้ว');
+        Swal.fire({ title: 'แจ้งเตือน', text: 'เวลาโอนสลิปต้องเป็นเวลาปัจจุบันหรือในอนาคตเท่านั้น ห้ามระบุเวลาในอดีตที่ผ่านมาแล้ว', icon: 'info', confirmButtonColor: '#846F5B' });
         return;
       }
     } else {
-      alert('กรุณาระบุเวลาที่โอนเงินตามสลิป');
+      Swal.fire({ title: 'แจ้งเตือน', text: 'กรุณาระบุเวลาที่โอนเงินตามสลิป', icon: 'info', confirmButtonColor: '#846F5B' });
       return;
     }
 
@@ -144,7 +144,7 @@ export default function CheckoutModal({
       
     } catch (err) {
       console.error('Checkout failed', err);
-      alert(err.response?.data?.message || 'เกิดข้อผิดพลาดในการสั่งซื้อ กรุณาลองใหม่อีกครั้ง');
+      Swal.fire({ title: 'แจ้งเตือน', text: err.response?.data?.message || 'เกิดข้อผิดพลาดในการสั่งซื้อ กรุณาลองใหม่อีกครั้ง', icon: 'info', confirmButtonColor: '#846F5B' });
     } finally {
       setIsCheckingOut(false);
     }

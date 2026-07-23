@@ -116,7 +116,7 @@ export default function OrdersModal({ isOpen, onClose, user }) {
             fetchOrders();
         } catch (error) {
             console.error('Cancel order error:', error);
-            alert(error.response?.data?.message || 'ไม่สามารถยกเลิกคำสั่งซื้อได้ในขณะนี้');
+            Swal.fire({ title: 'แจ้งเตือน', text: error.response?.data?.message || 'ไม่สามารถยกเลิกคำสั่งซื้อได้ในขณะนี้', icon: 'info', confirmButtonColor: '#846F5B' });
         } finally {
             setCancellingOrderId(null);
         }

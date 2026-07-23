@@ -137,10 +137,36 @@
     "price": 10,
     "tag": "",
     "badge": "",
-    "description": "",
-    "stock": 90,
+    "description": "นพยห่เต่เยก่เจก่เยนห่เยห่เนต่หด้ืพนตห้พห",
+    "stock": 89,
     "isCustom": false,
     "image": "product-1784789371150-765190819.jpeg",
     "createdAt": "2026-07-23T06:49:31.154Z"
+  },
+  {
+    "id": "prod-1784800184102",
+    "name": "ฟกพหดำ",
+    "category": "ready-made",
+    "price": 45856,
+    "tag": "มนุษย์",
+    "badge": "",
+    "description": "",
+    "stock": 0,
+    "isCustom": false,
+    "image": "product-1784800184097-619063881.jpeg",
+    "createdAt": "2026-07-23T09:49:44.102Z"
+  },
+  {
+    "id": "prod-1784800415306",
+    "name": "ฟหกฟดฟได",
+    "category": "ready-made",
+    "price": 45673,
+    "tag": "มนุษย์",
+    "badge": "",
+    "description": "",
+    "stock": 0,
+    "isCustom": false,
+    "image": "product-1784800415303-696621138.jpeg",
+    "createdAt": "2026-07-23T09:53:35.306Z"
   }
 ]

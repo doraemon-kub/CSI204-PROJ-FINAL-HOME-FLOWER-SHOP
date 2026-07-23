@@ -57,5 +57,16 @@
   {
     "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
     "items": []
+  },
+  {
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "items": [
+      {
+        "cartItemId": "876357df-ced8-4ce9-9758-b801a3c156f4",
+        "productId": "prod-1784789371154",
+        "quantity": 1,
+        "customOptions": null
+      }
+    ]
   }
 ]
