@@ -9,75 +9,21 @@
     "createdAt": "2026-07-13T17:00:00.000Z"
   },
   {
-    "id": "acf186e6-82cc-43fe-b614-f3d17d18350c",
-    "name": "ทดสอบ2",
-    "email": "test2@test.com",
-    "password": "1234",
-    "phone": "0812345679",
-    "role": "MEMBER",
-    "createdAt": "2026-07-12T13:13:38.701Z"
-  },
-  {
-    "id": "7aaf73b5-0580-4b21-9bf3-7e264610f62b",
-    "name": "Test Member",
-    "email": "test_new_user_1@test.com",
-    "password": "123456",
-    "phone": "0812345678",
-    "role": "MEMBER",
-    "createdAt": "2026-07-13T15:53:50.297Z"
-  },
-  {
-    "id": "fe6da02f-8586-47a7-9892-7570fa5a1001",
-    "name": "เหี้ยภีม",
-    "email": "herepheem@gmail.com",
-    "password": "asd456123",
-    "phone": "0345234534",
-    "role": "MEMBER",
-    "createdAt": "2026-07-13T16:45:17.060Z"
-  },
-  {
-    "id": "a07bca3b-1917-4a96-9ac9-b3bbe206bd30",
-    "name": "ทดสอบ",
-    "email": "test@test.com",
-    "password": "123",
-    "phone": "0812345678",
-    "role": "MEMBER",
-    "createdAt": "2026-07-12T13:12:48.353Z"
-  },
-  {
-    "id": "e3e2a1bb-2938-4762-a7dd-39efca582ed8",
-    "name": "แฮม",
+    "id": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "name": "ham",
     "email": "ham@gmail.com",
-    "password": "asd456123",
-    "phone": "1234567890",
+    "password": "11111",
+    "phone": "1111111111",
+    "role": "MEMBER",
+    "createdAt": "2026-07-23T06:58:02.650Z"
+  },
+  {
+    "id": "3ac2eaa9-2bc7-41fe-8bea-7bc2c80e6244",
+    "name": "da",
+    "email": "staff@gmail.com",
+    "password": "11111",
+    "phone": "1111111112",
     "role": "STAFF",
-    "createdAt": "2026-07-15T18:04:18.883Z"
-  },
-  {
-    "id": "a2b0806f-ad4e-4fb7-ab78-0203fe3f4bcb",
-    "name": "Test Flower",
-    "email": "testflower@somemail.com",
-    "password": "12345",
-    "phone": "1234567890",
-    "role": "MEMBER",
-    "createdAt": "2026-07-16T06:54:02.205Z"
-  },
-  {
-    "id": "89d0a52b-7657-43cd-8637-eeb5d9aca445",
-    "name": "กาก",
-    "email": "kak@gmail.com",
-    "password": "asd456123",
-    "phone": "23523525",
-    "role": "MEMBER",
-    "createdAt": "2026-07-18T09:28:53.114Z"
-  },
-  {
-    "id": "74f0f364-f588-4f85-93cf-692693832609",
-    "name": "gay lord",
-    "email": "gaylord@gmail.com",
-    "password": "gaylord",
-    "phone": "124145124124",
-    "role": "MEMBER",
-    "createdAt": "2026-07-19T12:19:58.095Z"
+    "createdAt": "2026-07-23T07:00:50.930Z"
   }
 ]

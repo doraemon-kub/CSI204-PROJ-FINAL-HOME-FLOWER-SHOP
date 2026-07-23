@@ -669,8 +669,35 @@
     },
     "shippingFee": 100,
     "totalAmount": 1490,
-    "status": "รอคืนเงิน",
+    "status": "ชำระเงินแล้ว",
     "trackingNumber": null,
     "createdAt": "2026-07-23T06:20:16.037Z"
+  },
+  {
+    "orderId": "ORD-1784789980014",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "items": "[{\"productId\":\"prod-1784789371154\",\"name\":\"ham\",\"price\":10,\"quantity\":9}]",
+    "buyerInfo": {
+      "name": "ham",
+      "phone": "1111111111",
+      "email": "ham@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "ham",
+      "address": "ดไฟด ต.คลองใหญ่ อ.คลองใหญ่ จ.ตราด 23110",
+      "phone": "1111111111"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2569-12-25T11:11",
+      "slipUrl": "/uploads/slip-1784789980007-619465311.jpg",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 190,
+    "status": "ยกเลิกคำสั่งซื้อ",
+    "trackingNumber": null,
+    "createdAt": "2026-07-23T06:59:40.014Z"
   }
 ]

@@ -8,7 +8,7 @@
     "tag": "ช่อสำเร็จรูป",
     "image": "product-1784702846972-449955160.png",
     "isCustom": true,
-    "stock": 8,
+    "stock": 7,
     "customOptions": [
       {
         "name": "หยรนืเยนรหกืินยกรพื้ยนพื้",
@@ -129,5 +129,18 @@
         ]
       }
     ]
+  },
+  {
+    "id": "prod-1784789371154",
+    "name": "ham",
+    "category": "gift",
+    "price": 10,
+    "tag": "",
+    "badge": "",
+    "description": "",
+    "stock": 90,
+    "isCustom": false,
+    "image": "product-1784789371150-765190819.jpeg",
+    "createdAt": "2026-07-23T06:49:31.154Z"
   }
 ]

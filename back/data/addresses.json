@@ -76,5 +76,18 @@
     "province": "ชัยนาท",
     "zipcode": "17110",
     "isDefault": false
+  },
+  {
+    "id": "38de5ef9-8bce-42ce-bb25-bc36583f304a",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "name": "ham",
+    "phone": "1111111111",
+    "address": "ดไฟด ต.คลองใหญ่ อ.คลองใหญ่ จ.ตราด 23110",
+    "addressDetail": "ดไฟด",
+    "subdistrict": "คลองใหญ่",
+    "district": "คลองใหญ่",
+    "province": "ตราด",
+    "zipcode": "23110",
+    "isDefault": true
   }
 ]

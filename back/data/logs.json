@@ -1,5 +1,392 @@
 [
   {
+    "id": "LOG-1784791113051902",
+    "timestamp": "2026-07-23T07:18:33.051Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784789980014 to ยกเลิกคำสั่งซื้อ"
+  },
+  {
+    "id": "LOG-1784790426794342",
+    "timestamp": "2026-07-23T07:07:06.794Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
+    "id": "LOG-1784790412031816",
+    "timestamp": "2026-07-23T07:06:52.031Z",
+    "userId": "3ac2eaa9-2bc7-41fe-8bea-7bc2c80e6244",
+    "userName": "da",
+    "userRole": "STAFF",
+    "action": "LOGOUT",
+    "details": "User logged out"
+  },
+  {
+    "id": "LOG-1784790379677639",
+    "timestamp": "2026-07-23T07:06:19.677Z",
+    "userId": "3ac2eaa9-2bc7-41fe-8bea-7bc2c80e6244",
+    "userName": "da",
+    "userRole": "STAFF",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product Roses Box"
+  },
+  {
+    "id": "LOG-1784790264571580",
+    "timestamp": "2026-07-23T07:04:24.571Z",
+    "userId": "3ac2eaa9-2bc7-41fe-8bea-7bc2c80e6244",
+    "userName": "da",
+    "userRole": "STAFF",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784787616037 to ชำระเงินแล้ว"
+  },
+  {
+    "id": "LOG-1784790239884320",
+    "timestamp": "2026-07-23T07:03:59.884Z",
+    "userId": "3ac2eaa9-2bc7-41fe-8bea-7bc2c80e6244",
+    "userName": "da",
+    "userRole": "STAFF",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784789980014 to กำลังตรวจสอบการชำระเงิน"
+  },
+  {
+    "id": "LOG-1784790229452471",
+    "timestamp": "2026-07-23T07:03:49.452Z",
+    "userId": "3ac2eaa9-2bc7-41fe-8bea-7bc2c80e6244",
+    "userName": "da",
+    "userRole": "STAFF",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784789980014 to ชำระเงินแล้ว"
+  },
+  {
+    "id": "LOG-1784790122982186",
+    "timestamp": "2026-07-23T07:02:02.982Z",
+    "userId": "3ac2eaa9-2bc7-41fe-8bea-7bc2c80e6244",
+    "userName": "da",
+    "userRole": "STAFF",
+    "action": "LOGIN",
+    "details": "User logged in: da (staff@gmail.com)"
+  },
+  {
+    "id": "LOG-1784790100921307",
+    "timestamp": "2026-07-23T07:01:40.921Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGOUT",
+    "details": "User logged out"
+  },
+  {
+    "id": "LOG-1784790096315314",
+    "timestamp": "2026-07-23T07:01:36.315Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ROLE",
+    "details": "Updated role of user da to STAFF"
+  },
+  {
+    "id": "LOG-1784790083285424",
+    "timestamp": "2026-07-23T07:01:23.285Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "REMOVE_FROM_CART",
+    "details": "Removed product p1 from cart"
+  },
+  {
+    "id": "LOG-1784790082546491",
+    "timestamp": "2026-07-23T07:01:22.546Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "REMOVE_FROM_CART",
+    "details": "Removed product prod-1784472755067 from cart"
+  },
+  {
+    "id": "LOG-1784790070639637",
+    "timestamp": "2026-07-23T07:01:10.639Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
+    "id": "LOG-1784790053065645",
+    "timestamp": "2026-07-23T07:00:53.065Z",
+    "userId": "3ac2eaa9-2bc7-41fe-8bea-7bc2c80e6244",
+    "userName": "da",
+    "userRole": "MEMBER",
+    "action": "LOGOUT",
+    "details": "User logged out"
+  },
+  {
+    "id": "LOG-1784790050941149",
+    "timestamp": "2026-07-23T07:00:50.941Z",
+    "userId": "3ac2eaa9-2bc7-41fe-8bea-7bc2c80e6244",
+    "userName": "da",
+    "userRole": "MEMBER",
+    "action": "REGISTER",
+    "details": "New user registered: da (staff@gmail.com)"
+  },
+  {
+    "id": "LOG-178479002759170",
+    "timestamp": "2026-07-23T07:00:27.591Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "LOGOUT",
+    "details": "User logged out"
+  },
+  {
+    "id": "LOG-1784789980020925",
+    "timestamp": "2026-07-23T06:59:40.020Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784789980014"
+  },
+  {
+    "id": "LOG-1784789943585424",
+    "timestamp": "2026-07-23T06:59:03.585Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product prod-1784789371154 to 9"
+  },
+  {
+    "id": "LOG-1784789942035308",
+    "timestamp": "2026-07-23T06:59:02.035Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product prod-1784789371154 to 8"
+  },
+  {
+    "id": "LOG-1784789939804512",
+    "timestamp": "2026-07-23T06:58:59.804Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product prod-1784789371154 to 7"
+  },
+  {
+    "id": "LOG-178478993446072",
+    "timestamp": "2026-07-23T06:58:54.460Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product prod-1784789371154 to 6"
+  },
+  {
+    "id": "LOG-1784789933919830",
+    "timestamp": "2026-07-23T06:58:53.919Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product prod-1784789371154 to 5"
+  },
+  {
+    "id": "LOG-1784789933777550",
+    "timestamp": "2026-07-23T06:58:53.777Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product prod-1784789371154 to 4"
+  },
+  {
+    "id": "LOG-1784789933232341",
+    "timestamp": "2026-07-23T06:58:53.232Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product prod-1784789371154 to 3"
+  },
+  {
+    "id": "LOG-1784789932657700",
+    "timestamp": "2026-07-23T06:58:52.657Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product prod-1784789371154 to 2"
+  },
+  {
+    "id": "LOG-1784789917575119",
+    "timestamp": "2026-07-23T06:58:37.575Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "ADD_ADDRESS",
+    "details": "Added new address for ham"
+  },
+  {
+    "id": "LOG-1784789901973182",
+    "timestamp": "2026-07-23T06:58:21.973Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product prod-1784789371154 to cart"
+  },
+  {
+    "id": "LOG-1784789882661514",
+    "timestamp": "2026-07-23T06:58:02.661Z",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "userName": "ham",
+    "userRole": "MEMBER",
+    "action": "REGISTER",
+    "details": "New user registered: ham (ham@gmail.com)"
+  },
+  {
+    "id": "LOG-1784789840131495",
+    "timestamp": "2026-07-23T06:57:20.131Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGOUT",
+    "details": "User logged out"
+  },
+  {
+    "id": "LOG-1784789625891430",
+    "timestamp": "2026-07-23T06:53:45.891Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1784787616037 to จัดส่งแล้ว"
+  },
+  {
+    "id": "LOG-1784789474722729",
+    "timestamp": "2026-07-23T06:51:14.722Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_USER",
+    "details": "Deleted user account: gay lord (gaylord@gmail.com)"
+  },
+  {
+    "id": "LOG-1784789474159173",
+    "timestamp": "2026-07-23T06:51:14.159Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_USER",
+    "details": "Deleted user account: กาก (kak@gmail.com)"
+  },
+  {
+    "id": "LOG-1784789473545199",
+    "timestamp": "2026-07-23T06:51:13.545Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_USER",
+    "details": "Deleted user account: Test Flower (testflower@somemail.com)"
+  },
+  {
+    "id": "LOG-17847894730020",
+    "timestamp": "2026-07-23T06:51:13.002Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_USER",
+    "details": "Deleted user account: แฮม (ham@gmail.com)"
+  },
+  {
+    "id": "LOG-178478947225897",
+    "timestamp": "2026-07-23T06:51:12.258Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_USER",
+    "details": "Deleted user account: ทดสอบ (test@test.com)"
+  },
+  {
+    "id": "LOG-1784789466278406",
+    "timestamp": "2026-07-23T06:51:06.278Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_USER",
+    "details": "Deleted user account: เหี้ยภีม (herepheem@gmail.com)"
+  },
+  {
+    "id": "LOG-1784789463695387",
+    "timestamp": "2026-07-23T06:51:03.695Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_USER",
+    "details": "Deleted user account: Test Member (test_new_user_1@test.com)"
+  },
+  {
+    "id": "LOG-178478945729574",
+    "timestamp": "2026-07-23T06:50:57.295Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_USER",
+    "details": "Deleted user account: ทดสอบ2 (test2@test.com)"
+  },
+  {
+    "id": "LOG-1784789414362360",
+    "timestamp": "2026-07-23T06:50:14.362Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product ham"
+  },
+  {
+    "id": "LOG-1784789395333692",
+    "timestamp": "2026-07-23T06:49:55.333Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_PRODUCT",
+    "details": "Updated product ham"
+  },
+  {
+    "id": "LOG-1784789371155672",
+    "timestamp": "2026-07-23T06:49:31.155Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_PRODUCT",
+    "details": "Created product ham"
+  },
+  {
+    "id": "LOG-1784789292379775",
+    "timestamp": "2026-07-23T06:48:12.379Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
+    "id": "LOG-1784789268373442",
+    "timestamp": "2026-07-23T06:47:48.373Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGOUT",
+    "details": "User logged out"
+  },
+  {
     "id": "LOG-1784787693046892",
     "timestamp": "2026-07-23T06:21:33.046Z",
     "userId": "admin-id-001",
