@@ -1,5 +1,59 @@
 [
   {
+    "id": "LOG-1784787693046892",
+    "timestamp": "2026-07-23T06:21:33.046Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_PRODUCT",
+    "details": "Deleted product Static Size M"
+  },
+  {
+    "id": "LOG-1784787637208889",
+    "timestamp": "2026-07-23T06:20:37.208Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "CANCEL_ORDER",
+    "details": "Requested cancellation for order ORD-1784787616037"
+  },
+  {
+    "id": "LOG-1784787616039651",
+    "timestamp": "2026-07-23T06:20:16.039Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784787616037"
+  },
+  {
+    "id": "LOG-1784787598544653",
+    "timestamp": "2026-07-23T06:19:58.544Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "ADD_TO_CART",
+    "details": "Added product p2 to cart"
+  },
+  {
+    "id": "LOG-1784787590296176",
+    "timestamp": "2026-07-23T06:19:50.296Z",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "userName": "เหี้ยภีม",
+    "userRole": "MEMBER",
+    "action": "LOGIN",
+    "details": "User logged in: เหี้ยภีม (herepheem@gmail.com)"
+  },
+  {
+    "id": "LOG-1784787567002676",
+    "timestamp": "2026-07-23T06:19:27.002Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
     "id": "LOG-1784734002667432",
     "timestamp": "2026-07-22T15:26:42.667Z",
     "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",

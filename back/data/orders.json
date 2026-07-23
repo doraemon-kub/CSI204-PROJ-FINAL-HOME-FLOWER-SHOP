@@ -645,5 +645,32 @@
     "status": "กำลังตรวจสอบการชำระเงิน",
     "trackingNumber": null,
     "createdAt": "2026-07-22T15:26:42.664Z"
+  },
+  {
+    "orderId": "ORD-1784787616037",
+    "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
+    "items": "[{\"productId\":\"p2\",\"name\":\"Roses Box\",\"price\":1390,\"quantity\":1,\"selectedOptions\":{\"หยรนืเยนรหกืินยกรพื้ยนพื้\":\"หำเดห้เพหกเก้ห\"}}]",
+    "buyerInfo": {
+      "name": "เหี้ยภีม",
+      "phone": "0345234534",
+      "email": "herepheem@gmail.com"
+    },
+    "recipientInfo": {
+      "name": "เหี้ยภีม",
+      "address": "บางารadad ต.คลองต้นไทร อ.คลองสาน จ.กรุงเทพมหานคร 10600",
+      "phone": "0345234534"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-23T13:20",
+      "slipUrl": "/uploads/slip-1784787616021-377169061.jpg",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 1490,
+    "status": "รอคืนเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-23T06:20:16.037Z"
   }
 ]
