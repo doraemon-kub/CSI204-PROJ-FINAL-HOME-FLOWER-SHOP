@@ -753,5 +753,86 @@
     "status": "กำลังตรวจสอบการชำระเงิน",
     "trackingNumber": null,
     "createdAt": "2026-07-23T10:01:37.552Z"
+  },
+  {
+    "orderId": "ORD-1784968324105",
+    "userId": "admin-id-001",
+    "items": "[{\"productId\":\"p2\",\"name\":\"Roses Box\",\"price\":1390,\"quantity\":7}]",
+    "buyerInfo": {
+      "name": "Shop Owner (Admin)",
+      "phone": "0000000000",
+      "email": "admin@homeflowershop.com"
+    },
+    "recipientInfo": {
+      "name": "Shop Owner (Admin)",
+      "address": "ๅ ต.คลองท่อมเหนือ อ.คลองท่อม จ.กระบี่ 81120",
+      "phone": "0000000000"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-25T15:32",
+      "slipUrl": "/uploads/slip-1784968324086-716779844.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 9830,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-25T08:32:04.105Z"
+  },
+  {
+    "orderId": "ORD-1784968772512",
+    "userId": "admin-id-001",
+    "items": "[{\"productId\":\"p3\",\"name\":\"Teddy Doll\",\"price\":390,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "Shop Owner (Admin)",
+      "phone": "0000000000",
+      "email": "admin@homeflowershop.com"
+    },
+    "recipientInfo": {
+      "name": "Shop Owner (Admin)",
+      "address": "ๅ ต.คลองท่อมเหนือ อ.คลองท่อม จ.กระบี่ 81120",
+      "phone": "0000000000"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-25T15:39",
+      "slipUrl": "/uploads/slip-1784968772490-737447932.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 490,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-25T08:39:32.512Z"
+  },
+  {
+    "orderId": "ORD-1784968793859",
+    "userId": "admin-id-001",
+    "items": "[{\"productId\":\"p3\",\"name\":\"Teddy Doll\",\"price\":390,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "Shop Owner (Admin)",
+      "phone": "0000000000",
+      "email": "admin@homeflowershop.com"
+    },
+    "recipientInfo": {
+      "name": "Shop Owner (Admin)",
+      "address": "ๅ ต.คลองท่อมเหนือ อ.คลองท่อม จ.กระบี่ 81120",
+      "phone": "0000000000"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-25T15:39",
+      "slipUrl": "/uploads/slip-1784968793821-282784891.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 490,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-25T08:39:53.859Z"
   }
 ]

@@ -175,6 +175,10 @@ export default function ProductCard({ product, onAddToCart }) {
             </div>
           )}
 
+          <div style={{ fontSize: '0.85rem', color: '#8a7a68', marginBottom: '12px' }}>
+            คลัง: {product.stock ?? 0} ชิ้น
+          </div>
+
           {(product.stock ?? 0) <= 0 ? (
             <button
               className="product-add-btn"

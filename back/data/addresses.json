@@ -102,5 +102,18 @@
     "province": "กรุงเทพมหานคร",
     "zipcode": "10600",
     "isDefault": true
+  },
+  {
+    "id": "f370dc66-f3b4-43de-888f-35abdf1d54b7",
+    "userId": "admin-id-001",
+    "name": "Shop Owner (Admin)",
+    "phone": "0000000000",
+    "address": "ๅ ต.คลองท่อมเหนือ อ.คลองท่อม จ.กระบี่ 81120",
+    "addressDetail": "ๅ",
+    "subdistrict": "คลองท่อมเหนือ",
+    "district": "คลองท่อม",
+    "province": "กระบี่",
+    "zipcode": "81120",
+    "isDefault": true
   }
 ]

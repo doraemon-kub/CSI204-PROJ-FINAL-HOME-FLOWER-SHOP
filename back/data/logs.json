@@ -1,5 +1,257 @@
 [
   {
+    "id": "LOG-1784968793863138",
+    "timestamp": "2026-07-25T08:39:53.863Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784968793859"
+  },
+  {
+    "id": "LOG-1784968784936840",
+    "timestamp": "2026-07-25T08:39:44.936Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-178496877251442",
+    "timestamp": "2026-07-25T08:39:32.514Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784968772512"
+  },
+  {
+    "id": "LOG-1784968764527669",
+    "timestamp": "2026-07-25T08:39:24.527Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-1784968324108328",
+    "timestamp": "2026-07-25T08:32:04.108Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1784968324105"
+  },
+  {
+    "id": "LOG-1784968276349281",
+    "timestamp": "2026-07-25T08:31:16.349Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 7"
+  },
+  {
+    "id": "LOG-1784968259160604",
+    "timestamp": "2026-07-25T08:30:59.160Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 8"
+  },
+  {
+    "id": "LOG-1784967960190330",
+    "timestamp": "2026-07-25T08:26:00.190Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 7"
+  },
+  {
+    "id": "LOG-1784967959671902",
+    "timestamp": "2026-07-25T08:25:59.671Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 8"
+  },
+  {
+    "id": "LOG-1784967959185634",
+    "timestamp": "2026-07-25T08:25:59.185Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 9"
+  },
+  {
+    "id": "LOG-1784967958679564",
+    "timestamp": "2026-07-25T08:25:58.679Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 10"
+  },
+  {
+    "id": "LOG-1784967958190676",
+    "timestamp": "2026-07-25T08:25:58.190Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 11"
+  },
+  {
+    "id": "LOG-1784967535054570",
+    "timestamp": "2026-07-25T08:18:55.054Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_ADDRESS",
+    "details": "Added new address for Shop Owner (Admin)"
+  },
+  {
+    "id": "LOG-1784966803051232",
+    "timestamp": "2026-07-25T08:06:43.051Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 12"
+  },
+  {
+    "id": "LOG-1784966802671590",
+    "timestamp": "2026-07-25T08:06:42.671Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 11"
+  },
+  {
+    "id": "LOG-1784966802199579",
+    "timestamp": "2026-07-25T08:06:42.199Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 10"
+  },
+  {
+    "id": "LOG-1784966801677234",
+    "timestamp": "2026-07-25T08:06:41.677Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 9"
+  },
+  {
+    "id": "LOG-1784966801147784",
+    "timestamp": "2026-07-25T08:06:41.147Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 8"
+  },
+  {
+    "id": "LOG-1784966800617489",
+    "timestamp": "2026-07-25T08:06:40.617Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 7"
+  },
+  {
+    "id": "LOG-1784966800263567",
+    "timestamp": "2026-07-25T08:06:40.263Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 6"
+  },
+  {
+    "id": "LOG-1784966800127181",
+    "timestamp": "2026-07-25T08:06:40.127Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 5"
+  },
+  {
+    "id": "LOG-1784966799598781",
+    "timestamp": "2026-07-25T08:06:39.598Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 4"
+  },
+  {
+    "id": "LOG-178496679910632",
+    "timestamp": "2026-07-25T08:06:39.106Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 3"
+  },
+  {
+    "id": "LOG-1784966798610510",
+    "timestamp": "2026-07-25T08:06:38.610Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_CART",
+    "details": "Updated quantity of product p2 to 2"
+  },
+  {
+    "id": "LOG-1784966794945865",
+    "timestamp": "2026-07-25T08:06:34.945Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p2 to cart"
+  },
+  {
+    "id": "LOG-1784966780572879",
+    "timestamp": "2026-07-25T08:06:20.572Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_PRODUCT",
+    "details": "Deleted product ฟหกฟดฟได"
+  },
+  {
+    "id": "LOG-1784966777894375",
+    "timestamp": "2026-07-25T08:06:17.894Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_PRODUCT",
+    "details": "Deleted product ฟกพหดำ"
+  },
+  {
+    "id": "LOG-1784966775275492",
+    "timestamp": "2026-07-25T08:06:15.275Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "DELETE_PRODUCT",
+    "details": "Deleted product ham"
+  },
+  {
     "id": "LOG-1784734002667432",
     "timestamp": "2026-07-22T15:26:42.667Z",
     "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",

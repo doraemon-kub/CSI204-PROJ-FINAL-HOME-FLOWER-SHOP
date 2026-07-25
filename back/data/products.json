@@ -8,7 +8,7 @@
     "tag": "ช่อสำเร็จรูป",
     "image": "product-1784702846972-449955160.png",
     "isCustom": true,
-    "stock": 7,
+    "stock": 0,
     "customOptions": [
       {
         "name": "หยรนืเยนรหกืินยกรพื้ยนพื้",
@@ -38,7 +38,7 @@
     "tag": "ตุ๊กตาหมี",
     "image": "product-1784702579539-727877179.jpg",
     "isCustom": false,
-    "stock": 12
+    "stock": 10
   },
   {
     "id": "prod-1784472755067",
@@ -129,44 +129,5 @@
         ]
       }
     ]
-  },
-  {
-    "id": "prod-1784789371154",
-    "name": "ham",
-    "category": "gift",
-    "price": 10,
-    "tag": "",
-    "badge": "",
-    "description": "นพยห่เต่เยก่เจก่เยนห่เยห่เนต่หด้ืพนตห้พห",
-    "stock": 89,
-    "isCustom": false,
-    "image": "product-1784789371150-765190819.jpeg",
-    "createdAt": "2026-07-23T06:49:31.154Z"
-  },
-  {
-    "id": "prod-1784800184102",
-    "name": "ฟกพหดำ",
-    "category": "ready-made",
-    "price": 45856,
-    "tag": "มนุษย์",
-    "badge": "",
-    "description": "",
-    "stock": 0,
-    "isCustom": false,
-    "image": "product-1784800184097-619063881.jpeg",
-    "createdAt": "2026-07-23T09:49:44.102Z"
-  },
-  {
-    "id": "prod-1784800415306",
-    "name": "ฟหกฟดฟได",
-    "category": "ready-made",
-    "price": 45673,
-    "tag": "มนุษย์",
-    "badge": "",
-    "description": "",
-    "stock": 0,
-    "isCustom": false,
-    "image": "product-1784800415303-696621138.jpeg",
-    "createdAt": "2026-07-23T09:53:35.306Z"
   }
 ]

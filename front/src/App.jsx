@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { io } from 'socket.io-client';
 import Navbar from './component/Navbar';
 import HeroBanner from './component/HeroBanner';
@@ -63,6 +64,7 @@ export default function App() {
         if (!user) {
             hasFetchedProfile.current = false;
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user?.id]);
 
     // Shopping Cart State (synced with backend)
@@ -93,6 +95,7 @@ export default function App() {
 
     useEffect(() => {
         fetchAllProducts();
+    
     }, [view]);
 
     // --- Fetch Cart & Setup WebSocket when User changes ---
@@ -153,6 +156,7 @@ export default function App() {
         return () => {
             socket.disconnect();
         };
+    
     }, [user]);
 
     // Sync Hash changes

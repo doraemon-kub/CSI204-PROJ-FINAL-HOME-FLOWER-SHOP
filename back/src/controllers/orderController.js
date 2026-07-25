@@ -1,11 +1,15 @@
 const { v4: uuidv4 } = require('uuid');
 const fileDb = require('../utils/fileDb');
 const logger = require('../utils/logger');
+const fs = require('fs');
 
 const checkout = (req, res) => {
     const { userId, cartItems, buyerInfo, recipientInfo, cardMessage, paymentMethod, paymentTime, totalAmount } = req.body;
 
     if (!userId || !cartItems || cartItems.length === 0) {
+        if (req.file && fs.existsSync(req.file.path)) {
+            fs.unlinkSync(req.file.path);
+        }
         return res.status(400).json({ message: 'Invalid checkout data' });
     }
 
@@ -23,6 +27,9 @@ const checkout = (req, res) => {
         const product = products.find(p => p.id === item.productId);
         if (product) {
             if (product.stock < item.quantity) {
+                if (req.file && fs.existsSync(req.file.path)) {
+                    fs.unlinkSync(req.file.path);
+                }
                 return res.status(400).json({ message: `สินค้า ${product.name} มีสต๊อกไม่เพียงพอ (เหลือ ${product.stock} ชิ้น)` });
             }
         }
