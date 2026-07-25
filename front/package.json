@@ -15,7 +15,8 @@
     "react-dom": "^19.1.1",
     "react-easy-crop": "^6.2.2",
     "react-thailand-address-typeahead": "^2.0.1",
-    "socket.io-client": "^4.8.3"
+    "socket.io-client": "^4.8.3",
+    "sweetalert2": "^11.26.25"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

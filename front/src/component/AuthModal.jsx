@@ -142,7 +142,7 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
             />
           </div>
           <div className="form-actions">
-            <a href="#" onClick={(e) => { e.preventDefault(); alert('ฟังก์ชันลืมรหัสผ่านยังไม่เปิดใช้งาน'); }} className="forgot-password">
+            <a href="#" onClick={(e) => { e.preventDefault(); Swal.fire({ title: 'แจ้งเตือน', text: 'ฟังก์ชันลืมรหัสผ่านยังไม่เปิดใช้งาน', icon: 'info', confirmButtonColor: '#846F5B' }); }} className="forgot-password">
               ลืมรหัสผ่าน?
             </a>
           </div>

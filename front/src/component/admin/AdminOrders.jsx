@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import './adminOrders.css';
 const API_URL = '/api';
 
@@ -9,8 +10,42 @@ const STATUS_OPTIONS = [
   'กำลังจัดเตรียมสินค้า',
   'จัดส่งแล้ว',
   'รอคืนเงิน',
+  'คืนเงินสำเร็จ',
   'ยกเลิกคำสั่งซื้อ'
 ];
+
+const getAvailableStatuses = (currentStatus) => {
+  const statusToUse = currentStatus || STATUS_OPTIONS[0];
+  const sequence = [
+    'กำลังตรวจสอบการชำระเงิน',
+    'ชำระเงินแล้ว',
+    'กำลังจัดเตรียมสินค้า',
+    'จัดส่งแล้ว'
+  ];
+
+  const currentIndex = sequence.indexOf(statusToUse);
+
+  if (currentIndex === -1) {
+    if (statusToUse === 'ยกเลิกคำสั่งซื้อ') {
+      return ['ยกเลิกคำสั่งซื้อ', 'รอคืนเงิน'];
+    }
+    if (statusToUse === 'รอคืนเงิน') {
+      return ['รอคืนเงิน', 'คืนเงินสำเร็จ'];
+    }
+    if (statusToUse === 'คืนเงินสำเร็จ') {
+      return ['คืนเงินสำเร็จ'];
+    }
+    return [statusToUse]; 
+  }
+
+  const allowed = [statusToUse];
+  
+  if (currentIndex + 1 < sequence.length) {
+    allowed.push(sequence[currentIndex + 1]);
+  }
+
+  return [...new Set(allowed)];
+};
 
 export default function AdminOrders({ user }) {
   const [orders, setOrders] = useState([]);
@@ -58,12 +93,24 @@ export default function AdminOrders({ user }) {
       }, {
         headers: { 'x-user-id': user.id }
       });
-      alert('อัปเดตสถานะสำเร็จ!');
+      Swal.fire({
+        title: 'สำเร็จ!',
+        text: 'อัปเดตสถานะคำสั่งซื้อเรียบร้อยแล้ว',
+        icon: 'success',
+        confirmButtonText: 'ตกลง',
+        confirmButtonColor: '#846F5B'
+      });
       setEditingOrderId(null);
       fetchOrders();
     } catch (err) {
       console.error('Failed to update order', err);
-      alert('เกิดข้อผิดพลาดในการอัปเดตสถานะ');
+      Swal.fire({
+        title: 'เกิดข้อผิดพลาด!',
+        text: 'ไม่สามารถอัปเดตสถานะได้ กรุณาลองใหม่อีกครั้ง',
+        icon: 'error',
+        confirmButtonText: 'ปิด',
+        confirmButtonColor: '#a35d6a'
+      });
     }
   };
 
@@ -99,6 +146,7 @@ export default function AdminOrders({ user }) {
 
 
                 const safeBuyer = typeof order.buyerInfo === 'string' ? JSON.parse(order.buyerInfo) : order.buyerInfo;
+                const safeRecipient = typeof order.recipientInfo === 'string' ? JSON.parse(order.recipientInfo) : order.recipientInfo;
 
                 return (
                   <tr key={order.orderId}>
@@ -110,7 +158,10 @@ export default function AdminOrders({ user }) {
                     </td>
                     <td>
                       {safeBuyer?.name || 'ไม่ระบุ'}<br/>
-                      <span style={{ fontSize: '0.8rem', color: '#64748b' }}>โทร: {safeBuyer?.phone || '-'}</span>
+                      <span style={{ fontSize: '0.8rem', color: '#64748b' }}>โทร: {safeBuyer?.phone || '-'}</span><br/>
+                      <span style={{ fontSize: '0.8rem', color: '#64748b' }}>
+                        จัดส่ง: {safeRecipient?.address || '-'}
+                      </span>
                       {(() => {
                         const safeItems = typeof order.items === 'string' ? JSON.parse(order.items) : (order.items || []);
                         return safeItems.length > 0 && (
@@ -136,7 +187,7 @@ export default function AdminOrders({ user }) {
                             value={editStatus}
                             onChange={(e) => setEditStatus(e.target.value)}
                           >
-                            {STATUS_OPTIONS.map(opt => (
+                            {getAvailableStatuses(order.status).map(opt => (
                               <option key={opt} value={opt}>{opt}</option>
                             ))}
                           </select>
@@ -156,6 +207,7 @@ export default function AdminOrders({ user }) {
                             order.status === 'กำลังจัดเตรียมสินค้า' ? 'status-preparing' :
                             order.status === 'กำลังตรวจสอบการชำระเงิน' ? 'status-checking' :
                             order.status === 'รอคืนเงิน' ? 'status-refund' :
+                            order.status === 'คืนเงินสำเร็จ' ? 'status-refund-success' :
                             order.status === 'ยกเลิกคำสั่งซื้อ' ? 'status-cancelled' :
                             'status-pending'
                           }`}>

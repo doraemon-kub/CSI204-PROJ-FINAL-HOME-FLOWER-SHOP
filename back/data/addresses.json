@@ -76,5 +76,31 @@
     "province": "ชัยนาท",
     "zipcode": "17110",
     "isDefault": false
+  },
+  {
+    "id": "38de5ef9-8bce-42ce-bb25-bc36583f304a",
+    "userId": "baf395d0-2947-4cc3-aa6c-897c8589a42c",
+    "name": "ham",
+    "phone": "1111111111",
+    "address": "ดไฟด ต.คลองใหญ่ อ.คลองใหญ่ จ.ตราด 23110",
+    "addressDetail": "ดไฟด",
+    "subdistrict": "คลองใหญ่",
+    "district": "คลองใหญ่",
+    "province": "ตราด",
+    "zipcode": "23110",
+    "isDefault": true
+  },
+  {
+    "id": "4e7396aa-5dec-4a01-a9bc-c6f9d0a65914",
+    "userId": "0a30c4f7-929d-4370-988e-aea6e2239334",
+    "name": "jekpek",
+    "phone": "0875186146",
+    "address": "ฟกฟก ต.คลองต้นไทร อ.คลองสาน จ.กรุงเทพมหานคร 10600",
+    "addressDetail": "ฟกฟก",
+    "subdistrict": "คลองต้นไทร",
+    "district": "คลองสาน",
+    "province": "กรุงเทพมหานคร",
+    "zipcode": "10600",
+    "isDefault": true
   }
 ]

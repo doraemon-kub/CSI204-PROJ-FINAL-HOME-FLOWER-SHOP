@@ -28,7 +28,7 @@ export default function ImageCropperModal({ imageSrc, onCropComplete, onCancel, 
             onCropComplete(croppedImageFile);
         } catch (e) {
             console.error(e);
-            alert('ไม่สามารถครอปรูปได้ โปรดลองอีกครั้ง');
+            Swal.fire({ title: 'แจ้งเตือน', text: 'ไม่สามารถครอปรูปได้ โปรดลองอีกครั้ง', icon: 'info', confirmButtonColor: '#846F5B' });
         }
     };
 

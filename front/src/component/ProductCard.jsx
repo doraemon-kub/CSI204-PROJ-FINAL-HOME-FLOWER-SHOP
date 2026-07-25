@@ -169,9 +169,11 @@ export default function ProductCard({ product, onAddToCart }) {
           </p>
 
           {/* ส่วนรายละเอียด */}
-          <div className="product-detail-content">
-            {product.description || 'ดอกไม้คุณภาพดี จัดแต่งอย่างพิถีพิถัน เหมาะสำหรับตกแต่งบ้านหรือเป็นของขวัญในโอกาสพิเศษ'}
-          </div>
+          {product.description && (
+            <div className="product-detail-content">
+              {product.description}
+            </div>
+          )}
 
           {(product.stock ?? 0) <= 0 ? (
             <button

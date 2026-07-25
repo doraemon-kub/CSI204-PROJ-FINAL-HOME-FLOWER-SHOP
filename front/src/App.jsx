@@ -232,7 +232,7 @@ export default function App() {
                 setIsOrdersOpen(true);
             } else if (newView === '#admin') {
                 if (!user || (user.role !== 'ADMIN' && user.role !== 'STAFF')) {
-                    alert('คุณไม่มีสิทธิ์เข้าถึงหน้านี้');
+                    Swal.fire({ title: 'แจ้งเตือน', text: 'คุณไม่มีสิทธิ์เข้าถึงหน้านี้', icon: 'info', confirmButtonColor: '#846F5B' });
                     return;
                 }
                 window.location.hash = newView;
@@ -291,7 +291,7 @@ export default function App() {
             // 💡 จุดที่แก้ไข: เอา setIsCartOpen(true) ออก เพื่อไม่ให้ตะกร้าเด้งเปิดขึ้นมาทุกครั้งหลังเพิ่มสินค้า
         } catch (err) {
             console.error('Failed to add to cart', err);
-            alert('เกิดข้อผิดพลาดในการเพิ่มสินค้า');
+            Swal.fire({ title: 'แจ้งเตือน', text: 'เกิดข้อผิดพลาดในการเพิ่มสินค้า', icon: 'info', confirmButtonColor: '#846F5B' });
         }
     };
 

@@ -106,7 +106,7 @@ export default function ProfileView({ user, onLogout, onViewChange, refetchUser 
       closeAddressModal();
     } catch (err) {
       console.error('Failed to save address', err);
-      alert('เกิดข้อผิดพลาดในการบันทึกที่อยู่');
+      Swal.fire({ title: 'แจ้งเตือน', text: 'เกิดข้อผิดพลาดในการบันทึกที่อยู่', icon: 'info', confirmButtonColor: '#846F5B' });
     } finally {
       setIsSubmitting(false);
     }
@@ -122,7 +122,7 @@ export default function ProfileView({ user, onLogout, onViewChange, refetchUser 
       }
     } catch (err) {
       console.error('Failed to delete address', err);
-      alert('เกิดข้อผิดพลาดในการลบที่อยู่');
+      Swal.fire({ title: 'แจ้งเตือน', text: 'เกิดข้อผิดพลาดในการลบที่อยู่', icon: 'info', confirmButtonColor: '#846F5B' });
     }
   };
 

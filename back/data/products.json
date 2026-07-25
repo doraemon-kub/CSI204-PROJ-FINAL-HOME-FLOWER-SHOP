@@ -1,27 +1,5 @@
 [
   {
-    "id": "p1",
-    "name": "Static Size M",
-    "description": "ช่อดอก Static สำเร็จรูป Size M",
-    "price": 1000,
-    "category": "ready-made",
-    "tag": "มนุษย์",
-    "image": "product-1784706700868-986034870.jpeg",
-    "isCustom": true,
-    "stock": 6,
-    "customOptions": [
-      {
-        "name": "ฟดหฟเหำเ",
-        "choices": [
-          {
-            "name": "ฟหกฟก",
-            "image": ""
-          }
-        ]
-      }
-    ]
-  },
-  {
     "id": "p2",
     "name": "Roses Box",
     "description": "กล่องดอกกุหลาบประดิษฐ์",
@@ -30,7 +8,7 @@
     "tag": "ช่อสำเร็จรูป",
     "image": "product-1784702846972-449955160.png",
     "isCustom": true,
-    "stock": 8,
+    "stock": 7,
     "customOptions": [
       {
         "name": "หยรนืเยนรหกืินยกรพื้ยนพื้",
@@ -151,5 +129,44 @@
         ]
       }
     ]
+  },
+  {
+    "id": "prod-1784789371154",
+    "name": "ham",
+    "category": "gift",
+    "price": 10,
+    "tag": "",
+    "badge": "",
+    "description": "นพยห่เต่เยก่เจก่เยนห่เยห่เนต่หด้ืพนตห้พห",
+    "stock": 89,
+    "isCustom": false,
+    "image": "product-1784789371150-765190819.jpeg",
+    "createdAt": "2026-07-23T06:49:31.154Z"
+  },
+  {
+    "id": "prod-1784800184102",
+    "name": "ฟกพหดำ",
+    "category": "ready-made",
+    "price": 45856,
+    "tag": "มนุษย์",
+    "badge": "",
+    "description": "",
+    "stock": 0,
+    "isCustom": false,
+    "image": "product-1784800184097-619063881.jpeg",
+    "createdAt": "2026-07-23T09:49:44.102Z"
+  },
+  {
+    "id": "prod-1784800415306",
+    "name": "ฟหกฟดฟได",
+    "category": "ready-made",
+    "price": 45673,
+    "tag": "มนุษย์",
+    "badge": "",
+    "description": "",
+    "stock": 0,
+    "isCustom": false,
+    "image": "product-1784800415303-696621138.jpeg",
+    "createdAt": "2026-07-23T09:53:35.306Z"
   }
 ]

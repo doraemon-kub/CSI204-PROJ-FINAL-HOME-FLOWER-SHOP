@@ -49,11 +49,11 @@ export default function CartDrawer({
     const handleProceedToCheckout = () => {
         const hasSelected = cart.some((item) => checkedItems[item.cartItemId || item.id]);
         if (!hasSelected) {
-            alert('กรุณาเลือกสินค้าอย่างน้อย 1 รายการก่อนดำเนินการสั่งซื้อ');
+            Swal.fire({ title: 'แจ้งเตือน', text: 'กรุณาเลือกสินค้าอย่างน้อย 1 รายการก่อนดำเนินการสั่งซื้อ', icon: 'info', confirmButtonColor: '#846F5B' });
             return;
         }
         if (!user) {
-            alert('กรุณาเข้าสู่ระบบก่อนทำการสั่งซื้อ');
+            Swal.fire({ title: 'แจ้งเตือน', text: 'กรุณาเข้าสู่ระบบก่อนทำการสั่งซื้อ', icon: 'info', confirmButtonColor: '#846F5B' });
             return;
         }
         onClose();

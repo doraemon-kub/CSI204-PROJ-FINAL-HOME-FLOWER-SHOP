@@ -26,7 +26,7 @@ export default function AdminUsers({ user }) {
 
   const handleRoleChange = async (targetUserId, currentRole) => {
     if (currentRole === 'ADMIN') {
-      alert('ไม่สามารถเปลี่ยนยศของ ADMIN หลักได้');
+      Swal.fire({ title: 'แจ้งเตือน', text: 'ไม่สามารถเปลี่ยนยศของ ADMIN หลักได้', icon: 'info', confirmButtonColor: '#846F5B' });
       return;
     }
 
@@ -39,11 +39,11 @@ export default function AdminUsers({ user }) {
       }, {
         headers: { 'x-user-id': user.id }
       });
-      alert('อัปเดตยศสำเร็จ!');
-      fetchUsers();
+      setUsers(prevUsers => prevUsers.map(u => u.id === targetUserId ? { ...u, role: newRole } : u));
+      Swal.fire({ title: 'สำเร็จ', text: 'อัปเดตยศสำเร็จ!', icon: 'success', confirmButtonColor: '#846F5B' });
     } catch (err) {
       console.error('Failed to update user role', err);
-      alert(err.response?.data?.message || 'เกิดข้อผิดพลาดในการเปลี่ยนยศ');
+      Swal.fire({ title: 'แจ้งเตือน', text: err.response?.data?.message || 'เกิดข้อผิดพลาดในการเปลี่ยนยศ', icon: 'error', confirmButtonColor: '#846F5B' });
     }
   };
 
@@ -54,11 +54,11 @@ export default function AdminUsers({ user }) {
       await axios.delete(`${API_URL}/admin/users/${targetUserId}`, {
         headers: { 'x-user-id': user.id }
       });
-      alert('ลบผู้ใช้สำเร็จ!');
-      fetchUsers();
+      setUsers(prevUsers => prevUsers.filter(u => u.id !== targetUserId));
+      Swal.fire({ title: 'สำเร็จ', text: 'ลบผู้ใช้สำเร็จ!', icon: 'success', confirmButtonColor: '#846F5B' });
     } catch (err) {
       console.error('Failed to delete user', err);
-      alert(err.response?.data?.message || 'เกิดข้อผิดพลาดในการลบผู้ใช้');
+      Swal.fire({ title: 'แจ้งเตือน', text: err.response?.data?.message || 'เกิดข้อผิดพลาดในการลบผู้ใช้', icon: 'info', confirmButtonColor: '#846F5B' });
     }
   };
 
