@@ -129,7 +129,7 @@
     },
     "shippingFee": 100,
     "totalAmount": 1300,
-    "status": "กำลังตรวจสอบการชำระเงิน",
+    "status": "รอคืนเงิน",
     "trackingNumber": null,
     "createdAt": "2026-07-16T04:48:30.787Z"
   },

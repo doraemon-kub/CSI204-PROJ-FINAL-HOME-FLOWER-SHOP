@@ -1,5 +1,23 @@
 [
   {
+    "id": "LOG-1784966649199588",
+    "timestamp": "2026-07-25T08:04:09.199Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CANCEL_ORDER",
+    "details": "Requested cancellation for order ORD-1784177310787"
+  },
+  {
+    "id": "LOG-1784966632021277",
+    "timestamp": "2026-07-25T08:03:52.021Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
     "id": "LOG-1784734002667432",
     "timestamp": "2026-07-22T15:26:42.667Z",
     "userId": "fe6da02f-8586-47a7-9892-7570fa5a1001",
