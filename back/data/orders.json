@@ -834,5 +834,120 @@
     "status": "กำลังตรวจสอบการชำระเงิน",
     "trackingNumber": null,
     "createdAt": "2026-07-25T08:39:53.859Z"
+  },
+  {
+    "orderId": "ORD-1785053652527",
+    "userId": "admin-id-001",
+    "items": "[{\"productId\":\"p3\",\"name\":\"Teddy Doll\",\"price\":390,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "Shop Owner (Admin)",
+      "phone": "0000000000",
+      "email": "admin@homeflowershop.com",
+      "refundAccount": ""
+    },
+    "recipientInfo": {
+      "name": "Shop Owner (Admin)",
+      "address": "ๅ ต.คลองท่อมเหนือ อ.คลองท่อม จ.กระบี่ 81120",
+      "phone": "0000000000"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-26T15:14",
+      "slipUrl": "/uploads/slip-1785053652474-890088640.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 490,
+    "status": "กำลังตรวจสอบการชำระเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-26T08:14:12.527Z"
+  },
+  {
+    "orderId": "ORD-1785054160379",
+    "userId": "admin-id-001",
+    "items": "[{\"productId\":\"prod-1784472755067\",\"name\":\"Static Floral\",\"price\":690,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "Shop Owner (Admin)",
+      "phone": "0000000000",
+      "email": "admin@homeflowershop.com",
+      "refundAccount": "432535245234"
+    },
+    "recipientInfo": {
+      "name": "Shop Owner (Admin)",
+      "address": "ๅ ต.คลองท่อมเหนือ อ.คลองท่อม จ.กระบี่ 81120",
+      "phone": "0000000000"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-26T15:22",
+      "slipUrl": "/uploads/slip-1785054160354-590903275.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 790,
+    "status": "รอคืนเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-26T08:22:40.379Z",
+    "cancelReason": "ต้องการแก้ไขข้อมูลการจัดส่ง"
+  },
+  {
+    "orderId": "ORD-1785054836877",
+    "userId": "admin-id-001",
+    "items": "[{\"productId\":\"prod-1784472755067\",\"name\":\"Static Floral\",\"price\":690,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "Shop Owner (Admin)",
+      "phone": "0000000000",
+      "email": "admin@homeflowershop.com",
+      "refundAccount": "432535245234"
+    },
+    "recipientInfo": {
+      "name": "Shop Owner (Admin)",
+      "address": "ๅ ต.คลองท่อมเหนือ อ.คลองท่อม จ.กระบี่ 81120",
+      "phone": "0000000000"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-26T15:33",
+      "slipUrl": "/uploads/slip-1785054836822-675614781.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 790,
+    "status": "คืนเงินสำเร็จ",
+    "trackingNumber": null,
+    "createdAt": "2026-07-26T08:33:56.877Z",
+    "cancelReason": "สั่งซื้อผิดซ้ำซ้อน"
+  },
+  {
+    "orderId": "ORD-1785054950327",
+    "userId": "admin-id-001",
+    "items": "[{\"productId\":\"p3\",\"name\":\"Teddy Doll\",\"price\":390,\"quantity\":1}]",
+    "buyerInfo": {
+      "name": "Shop Owner (Admin)",
+      "phone": "0000000000",
+      "email": "admin@homeflowershop.com",
+      "refundAccount": "768978967857"
+    },
+    "recipientInfo": {
+      "name": "Shop Owner (Admin)",
+      "address": "ๅ ต.คลองท่อมเหนือ อ.คลองท่อม จ.กระบี่ 81120",
+      "phone": "0000000000"
+    },
+    "cardMessage": "",
+    "payment": {
+      "method": "Bank Transfer (Mock)",
+      "time": "2026-07-26T15:35",
+      "slipUrl": "/uploads/slip-1785054950302-924814428.png",
+      "status": "PENDING"
+    },
+    "shippingFee": 100,
+    "totalAmount": 490,
+    "status": "รอคืนเงิน",
+    "trackingNumber": null,
+    "createdAt": "2026-07-26T08:35:50.327Z",
+    "cancelReason": "ต้องการแก้ไขข้อมูลการจัดส่ง"
   }
 ]

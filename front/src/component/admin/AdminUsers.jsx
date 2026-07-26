@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import './adminUsers.css';
 const API_URL = '/api';
 
 export default function AdminUsers({ user }) {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [filterRole, setFilterRole] = useState('ALL');
 
   const fetchUsers = React.useCallback(async () => {
     try {
@@ -64,11 +66,28 @@ export default function AdminUsers({ user }) {
 
   if (isLoading) return <div className="p-4 text-muted">กำลังโหลดข้อมูลผู้ใช้...</div>;
 
+  const filteredUsers = users.filter(u => filterRole === 'ALL' || (u.role || 'MEMBER') === filterRole);
+
   return (
     <div className="p-4 admin-users-container">
       <div className="mb-4">
         <h2 className="fw-semibold mb-1">จัดการผู้ใช้ / พนักงาน</h2>
-        <p className="text-muted small mb-0">มีผู้ใช้งานในระบบทั้งหมด {users.length} บัญชี</p>
+        <p className="text-muted small mb-0">มีผู้ใช้งานในระบบทั้งหมด {users.length} บัญชี (แสดงผล {filteredUsers.length} บัญชี)</p>
+      </div>
+
+      <div style={{ display: 'flex', gap: '16px', marginBottom: '20px', flexWrap: 'wrap' }}>
+        <div>
+          <select 
+              value={filterRole} 
+              onChange={(e) => setFilterRole(e.target.value)}
+              style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid #cbd5e1', backgroundColor: '#fff', cursor: 'pointer', minWidth: '200px' }}
+          >
+              <option value="ALL">ทุกระดับผู้ใช้ (All Roles)</option>
+              <option value="ADMIN">ADMIN</option>
+              <option value="STAFF">STAFF</option>
+              <option value="MEMBER">MEMBER</option>
+          </select>
+        </div>
       </div>
 
       <div className="card shadow-sm rounded-4 border-0">
@@ -84,9 +103,14 @@ export default function AdminUsers({ user }) {
               </tr>
             </thead>
             <tbody>
-              {users.map(u => (
-                <tr key={u.id}>
-                  <td className="px-4">
+              {filteredUsers.length === 0 ? (
+                <tr>
+                  <td colSpan="5" className="text-center py-5 text-muted">ไม่พบผู้ใช้ที่ค้นหา</td>
+                </tr>
+              ) : (
+                filteredUsers.map(u => (
+                  <tr key={u.id}>
+                    <td className="px-4">
                     <div className="d-flex align-items-center gap-2">
                       <i className="bi bi-person-circle fs-4 text-secondary"></i>
                       <span className="fw-medium">{u.name}</span>
@@ -150,7 +174,8 @@ export default function AdminUsers({ user }) {
                     )}
                   </td>
                 </tr>
-              ))}
+                ))
+              )}
             </tbody>
           </table>
         </div>

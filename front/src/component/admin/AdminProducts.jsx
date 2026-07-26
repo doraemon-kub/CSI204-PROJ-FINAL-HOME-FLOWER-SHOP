@@ -9,6 +9,8 @@ export default function AdminProducts({ user }) {
     const [products, setProducts] = useState([]);
     const [customTags, setCustomTags] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [filterCategory, setFilterCategory] = useState('all');
+    const [searchName, setSearchName] = useState('');
 
     // Form states
     const [isAdding, setIsAdding] = useState(false);
@@ -586,6 +588,30 @@ export default function AdminProducts({ user }) {
                 </div>
             )}
 
+            <div style={{ display: 'flex', gap: '16px', marginBottom: '20px', flexWrap: 'wrap' }}>
+                <div style={{ flex: '1', minWidth: '200px' }}>
+                    <input 
+                        type="text" 
+                        placeholder="ค้นหาชื่อสินค้า..." 
+                        value={searchName}
+                        onChange={(e) => setSearchName(e.target.value)}
+                        style={{ width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid #cbd5e1' }}
+                    />
+                </div>
+                <div>
+                    <select 
+                        value={filterCategory} 
+                        onChange={(e) => setFilterCategory(e.target.value)}
+                        style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid #cbd5e1', backgroundColor: '#fff', cursor: 'pointer' }}
+                    >
+                        <option value="all">ทุกหมวดหมู่</option>
+                        <option value="ready-made">ดอกไม้แห้ง</option>
+                        <option value="custom">ดอกไม้ประดิษฐ์</option>
+                        <option value="gift">ของขวัญ</option>
+                    </select>
+                </div>
+            </div>
+
             <div className="admin-card">
                 <div style={{ overflowX: 'auto' }}>
                     <table className="admin-table">
@@ -599,8 +625,21 @@ export default function AdminProducts({ user }) {
                             </tr>
                         </thead>
                         <tbody>
-                            {products.map(p => (
-                                <tr key={p.id}>
+                            {products.filter(p => {
+                                const matchCategory = filterCategory === 'all' || p.category === filterCategory;
+                                const matchSearch = p.name.toLowerCase().includes(searchName.toLowerCase());
+                                return matchCategory && matchSearch;
+                            }).length === 0 ? (
+                                <tr>
+                                    <td colSpan="5" style={{ textAlign: 'center', padding: '24px' }}>ไม่พบสินค้าที่ค้นหา</td>
+                                </tr>
+                            ) : (
+                                products.filter(p => {
+                                    const matchCategory = filterCategory === 'all' || p.category === filterCategory;
+                                    const matchSearch = p.name.toLowerCase().includes(searchName.toLowerCase());
+                                    return matchCategory && matchSearch;
+                                }).map(p => (
+                                    <tr key={p.id}>
                                     <td>
                                         {p.image ? (
                                             <img src={`/uploads/${p.image}`} alt={p.name} className="product-img-preview" />
@@ -622,7 +661,8 @@ export default function AdminProducts({ user }) {
                                         </div>
                                     </td>
                                 </tr>
-                            ))}
+                            ))
+                            )}
                         </tbody>
                     </table>
                 </div>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { io } from 'socket.io-client';
 
 const API_URL = '/api';
@@ -106,14 +107,42 @@ export default function OrdersModal({ isOpen, onClose, user }) {
     };
 
     const handleCancelOrder = async (orderId) => {
-        if (!window.confirm(`คุณต้องการยกเลิกคำสั่งซื้อ ${orderId} ใช่หรือไม่?\n(สถานะจะเปลี่ยนเป็น "รอคืนเงิน")`)) {
+        const { value: cancelReason } = await Swal.fire({
+            title: 'ยกเลิกคำสั่งซื้อ',
+            text: 'กรุณาเลือกเหตุผลในการยกเลิก',
+            input: 'select',
+            inputOptions: {
+                'เปลี่ยนใจ ไม่ต้องการแล้ว': 'เปลี่ยนใจ ไม่ต้องการแล้ว',
+                'ต้องการแก้ไขข้อมูลการจัดส่ง': 'ต้องการแก้ไขข้อมูลการจัดส่ง',
+                'ต้องการเพิ่ม/ลดรายการสินค้า': 'ต้องการเพิ่ม/ลดรายการสินค้า',
+                'สั่งซื้อผิดซ้ำซ้อน': 'สั่งซื้อผิดซ้ำซ้อน',
+                'เจอสินค้าอื่นที่ถูกใจกว่า': 'เจอสินค้าอื่นที่ถูกใจกว่า',
+                'อื่นๆ': 'อื่นๆ'
+            },
+            inputPlaceholder: 'เลือกเหตุผล...',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#846F5B',
+            confirmButtonText: 'ยืนยันการยกเลิก',
+            cancelButtonText: 'ปิด',
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'กรุณาเลือกเหตุผลอย่างน้อย 1 ข้อ'
+                }
+            }
+        });
+
+        if (!cancelReason) {
             return;
         }
 
         setCancellingOrderId(orderId);
         try {
-            await axios.put(`${API_URL}/orders/user/${user.id}/orders/${orderId}/cancel`);
+            await axios.put(`${API_URL}/orders/user/${user.id}/orders/${orderId}/cancel`, {
+                cancelReason
+            });
             fetchOrders();
+            Swal.fire({ title: 'สำเร็จ', text: 'ยกเลิกคำสั่งซื้อเรียบร้อยแล้ว ทางร้านจะทำการคืนเงินของลูกค้าภายใน 3 วันทำการ', icon: 'success', confirmButtonColor: '#846F5B' });
         } catch (error) {
             console.error('Cancel order error:', error);
             Swal.fire({ title: 'แจ้งเตือน', text: error.response?.data?.message || 'ไม่สามารถยกเลิกคำสั่งซื้อได้ในขณะนี้', icon: 'info', confirmButtonColor: '#846F5B' });

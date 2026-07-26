@@ -39,13 +39,21 @@ const getStats = (req, res) => {
         // Calculate Total Staff
         const totalStaffCount = users.filter(u => u.role === 'STAFF').length;
 
+        // Calculate counts for each order status
+        const statusCounts = orders.reduce((acc, order) => {
+            const status = order.status || 'Unknown';
+            acc[status] = (acc[status] || 0) + 1;
+            return acc;
+        }, {});
+
         res.json({
             totalSales,
             totalOrders: totalOrdersCount,
             pendingOrders: pendingOrdersCount,
             totalProducts: totalProductsCount,
             totalMembers: totalMembersCount,
-            totalStaff: totalStaffCount
+            totalStaff: totalStaffCount,
+            statusCounts: statusCounts
         });
     } catch (err) {
         console.error('Error fetching admin stats:', err);

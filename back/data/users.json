@@ -6,7 +6,11 @@
     "password": "admin",
     "phone": "0000000000",
     "role": "ADMIN",
-    "createdAt": "2026-07-13T17:00:00.000Z"
+    "createdAt": "2026-07-13T17:00:00.000Z",
+    "refundAccounts": [
+      "432535245234",
+      "768978967857"
+    ]
   },
   {
     "id": "baf395d0-2947-4cc3-aa6c-897c8589a42c",

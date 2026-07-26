@@ -50,13 +50,6 @@ export default function AdminStats({ user }) {
           </div>
         </div>
 
-        <div className="stat-card" style={{ borderBottomColor: '#d9ad7c' }}>
-          <div className="stat-icon" style={{ background: '#fdf6ed', color: '#d9ad7c' }}><i className="fa-solid fa-clock"></i></div>
-          <div className="stat-info">
-            <h3>รอตรวจสอบ</h3>
-            <p>{stats.pendingOrders}</p>
-          </div>
-        </div>
 
         <div className="stat-card" style={{ borderBottomColor: '#b76e79' }}>
           <div className="stat-icon" style={{ background: '#faeff1', color: '#b76e79' }}><i className="fa-solid fa-users"></i></div>
@@ -73,6 +66,53 @@ export default function AdminStats({ user }) {
             <p>{stats.totalStaff || 0}</p>
           </div>
         </div>
+      </div>
+
+      <h2 style={{ marginTop: '40px', color: '#665342', fontSize: '1.25rem', marginBottom: '20px' }}>จำนวนคำสั่งซื้อแยกตามสถานะ</h2>
+      <div className="stats-grid">
+        {stats.statusCounts && Object.keys(stats.statusCounts).length > 0 ? (
+          Object.entries(stats.statusCounts).map(([status, count], index) => {
+            const statusConfig = {
+              'กำลังตรวจสอบการชำระเงิน': { color: '#d9ad7c', bg: '#fdf6ed', icon: 'fa-clock' },
+              'ชำระเงินแล้ว': { color: '#665342', bg: '#efebe6', icon: 'fa-check-double' },
+              'กำลังเตรียมจัดส่ง': { color: '#6b9080', bg: '#eaf4f0', icon: 'fa-box-open' },
+              'จัดส่งแล้ว': { color: '#2a9d8f', bg: '#e6f4f2', icon: 'fa-truck-fast' },
+              'จัดส่งสำเร็จ': { color: '#1d3557', bg: '#e6eaf0', icon: 'fa-house-circle-check' },
+              'ยกเลิกคำสั่งซื้อ': { color: '#e63946', bg: '#fceced', icon: 'fa-ban' },
+              'รอคืนเงิน': { color: '#f4a261', bg: '#fef5ec', icon: 'fa-rotate-left' },
+              'คืนเงินสำเร็จ': { color: '#e9c46a', bg: '#fdf9ee', icon: 'fa-money-bill-transfer' },
+              default: { color: '#a89a89', bg: '#f5f0e6', icon: 'fa-clipboard-check' }
+            };
+            
+            const config = statusConfig[status] || statusConfig.default;
+
+            return (
+              <div className="stat-card" style={{ borderBottomColor: config.color, minHeight: '110px' }} key={index}>
+                <div className="stat-icon" style={{ background: config.bg, color: config.color }}>
+                  <i className={`fa-solid ${config.icon}`}></i>
+                </div>
+                <div className="stat-info" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <h3 style={{ 
+                    fontSize: 'clamp(0.8rem, 1.5vw, 0.95rem)', 
+                    lineHeight: '1.4', 
+                    whiteSpace: 'normal', 
+                    wordBreak: 'break-word',
+                    marginBottom: '8px',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }} title={status}>
+                    {status}
+                  </h3>
+                  <p style={{ margin: 0 }}>{count}</p>
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p style={{ color: '#8a7a68' }}>ยังไม่มีข้อมูลคำสั่งซื้อ</p>
+        )}
       </div>
     </div>
   );

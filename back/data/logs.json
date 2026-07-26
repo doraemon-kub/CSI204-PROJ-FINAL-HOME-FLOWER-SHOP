@@ -1,5 +1,131 @@
 [
   {
+    "id": "LOG-1785055110057361",
+    "timestamp": "2026-07-26T08:38:30.057Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CANCEL_ORDER",
+    "details": "Requested cancellation for order ORD-1785054160379. Reason: ต้องการแก้ไขข้อมูลการจัดส่ง"
+  },
+  {
+    "id": "LOG-1785054958675514",
+    "timestamp": "2026-07-26T08:35:58.675Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CANCEL_ORDER",
+    "details": "Requested cancellation for order ORD-1785054950327. Reason: ต้องการแก้ไขข้อมูลการจัดส่ง"
+  },
+  {
+    "id": "LOG-1785054950338282",
+    "timestamp": "2026-07-26T08:35:50.338Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1785054950327"
+  },
+  {
+    "id": "LOG-1785054931235489",
+    "timestamp": "2026-07-26T08:35:31.235Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-1785054870135822",
+    "timestamp": "2026-07-26T08:34:30.135Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "UPDATE_ORDER_STATUS",
+    "details": "Updated status of order ORD-1785054836877 to คืนเงินสำเร็จ"
+  },
+  {
+    "id": "LOG-1785054851674540",
+    "timestamp": "2026-07-26T08:34:11.674Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CANCEL_ORDER",
+    "details": "Requested cancellation for order ORD-1785054836877. Reason: สั่งซื้อผิดซ้ำซ้อน"
+  },
+  {
+    "id": "LOG-1785054836881755",
+    "timestamp": "2026-07-26T08:33:56.881Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1785054836877"
+  },
+  {
+    "id": "LOG-1785054369886968",
+    "timestamp": "2026-07-26T08:26:09.886Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product prod-1784472755067 to cart"
+  },
+  {
+    "id": "LOG-1785054160390201",
+    "timestamp": "2026-07-26T08:22:40.390Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1785054160379"
+  },
+  {
+    "id": "LOG-1785053668500337",
+    "timestamp": "2026-07-26T08:14:28.500Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product prod-1784472755067 to cart"
+  },
+  {
+    "id": "LOG-178505365253054",
+    "timestamp": "2026-07-26T08:14:12.530Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "CREATE_ORDER",
+    "details": "Placed new order ORD-1785053652527"
+  },
+  {
+    "id": "LOG-1785053320637232",
+    "timestamp": "2026-07-26T08:08:40.637Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "ADD_TO_CART",
+    "details": "Added product p3 to cart"
+  },
+  {
+    "id": "LOG-1785052629423422",
+    "timestamp": "2026-07-26T07:57:09.423Z",
+    "userId": "admin-id-001",
+    "userName": "Shop Owner (Admin)",
+    "userRole": "ADMIN",
+    "action": "LOGIN",
+    "details": "User logged in: Shop Owner (Admin) (admin@homeflowershop.com)"
+  },
+  {
+    "id": "LOG-1785052601327579",
+    "timestamp": "2026-07-26T07:56:41.327Z",
+    "userId": "3ac2eaa9-2bc7-41fe-8bea-7bc2c80e6244",
+    "userName": "da",
+    "userRole": "STAFF",
+    "action": "LOGIN",
+    "details": "User logged in: da (staff@gmail.com)"
+  },
+  {
     "id": "LOG-1784968793863138",
     "timestamp": "2026-07-25T08:39:53.863Z",
     "userId": "admin-id-001",

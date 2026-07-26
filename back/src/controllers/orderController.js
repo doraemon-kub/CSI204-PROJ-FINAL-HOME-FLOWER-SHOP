@@ -47,11 +47,12 @@ const checkout = (req, res) => {
     const orders = fileDb.readData('orders');
     
     // Create new order
+    const parsedBuyerInfo = typeof buyerInfo === 'string' ? JSON.parse(buyerInfo) : buyerInfo;
     const newOrder = {
         orderId: `ORD-${Date.now()}`,
         userId,
         items: cartItems,
-        buyerInfo: typeof buyerInfo === 'string' ? JSON.parse(buyerInfo) : buyerInfo,
+        buyerInfo: parsedBuyerInfo,
         recipientInfo: typeof recipientInfo === 'string' ? JSON.parse(recipientInfo) : recipientInfo,
         cardMessage,
         payment: {
@@ -76,6 +77,21 @@ const checkout = (req, res) => {
     if (userCart) {
         userCart.items = [];
         fileDb.writeData('carts', carts);
+    }
+
+    // Save refund account to user profile if provided and not already saved
+    if (parsedBuyerInfo.refundAccount) {
+        const users = fileDb.readData('users');
+        const userIndex = users.findIndex(u => u.id === userId);
+        if (userIndex !== -1) {
+            if (!users[userIndex].refundAccounts) {
+                users[userIndex].refundAccounts = [];
+            }
+            if (!users[userIndex].refundAccounts.includes(parsedBuyerInfo.refundAccount)) {
+                users[userIndex].refundAccounts.push(parsedBuyerInfo.refundAccount);
+                fileDb.writeData('users', users);
+            }
+        }
     }
 
     // Emit real-time update
@@ -177,6 +193,7 @@ module.exports = {
     // Cancel order (for Member)
     cancelOrder: (req, res) => {
         const { userId, orderId } = req.params;
+        const { cancelReason } = req.body;
         const orders = fileDb.readData('orders');
 
         const orderIndex = orders.findIndex(o => o.orderId === orderId && o.userId === userId);
@@ -205,6 +222,9 @@ module.exports = {
         fileDb.writeData('products', products);
 
         orders[orderIndex].status = 'รอคืนเงิน';
+        if (cancelReason) {
+            orders[orderIndex].cancelReason = cancelReason;
+        }
         fileDb.writeData('orders', orders);
 
         // Emit socket events
@@ -215,7 +235,7 @@ module.exports = {
         }
 
         // Log action
-        logger.logAction(userId, 'CANCEL_ORDER', `Requested cancellation for order ${orderId}`);
+        logger.logAction(userId, 'CANCEL_ORDER', `Requested cancellation for order ${orderId}. Reason: ${cancelReason || 'None'}`);
 
         res.json({ message: 'Order cancellation requested successfully', order: orders[orderIndex] });
     }

@@ -22,6 +22,8 @@ export default function CheckoutModal({
   const [buyerName, setBuyerName] = useState('');
   const [buyerPhone, setBuyerPhone] = useState('');
   const [buyerEmail, setBuyerEmail] = useState('');
+  const [refundAccount, setRefundAccount] = useState('');
+  const [showRefundDropdown, setShowRefundDropdown] = useState(false);
   const [recipientName, setRecipientName] = useState('');
   const [recipientAddress, setRecipientAddress] = useState('');
   const [recipientPhone, setRecipientPhone] = useState('');
@@ -81,6 +83,11 @@ export default function CheckoutModal({
       return;
     }
 
+    if (refundAccount && (refundAccount.length < 10 || refundAccount.length > 12)) {
+      Swal.fire({ title: 'แจ้งเตือน', text: 'เลขบัญชีรับเงินคืนต้องเป็นตัวเลข 10 - 12 หลักเท่านั้น', icon: 'info', confirmButtonColor: '#846F5B' });
+      return;
+    }
+
     setIsCheckingOut(true);
     try {
       const formData = new FormData();
@@ -115,7 +122,8 @@ export default function CheckoutModal({
       formData.append('buyerInfo', JSON.stringify({ 
         name: buyerName, 
         phone: buyerPhone, 
-        email: buyerEmail 
+        email: buyerEmail,
+        refundAccount: refundAccount 
       }));
       formData.append('recipientInfo', JSON.stringify({ 
         name: recipientName, 
@@ -350,6 +358,69 @@ export default function CheckoutModal({
                       style={inputStyle}
                     />
                   </div>
+                </div>
+                <div className="form-group" style={{ marginTop: '12px', marginBottom: 0 }}>
+                  <label style={{...labelStyle, color: '#e67e22'}}>
+                    <i className="fa-solid fa-money-check-dollar" style={{marginRight: '6px'}}></i>
+                    เลขบัญชีรับเงินคืน (สำหรับกรณียกเลิกคำสั่งซื้อ)
+                  </label>
+                  <div style={{ position: 'relative' }}>
+                    <input 
+                      type="text" 
+                      value={refundAccount} 
+                      onChange={e => setRefundAccount(e.target.value.replace(/\D/g, '').slice(0, 12))} 
+                      onFocus={() => setShowRefundDropdown(true)}
+                      onBlur={() => setTimeout(() => setShowRefundDropdown(false), 200)}
+                      placeholder="กรอกเฉพาะตัวเลขบัญชี 10-12 หลัก"
+                      minLength="10"
+                      maxLength="12"
+                      pattern="[0-9]{10,12}"
+                      style={{...inputStyle, borderColor: '#f39c12', width: '100%'}}
+                    />
+                    {showRefundDropdown && user?.refundAccounts && user.refundAccounts.length > 0 && (
+                      <ul style={{
+                        position: 'absolute',
+                        top: '100%',
+                        left: 0,
+                        right: 0,
+                        background: '#fff',
+                        border: '1px solid #e2e8f0',
+                        borderRadius: '6px',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                        marginTop: '4px',
+                        padding: '4px 0',
+                        listStyle: 'none',
+                        zIndex: 10,
+                        maxHeight: '150px',
+                        overflowY: 'auto'
+                      }}>
+                        {user.refundAccounts.map((acc, idx) => (
+                          <li 
+                            key={idx}
+                            onMouseDown={() => {
+                              setRefundAccount(acc);
+                              setShowRefundDropdown(false);
+                            }}
+                            style={{
+                              padding: '8px 12px',
+                              cursor: 'pointer',
+                              color: '#334155',
+                              fontSize: '0.9rem',
+                              transition: 'background 0.15s ease'
+                            }}
+                            onMouseEnter={(e) => e.target.style.background = '#f8fafc'}
+                            onMouseLeave={(e) => e.target.style.background = 'transparent'}
+                          >
+                            <i className="fa-solid fa-clock-rotate-left" style={{marginRight: '8px', color: '#94a3b8'}}></i>
+                            {acc}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                  <small style={{ color: '#e74c3c', fontSize: '0.75rem', marginTop: '6px', display: 'block', lineHeight: '1.4' }}>
+                    * กรุณาตรวจสอบความถูกต้องของเลขบัญชีของท่าน ถ้าหากเลขบัญชีผิดพลาด ทางร้านจะไม่รับผิดชอบในการคืนเงินใดๆทั้งสิ้น
+                  </small>
                 </div>
               </div>
 
